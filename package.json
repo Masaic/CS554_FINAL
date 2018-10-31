@@ -1,0 +1,19 @@
+{
+  "name": "cs554_final",
+  "version": "1.0.0",
+  "description": "Team n00b's Repository for CS554",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Masaic/CS554_FINAL.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Masaic/CS554_FINAL/issues"
+  },
+  "homepage": "https://github.com/Masaic/CS554_FINAL#readme"
+}
