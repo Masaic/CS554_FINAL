@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 # CS554_FINAL
@@ -45,3 +46,7 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+=======
+# CS554_FINAL
+Team n00b's Repository for CS554
+>>>>>>> 05f2228b4cbac12cc11376757b90cf39c0200702

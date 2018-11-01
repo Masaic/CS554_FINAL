@@ -2,6 +2,7 @@
   "name": "cs554_final",
   "version": "1.0.0",
   "description": "Team n00b's Repository for CS554",
+<<<<<<< HEAD
   "dependencies": {
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
@@ -12,6 +13,11 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
+=======
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> 05f2228b4cbac12cc11376757b90cf39c0200702
   },
   "repository": {
     "type": "git",
@@ -22,6 +28,7 @@
   "bugs": {
     "url": "https://github.com/Masaic/CS554_FINAL/issues"
   },
+<<<<<<< HEAD
   "homepage": "https://github.com/Masaic/CS554_FINAL#readme",
   "eslintConfig": {
     "extends": "react-app"
@@ -32,4 +39,7 @@
     "not ie <= 11",
     "not op_mini all"
   ]
+=======
+  "homepage": "https://github.com/Masaic/CS554_FINAL#readme"
+>>>>>>> 05f2228b4cbac12cc11376757b90cf39c0200702
 }

@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -22,6 +23,8 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+=======
+>>>>>>> 05f2228b4cbac12cc11376757b90cf39c0200702
 # Logs
 logs
 *.log
@@ -89,7 +92,11 @@ typings/
 
 #office file
 *.docx
+<<<<<<< HEAD
 *.doc
 
 #pdf file
 *.pdf
+=======
+*.doc
+>>>>>>> 05f2228b4cbac12cc11376757b90cf39c0200702
