@@ -1,7 +1,7 @@
 {
   "name": "cs554_final",
-  "version": "0.1.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "Team n00b's Repository for CS554",
   "dependencies": {
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
@@ -13,6 +13,16 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Masaic/CS554_FINAL.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Masaic/CS554_FINAL/issues"
+  },
+  "homepage": "https://github.com/Masaic/CS554_FINAL#readme",
   "eslintConfig": {
     "extends": "react-app"
   },
