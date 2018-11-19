@@ -30,7 +30,7 @@ class ModalExample extends React.Component {
   render(){
     let logInPage = (
       <div className = "logBackground">
-        <div className = "logAndSign mx-auto shadow rounded border"> 
+        <div className = "logAndSign rounded border test-align"> 
           <div id = "logInPart">
             <div className="input row">
               <strong className = "labelLen">Username: </strong>
@@ -67,10 +67,7 @@ class ModalExample extends React.Component {
             <a id = "clickToSignUp" href = "#" onClick = {this.changeState}> Doesn't have an account? Click to sign up. </a>
             <a id = "clickToLogIn" href = "#" onClick = {this.changeState}> Already have an account? Click to log in. </a>
           </div>
-           
-         
-        </div>
-        
+        </div>      
       </div>
     );
 

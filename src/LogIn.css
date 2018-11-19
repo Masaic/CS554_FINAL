@@ -4,10 +4,16 @@
     margin-top : 5%;
     
     background-color: #f1eeee;
+    position: absolute;
+    left: 50%;
+    transform : translate(-50%, 0%);
 }
 
 .logBackground {
-    background-color: azure
+    background-image: url('./images/logInPage.jpg');
+    height : 600px;
+    background-size: 100%;
+    position: relative;
 }
 
 .input {
