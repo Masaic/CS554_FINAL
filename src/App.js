@@ -3,8 +3,27 @@ import './App.css';
 import Main from './components/Main';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 
-class App extends Component {
-  render() {
+//import Info from './Information'; 
+import Navigation from './Navigation';
+import LogIn_SignUp from './LogIn_SignUp';
+
+
+
+class App extends React.Component {
+
+  //Constructor
+  constructor(props, context) {
+    super(props, context);
+    this.state = {
+      home: true
+    };
+  }
+
+
+ 
+
+  render() {   
+
     return (
       <Router>
       <div className="App">
@@ -24,6 +43,11 @@ class App extends Component {
         </header> */}
         <br />
         <br />
+        <div>
+            <Navigation />
+          </div>
+         
+          <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
         <div className="App-body">
           <Route path="/" component={Main} />
         </div>
@@ -32,5 +56,6 @@ class App extends Component {
     );
   }
 }
+
 
 export default App;
