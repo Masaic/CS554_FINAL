@@ -8,22 +8,25 @@ class ModalExample extends React.Component {
       logIn : true
     };
   }
-
-  changeState() {
+  
+  async switchPage() {
     this.setState({
       logIn : !this.state.logIn
     });
+  }
+
+  async changeState() {
+    await this.switchPage();
 
     if (this.state.logIn) {
       document.getElementById("logInPart").style.setProperty('display','block');
       document.getElementById("signUpPart").style.setProperty('display','none');
-      document.getElementById("clickToSignUp").style.setProperty('display', 'block');
-      document.getElementById("clickToLogIn").style.setProperty('display', 'none');
+      document.getElementById("clickToChange").setAttribute('text', 'Doesn\'t have an account? Click to sign up.');
+     
     } else {
       document.getElementById("logInPart").style.setProperty('display','none');
       document.getElementById("signUpPart").style.setProperty('display','block');
-      document.getElementById("clickToSignUp").style.setProperty('display', 'none');
-      document.getElementById("clickToLogIn").style.setProperty('display', 'block');
+      document.getElementById("clickToChange").setAttribute('text', 'Already have an account? Click to log in.');
     }
   }
 
@@ -60,12 +63,11 @@ class ModalExample extends React.Component {
               <strong className = "labelLen">Reinput Password: </strong>
               <input type="password" className="form-control inputLen" id = "passwordTwo"></input>
             </div>
-            <a href = "#" className = "btn btn-success btnProperty text-white font-weight-bold">Sign up</a>
+            <a href = "" className = "btn btn-success btnProperty text-white font-weight-bold">Sign up</a>
           </div>
 
           <div className = "changePart">
-            <a id = "clickToSignUp" href = "#" onClick = {this.changeState}> Doesn't have an account? Click to sign up. </a>
-            <a id = "clickToLogIn" href = "#" onClick = {this.changeState}> Already have an account? Click to log in. </a>
+            <a href = "javascript:void(0)" id = "clickToChange"  onClick = {this.changeState}> Doesn't have an account? Click to sign up. </a>
           </div>
         </div>      
       </div>
