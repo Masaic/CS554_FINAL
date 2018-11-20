@@ -4,7 +4,7 @@ import './App.css';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 //import Info from './Information'; 
 import Navigation from './Navigation';
-import LogIn from './LogIn.js'; 
+import LogIn_SignUp from './LogIn_SignUp';
 
 
 
@@ -45,7 +45,7 @@ class App extends React.Component {
             <Navigation />
           </div>
          
-          <Route path = "/LogIn" component = { LogIn } />
+          <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
           
         </div>
         

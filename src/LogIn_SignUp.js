@@ -1,22 +1,25 @@
 import React from 'react';
-import './LogIn.css'
-class ModalExample extends React.Component {
+import './LogIn_SignUp.css'
+
+class LogIn_SignUp extends React.Component {
   constructor(props) {
     super(props);
-    this.changeState = this.changeState.bind(this);
+    this.switchPage = this.switchPage.bind(this);
     this.state = {
       logIn : true
     };
   }
   
-  async switchPage() {
+  //Set new state
+  async changeState() {
     this.setState({
       logIn : !this.state.logIn
     });
   }
 
-  async changeState() {
-    await this.switchPage();
+  //Switch between log in page ans sign up page
+  async switchPage() {
+    await this.changeState();
 
     if (this.state.logIn) {
       document.getElementById("logInPart").style.setProperty('display','block');
@@ -67,7 +70,7 @@ class ModalExample extends React.Component {
           </div>
 
           <div className = "changePart">
-            <a href = "javascript:void(0)" id = "clickToChange"  onClick = {this.changeState}> Doesn't have an account? Click to sign up. </a>
+            <a href = "javascript:void(0)" id = "clickToChange"  onClick = {this.switchPage}> Doesn't have an account? Click to sign up. </a>
           </div>
         </div>      
       </div>
@@ -79,4 +82,4 @@ class ModalExample extends React.Component {
   }
 }
 
-export default ModalExample;
+export default LogIn_SignUp;

@@ -9,7 +9,7 @@ const Navigation = () =>
 
 const NavigationAuth = () =>
     <nav className="navigation">
-        <NavLink exact to="/LogIn" activeClassName='active'>Log in / Sign up</NavLink>
+        <NavLink exact to="/LogIn_SignUp" activeClassName='active'>Log in / Sign up</NavLink>
         
     </nav>
 
