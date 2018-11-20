@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Main from './components/Main';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 
 class App extends Component {
   render() {
     return (
+      <Router>
       <div className="App">
-        <header className="App-header">
+        {/* <header className="App-header">
           <img src={logo} className="App-logo" alt="logo" />
           <p>
             Edit <code>src/App.js</code> and save to reload.
@@ -19,8 +21,14 @@ class App extends Component {
           >
             Learn React
           </a>
-        </header>
+        </header> */}
+        <br />
+        <br />
+        <div className="App-body">
+          <Route path="/" component={Main} />
+        </div>
       </div>
+      </Router>
     );
   }
 }
