@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Main from './components/Main';
-import { BrowserRouter as Router, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 //import Info from './Information'; 
 import Navigation from './Navigation';
@@ -45,11 +45,12 @@ class App extends React.Component {
         <br />
         <div>
             <Navigation />
-          </div>
-         
-          <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
+        </div>
         <div className="App-body">
+        <Switch>
+          <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
           <Route path="/" component={Main} />
+        </Switch>
         </div>
       </div>
       </Router>
