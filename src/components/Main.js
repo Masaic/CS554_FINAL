@@ -21,8 +21,7 @@ class Main extends Component {
                 <div className="row">
                     <Searchbar handleProfileChange={this.handleProfileChange} />
                 </div>
-                <div className="row"
-                    >
+                <div className="row">
                     <Profile profileName={this.state.name} />
                 </div>
             </div>
