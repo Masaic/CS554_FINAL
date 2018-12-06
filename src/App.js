@@ -41,8 +41,6 @@ class App extends React.Component {
             Learn React
           </a>
         </header> */}
-        <br />
-        <br />
         <div>
             <Navigation />
         </div>

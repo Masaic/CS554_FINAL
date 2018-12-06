@@ -46,7 +46,7 @@ class LogIn_SignUp extends React.Component {
               <strong className = "labelLen">Password: </strong>
               <input type="password" className="form-control inputLen" id = "logInPassword"></input>
             </div>
-            <a href = "#" className = "btn btn-primary btnProperty text-white font-weight-bold">Log in</a>
+            <a href = "javascript:void(0)" className = "btn btn-primary btnProperty text-white font-weight-bold">Log in</a>
           </div>
 
           <div id = "signUpPart">
@@ -66,7 +66,7 @@ class LogIn_SignUp extends React.Component {
               <strong className = "labelLen">Reinput Password: </strong>
               <input type="password" className="form-control inputLen" id = "passwordTwo"></input>
             </div>
-            <a href = "" className = "btn btn-success btnProperty text-white font-weight-bold">Sign up</a>
+            <a href = "javascript:void(0)" className = "btn btn-success btnProperty text-white font-weight-bold">Sign up</a>
           </div>
 
           <div className = "changePart">
