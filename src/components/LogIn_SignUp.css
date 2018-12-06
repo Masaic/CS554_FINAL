@@ -10,7 +10,7 @@
 }
 
 .logBackground {
-    background-image: url('./images/logInPage.jpg');
+    background-image: url('../images/logInPage.jpg');
     height : 600px;
     background-size: 100%;
     position: relative;

@@ -1,6 +1,6 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom'
-import Searchbar from './components/Searchbar';
+import Searchbar from './Searchbar';
 //import SignOutButton from './SignOut'
 //import {firebase} from '../firebase';
 

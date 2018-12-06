@@ -34,7 +34,7 @@ class LogIn_SignUp extends React.Component {
   }
 
   render(){
-    let logInPage = (
+    let logInPage = ( 
       <div className = "logBackground">
         <div className = "logAndSign rounded border test-align"> 
           <div id = "logInPart">
