@@ -50,22 +50,23 @@ const Navigation = (props) => {
     } else {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <NavLink class="navbar-brand" to="/">
 
+                <NavLink className="navbar-brand" to="/">
+                
                     <img src={'../images/MarvelLogo.png'} width="60" height="30" alt="" />
                     <strong>MarvelPedia</strong>
                 </NavLink>
+            
+                <div className="collapse navbar-collapse">
+                    <ul className = "navbar-nav">
+                        <li className = "nav-item active navItems font-weight-bold">
 
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul className="navbar-nav">
-                        <li className="nav-item active navItems font-weight-bold">
-                            <NavLink className="nav-link" exact to="/">Home <span class="sr-only">(current)</span></NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
                             <NavLink className="nav-link" to="javscript:void(0)">Heros</NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-                            <NavLink className="nav-link" to="javscript:void(0)">Comics</NavLink>
+                            <NavLink className = "nav-link" to = "/comicList/1">Comics</NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
                             <NavLink className="nav-link" to="javscript:void(0)">Movies</NavLink>
@@ -73,7 +74,8 @@ const Navigation = (props) => {
                     </ul>
                 </div>
 
-                <div id="LoggedDiv" className="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div id = "LoggedDiv" className = "collapse navbar-collapse justify-content-end">
+
                     <ul className="navbar-nav">
                         <li className="nav-item navItems font-weight-bold">
                             <NavLink className="nav-link" to="/LogIn_SignUp">Log in / Sign up</NavLink>

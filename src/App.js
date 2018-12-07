@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 //import Info from './Information'; 
 // import Navigation from './components/Navigation';
 import LogIn_SignUp from './components/LogIn_SignUp';
+import comicList from './components/comicList';
 
 // firebase api
 import fire from './config/Fire';
@@ -55,7 +56,8 @@ class App extends Component {
         <button onClick={this.authenTest}>Test</button>
         <Switch>
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
-          <Route path="/" component={Main} />
+          <Route exact path = "/" component = {Main} />
+          <Route path = "/comicList/1" component = { comicList } />
         </Switch>
         </div>
       </div>
