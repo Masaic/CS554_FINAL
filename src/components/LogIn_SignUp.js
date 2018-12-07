@@ -51,19 +51,19 @@ class LogIn_SignUp extends React.Component {
 
           <div id = "signUpPart">
             <div className="input row">
-              <strong className = "labelLen">Username: </strong>
+              <strong className = "labelLen text-right">Username: </strong>
               <input type="text" className="form-control inputLen" id = "signUpUsername" />
             </div> 
             <div className="input row">
-              <strong className = "labelLen">Email: </strong>
+              <strong className = "labelLen text-right">Email: </strong>
               <input type="test" className="form-control inputLen" id = "signUpEmail" />
             </div>
             <div className="input row">
-              <strong className = "labelLen">Password: </strong>
+              <strong className = "labelLen text-right">Password: </strong>
               <input type="password" className="form-control inputLen" id = "signUpPassword" />
             </div>
             <div className="input row">
-              <strong className = "labelLen">Reinput Password: </strong>
+              <strong className = "labelLen text-right">Reinput Password: </strong>
               <input type="password" className="form-control inputLen" id = "passwordTwo" />
             </div>
             <a href = "javascript:void(0)" className = "btn btn-success btnProperty text-white font-weight-bold">Sign up</a>

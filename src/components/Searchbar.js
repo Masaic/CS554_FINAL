@@ -77,13 +77,15 @@ class Searchbar extends Component {
                     highlightedIndex,
                     selectedItem,
                 }) => (
-                        <div className = "input-group" style={{position: `relative`}}>
-                            <div className = "input-group-append">
-                                <label className = "font-weight-bold input-group-text" {...getLabelProps()}>Search: </label>
+                        <div style={{position: `relative`}}>
+                            <div className = "input-group">
+                                 <div className = "input-group-prepend">
+                                    <label className = "font-weight-bold input-group-text" {...getLabelProps()}>Search: </label>
+                                </div>
+                                <input className = "form-control" {...getInputProps({
+                                    onChange: this.handleChange
+                                })} />
                             </div>
-                            <input className = "form-control" {...getInputProps({
-                                onChange: this.handleChange
-                            })} />
                     
                             
                             {isOpen ? (
