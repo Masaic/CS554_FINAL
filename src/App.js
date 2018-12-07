@@ -11,11 +11,6 @@ import comicList from './components/comicList';
 // firebase api
 import fire from './config/Fire';
 
-
-<<<<<<< HEAD
-=======
-
->>>>>>> cbc018eb590b107b28f086cb9354d3ae181d37c1
 class App extends Component {
 
   //Constructor
