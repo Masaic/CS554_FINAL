@@ -52,7 +52,7 @@ class Navigation extends React.Component{
                         <li className="nav-item navItems font-weight-bold">
                             <NavLink className = "nav-link" to = "/LogIn_SignUp">Log in / Sign up</NavLink>
                         </li>
-                        <li className="nav-item navItems" style = {{'display':'none'}}>
+                        <li className="nav-item navItems font-weight-bold" style = {{'display':'none'}}>
                             <NavLink className = "nav-link" to = "/">Sign out</NavLink>
                         </li>
                     </ul>

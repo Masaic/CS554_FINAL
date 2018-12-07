@@ -80,7 +80,7 @@ class Searchbar extends Component {
                         <div style={{position: `relative`}}>
                             <div className = "input-group">
                                  <div className = "input-group-prepend">
-                                    <label className = "font-weight-bold input-group-text" {...getLabelProps()}>Search: </label>
+                                    <label className = "font-weight-bold input-group-text" {...getLabelProps()}>Search Hero: </label>
                                 </div>
                                 <input className = "form-control" {...getInputProps({
                                     onChange: this.handleChange
