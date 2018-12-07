@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Searchbar from './Searchbar';
 import Profile from './Profile';
+import Navigation from './Navigation';
 
 class Main extends Component {
     constructor(props) {
@@ -17,12 +18,17 @@ class Main extends Component {
 
     render() {
         return (
-            <div className="container">
-                <div className="row">
-                    <Searchbar handleProfileChange={this.handleProfileChange} />
+            <div>
+                <div>
+                    <Navigation handleProfileChange={this.handleProfileChange} />
                 </div>
-                <div className="row">
-                    <Profile profileName={this.state.name} />
+                <div className="container">
+                    {/* <div className="row">
+                        <Searchbar handleProfileChange={this.handleProfileChange} />
+                    </div> */}
+                    <div className="row">
+                        <Profile profileName={this.state.name} />
+                    </div>
                 </div>
             </div>
         );
