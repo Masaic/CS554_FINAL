@@ -8,7 +8,7 @@ class Profile extends Component {
 
     render() {
         return (
-            <div>
+            <div style={{margin:'0 auto'}}>
                 <div>
                     {this.props.profileName}
                 </div>
