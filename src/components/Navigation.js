@@ -21,13 +21,10 @@ const Navigation = (props) => {
                             <NavLink className="nav-link" exact to="/">Home <span class="sr-only">(current)</span></NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-                            <NavLink className="nav-link" to="javscript:void(0)">Heros</NavLink>
+                            <NavLink className="nav-link" to="/heros/">Heros</NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-                            <NavLink className="nav-link" to="javscript:void(0)">Comics</NavLink>
-                        </li>
-                        <li className="nav-item navItems font-weight-bold">
-                            <NavLink className="nav-link" to="javscript:void(0)">Movies</NavLink>
+                            <NavLink className="nav-link" to="/comics/1">Comics</NavLink>
                         </li>
                     </ul>
                 </div>

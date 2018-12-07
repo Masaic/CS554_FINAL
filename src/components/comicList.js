@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import './general.css';
 import ComicItem from './comicItem.js';
+import Navigation from './Navigation';
 var CryptoJS = require("crypto-js");
 
 class comicList extends Component {
@@ -60,6 +61,9 @@ class comicList extends Component {
         if (this.state.comicList === undefined) {
             return (
                 <div>
+                    <div>
+                        <Navigation handleProfileChange={this.handleProfileChange} />
+                    </div>
                     Still loading info.
                 </div>
             );
@@ -68,16 +72,20 @@ class comicList extends Component {
             
             <div>
                 <div>
-                    test
+                    <Navigation handleProfileChange={this.handleProfileChange} />
+                </div>
+                <div>
                     {
                         this.state.comicList.map((arr, index) => {
                             return (
-                                <ComicItem key = {index} />
+                                <ComicItem info = {arr} key = {index} />
                             );
                         })
                     } 
                 </div>
-                { pagination }
+                <div>
+                { pagination }  
+                </div>
             </div>
         );
     }

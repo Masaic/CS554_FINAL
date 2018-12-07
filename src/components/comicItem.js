@@ -11,7 +11,7 @@ class comicItem extends Component {
         return (
             <div>
                 This is a test.
-                {this.props.id}
+               
             </div>
         );
     }
