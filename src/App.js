@@ -11,6 +11,10 @@ import comicList from './components/comicList';
 // firebase api
 import fire from './config/Fire';
 
+// authen api
+import api from './api';
+
+
 class App extends Component {
 
   //Constructor
@@ -34,6 +38,12 @@ class App extends Component {
     })
   }
 
+  // test button function by BoLi
+  authenTest = async (event) => {
+    event.preventDefault();
+    await api.signInWithEmailAndPassword('ee06b056@gmail.com','006361');
+  }
+
 
  
 
@@ -44,7 +54,8 @@ class App extends Component {
       <div className="App">
         <div className="App-body">
 
-        
+        <button onClick={this.authenTest}>Test</button>
+
         <Switch>
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
           <Route exact path = "/" component = {Main} />
