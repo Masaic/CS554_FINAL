@@ -43,6 +43,8 @@ class App extends Component {
       <Router>
       <div className="App">
         <div className="App-body">
+
+        
         <Switch>
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
           <Route exact path = "/" component = {Main} />
