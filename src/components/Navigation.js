@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom';
 import Searchbar from './Searchbar';
 import './general.css';
 //import SignOutButton from './SignOut'

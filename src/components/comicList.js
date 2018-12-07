@@ -3,6 +3,7 @@ import axios from 'axios';
 import './general.css';
 import ComicItem from './comicItem.js';
 import Navigation from './Navigation';
+import './general.css'
 var CryptoJS = require("crypto-js");
 
 class comicList extends Component {
@@ -74,7 +75,7 @@ class comicList extends Component {
                 <div>
                     <Navigation handleProfileChange={this.handleProfileChange} />
                 </div>
-                <div>
+                <div className = "row card-list-config">
                     {
                         this.state.comicList.map((arr, index) => {
                             return (
