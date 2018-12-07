@@ -29,9 +29,41 @@ class Searchbar extends Component {
 
     handleChange = (e) => {
         let value = e.target.value;
-        this.setState({ searchTerm: value }, () => {
-            this.searchHeros();
-        });
+        if (this.props.type == `hero`) {
+            this.setState({ searchTerm: value }, () => {
+                this.searchHeros();
+            });
+        } else
+            if (this.props.type == `comic`) {
+                this.setState({ searchTerm: value }, () => {
+                    this.searchComics();
+                });
+            } else {
+                throw (`no search type`);
+            }
+    }
+
+    async searchComics() {
+        if (this.state.searchTerm) {
+            try {
+                let ts = new Date().getTime();
+                let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
+                let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`
+                const response = await axios.get(`https://gateway.marvel.com/v1/public/comics?titleStartsWith=${this.state.searchTerm}&orderBy=title&limit=6&${script}`);
+                this.setState({ searchData: response.data });
+                let item = [];
+                if (this.state.searchData.data.results) {
+                    this.state.searchData.data.results.map(comics => {
+                        let title = comics.title;
+                        item.push({ value: `${title}` })
+                    })
+                    this.setState({ items: item });
+                }
+            } catch (e) {
+                console.log(e);
+            }
+        }
+
     }
 
     async searchHeros() {
@@ -49,7 +81,6 @@ class Searchbar extends Component {
                         item.push({ value: `${name}` })
                     })
                     this.setState({ items: item });
-                    console.log(this.state.items);
                 }
             } catch (e) {
                 console.log(e);
@@ -64,7 +95,7 @@ class Searchbar extends Component {
                     alert(`You selected ${selection.value}`);
                     let profileName = selection.value;
                     this.props.handleProfileChange(profileName);
-                    }
+                }
                 }
                 itemToString={item => (item ? item.value : '')}
             >
@@ -77,17 +108,17 @@ class Searchbar extends Component {
                     highlightedIndex,
                     selectedItem,
                 }) => (
-                        <div style={{position: `relative`}}>
-                            <div className = "input-group">
-                                 <div className = "input-group-prepend">
-                                    <label className = "font-weight-bold input-group-text" {...getLabelProps()}>Search Hero: </label>
+                        <div style={{ position: `relative` }}>
+                            <div className="input-group">
+                                <div className="input-group-prepend">
+                                    <label className="font-weight-bold input-group-text" {...getLabelProps()}>Search Hero: </label>
                                 </div>
-                                <input className = "form-control" {...getInputProps({
+                                <input className="form-control" {...getInputProps({
                                     onChange: this.handleChange
                                 })} />
                             </div>
-                    
-                            
+
+
                             {isOpen ? (
                                 <div>
                                     <div className="downshift-dropdown">

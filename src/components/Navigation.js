@@ -32,7 +32,7 @@ const Navigation = (props) => {
                 <div id="LoggedDiv" className="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item navItems">
-                            <Searchbar handleProfileChange={props.handleProfileChange} />
+                            <Searchbar type={props.type} handleProfileChange={props.handleProfileChange} />
                         </li>
                         <li className="nav-item navItems font-weight-bold">
                             <NavLink className="nav-link" to="/LogIn_SignUp">Log in / Sign up</NavLink>
