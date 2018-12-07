@@ -68,7 +68,7 @@ class comicList extends Component {
             return (
                 <div>
                     <div>
-                        <Navigation type={`comic`} handleProfileChange={this.handleProfileChange} />
+                        <Navigation type={`Comic`} handleProfileChange={this.handleProfileChange} />
                     </div>
                     Still loading info.
                 </div>
