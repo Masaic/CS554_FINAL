@@ -34,37 +34,37 @@ class LogIn_SignUp extends React.Component {
   }
 
   render(){
-    let logInPage = (
+    let logInPage = ( 
       <div className = "logBackground">
         <div className = "logAndSign rounded border test-align"> 
           <div id = "logInPart">
             <div className="input row">
               <strong className = "labelLen">Username: </strong>
-              <input type="text" className="form-control inputLen" id = "logInUsername"></input>
+              <input type="text" className="form-control inputLen" id = "logInUsername" />
             </div> 
             <div className="input row">
               <strong className = "labelLen">Password: </strong>
-              <input type="password" className="form-control inputLen" id = "logInPassword"></input>
+              <input type="password" className="form-control inputLen" id = "logInPassword" />
             </div>
             <a href = "javascript:void(0)" className = "btn btn-primary btnProperty text-white font-weight-bold">Log in</a>
           </div>
 
           <div id = "signUpPart">
             <div className="input row">
-              <strong className = "labelLen">Username: </strong>
-              <input type="text" className="form-control inputLen" id = "signUpUsername"></input>
+              <strong className = "labelLen text-right">Username: </strong>
+              <input type="text" className="form-control inputLen" id = "signUpUsername" />
             </div> 
             <div className="input row">
-              <strong className = "labelLen">Email: </strong>
-              <input type="test" className="form-control inputLen" id = "signUpEmail"></input>
+              <strong className = "labelLen text-right">Email: </strong>
+              <input type="test" className="form-control inputLen" id = "signUpEmail" />
             </div>
             <div className="input row">
-              <strong className = "labelLen">Password: </strong>
-              <input type="password" className="form-control inputLen" id = "signUpPassword"></input>
+              <strong className = "labelLen text-right">Password: </strong>
+              <input type="password" className="form-control inputLen" id = "signUpPassword" />
             </div>
             <div className="input row">
-              <strong className = "labelLen">Reinput Password: </strong>
-              <input type="password" className="form-control inputLen" id = "passwordTwo"></input>
+              <strong className = "labelLen text-right">Reinput Password: </strong>
+              <input type="password" className="form-control inputLen" id = "passwordTwo" />
             </div>
             <a href = "javascript:void(0)" className = "btn btn-success btnProperty text-white font-weight-bold">Sign up</a>
           </div>

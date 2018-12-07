@@ -78,10 +78,16 @@ class Searchbar extends Component {
                     selectedItem,
                 }) => (
                         <div style={{position: `relative`}}>
-                            <label {...getLabelProps()}>Enter a hero</label>
-                            <input {...getInputProps({
-                                onChange: this.handleChange
-                            })} />
+                            <div className = "input-group">
+                                 <div className = "input-group-prepend">
+                                    <label className = "font-weight-bold input-group-text" {...getLabelProps()}>Search Hero: </label>
+                                </div>
+                                <input className = "form-control" {...getInputProps({
+                                    onChange: this.handleChange
+                                })} />
+                            </div>
+                    
+                            
                             {isOpen ? (
                                 <div>
                                     <div className="downshift-dropdown">

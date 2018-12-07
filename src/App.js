@@ -4,8 +4,8 @@ import Main from './components/Main';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 
 //import Info from './Information'; 
-import Navigation from './Navigation';
-import LogIn_SignUp from './LogIn_SignUp';
+import Navigation from './components/Navigation';
+import LogIn_SignUp from './components/LogIn_SignUp';
 
 
 

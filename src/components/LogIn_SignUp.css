@@ -1,7 +1,7 @@
 .logAndSign {
-    width : 500px;
+    width : 550px;
     min-height :200px;
-    margin-top : 5%;
+    margin-top : 10%;
     
     background-color: #f1eeee;
     position: absolute;
@@ -10,8 +10,8 @@
 }
 
 .logBackground {
-    background-image: url('./images/logInPage.jpg');
-    height : 600px;
+    background-image: url('../images/logInPage.jpg');
+    height : 1000px;
     background-size: 100%;
     position: relative;
 }
@@ -28,7 +28,8 @@
 }
 
 .labelLen {
-    width : 50px;
+    width : 100px;
+
 }
 
 .btnProperty {
