@@ -78,7 +78,7 @@ class comicList extends Component {
             
             <div>
                 <div>
-                    <Navigation type={`comic`} handleProfileChange={this.handleProfileChange} />
+                    <Navigation type={`Comic`} handleProfileChange={this.handleProfileChange} />
                 </div>
                 <div>{this.state.title}</div>
                 <div>

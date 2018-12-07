@@ -20,7 +20,7 @@ class Main extends Component {
         return (
             <div>
                 <div>
-                    <Navigation type={`hero`} handleProfileChange={this.handleProfileChange} />
+                    <Navigation type={`Hero`} handleProfileChange={this.handleProfileChange} />
                 </div>
                 <div className="container">
                     {/* <div className="row">

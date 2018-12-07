@@ -29,12 +29,12 @@ class Searchbar extends Component {
 
     handleChange = (e) => {
         let value = e.target.value;
-        if (this.props.type == `hero`) {
+        if (this.props.type == `Hero`) {
             this.setState({ searchTerm: value }, () => {
                 this.searchHeros();
             });
         } else
-            if (this.props.type == `comic`) {
+            if (this.props.type == `Comic`) {
                 this.setState({ searchTerm: value }, () => {
                     this.searchComics();
                 });
@@ -111,7 +111,7 @@ class Searchbar extends Component {
                         <div style={{ position: `relative` }}>
                             <div className="input-group">
                                 <div className="input-group-prepend">
-                                    <label className="font-weight-bold input-group-text" {...getLabelProps()}>Search Hero: </label>
+                                    <label className="font-weight-bold input-group-text" {...getLabelProps()}>Search {this.props.type}: </label>
                                 </div>
                                 <input className="form-control" {...getInputProps({
                                     onChange: this.handleChange
