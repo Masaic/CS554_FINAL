@@ -16,9 +16,15 @@ class comicList extends Component {
         this.state = {
             comicList: undefined,
             curPage: pageNum,
+            title: "no title"
         }
         this.PUBLIC_KEY = `cb14e7ba87e9828d048d677e1d1681dd`;
         this.PRIV_KEY = `aa9b09760131eac24ed73bff8b665e8fa27c8999`;
+    }
+
+    handleProfileChange = profileTitle => {
+        // This state change will force Profile component to be re-rendered
+        this.setState({ title: profileTitle });
     }
 
     async componentWillMount() {
@@ -63,7 +69,7 @@ class comicList extends Component {
             return (
                 <div>
                     <div>
-                        <Navigation handleProfileChange={this.handleProfileChange} />
+                        <Navigation type={`Comic`} handleProfileChange={this.handleProfileChange} />
                     </div>
                     Still loading info.
                 </div>
@@ -73,7 +79,7 @@ class comicList extends Component {
             
             <div>
                 <div>
-                    <Navigation handleProfileChange={this.handleProfileChange} />
+                    <Navigation type={`Comic`} handleProfileChange={this.handleProfileChange} />
                 </div>
                 <div className = "row card-list-config">
                     {
