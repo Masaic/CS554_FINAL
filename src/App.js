@@ -33,7 +33,7 @@ class App extends Component {
   // authen state monitor
   authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
-      console.log(user);
+      // console.log(user);
       if (user) {
         this.setState({user});
       } else {
@@ -45,8 +45,9 @@ class App extends Component {
   // test button function by BoLi
   authenTest = async (event) => {
     event.preventDefault();
-    await api.signInWithEmailAndPassword('ee06b056@gmail.com','006361');
-    console.log(this.state.user);
+    // await api.signInWithEmailAndPassword('ee06b056@gmail.com','006361');
+    await api.signInWithGoogleAccount();
+    // console.log(this.state.user);
   }
 
 
