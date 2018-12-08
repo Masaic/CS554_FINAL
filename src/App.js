@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import Main from './components/Main';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import ReactDOM from 'react-dom';
+import { savePDF } from '@progress/kendo-react-pdf';
 
 //import Info from './Information'; 
 // import Navigation from './components/Navigation';
@@ -24,6 +26,7 @@ class App extends Component {
       home: true,
       user: null
     };
+    this.myRef = React.createRef();
   }
 
   componentDidMount () {
@@ -33,7 +36,7 @@ class App extends Component {
   // authen state monitor
   authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
-      console.log(user);
+      // console.log(user);
       if (user) {
         this.setState({user});
       } else {
@@ -42,27 +45,37 @@ class App extends Component {
     })
   }
 
-  // test button function by BoLi
-  authenTest = async (event) => {
-    event.preventDefault();
-    await api.signInWithEmailAndPassword('ee06b056@gmail.com','006361');
-    console.log(this.state.user);
+  // pdf generator by Boli
+
+  pdfGenerator = () => {
+    const root = this.myRef.current;
+    savePDF(ReactDOM.findDOMNode(root),{paperSize: 'A4'});
   }
 
 
- 
+  // test button function by BoLi
+  authenTest = async (event) => {
+    event.preventDefault();
+    // await api.signInWithEmailAndPassword('ee06b056@gmail.com','006361');
+    // await api.signInWithGoogleAccount();
+    // console.log(this.state.user);
+    console.log(await api.registerWithEmailAndPassword('418907463@qq.com','123456'));
+  }
 
+  
+  
+  
+  
   render() {   
-
     return (
       <Router>
-      <div className="App">
+      <div className="App" ref={this.myRef}>
         <div className="App-body">
 
         <button onClick={this.authenTest}>Test</button>
         <button onClick={(e) => {e.preventDefault();fire.auth().signOut()}}>Logout</button>
-        
-
+        <button onClick={(e) => {e.preventDefault(); fire.auth().sendPasswordResetEmail('ee06b056@gmail.com')}}>Send Email</button>
+        <button onClick={(e) => {e.preventDefault();this.pdfGenerator();}}>PDF</button>
 
         
 
