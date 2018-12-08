@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-
-import { NavLink } from 'react-router-dom';
 import imgNA from '../images/imgNA.jpg';
 import './general.css';
 
@@ -14,7 +12,7 @@ class ComicItem extends Component {
             info: props.info,
             src: imgSrc
         };
-        console.log(this.state.info);
+        //console.log(this.state.info);
         
     }
     render() {

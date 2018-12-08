@@ -1,7 +1,6 @@
 import React from 'react';
 
 import { NavLink } from 'react-router-dom';
-
 import Searchbar from './Searchbar';
 import './general.css';
 //import SignOutButton from './SignOut'
@@ -9,8 +8,8 @@ import './general.css';
 
 import logo from '../images/MarvelLogo.png';
 
-
 const Navigation = (props) => {
+    console.log("Look at this shit",props.isComic);
     if (props.handleProfileChange) {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -20,7 +19,7 @@ const Navigation = (props) => {
                     <span className = "font-weight-bold nav-title">MarvelPedia</span>
                 </NavLink>
 
-                <div className="collapse navbar-collapse" id="navbarNav">
+                <div className="collapse navbar-collapse">
                     <ul className="navbar-nav">
                         <li className="nav-item navItems font-weight-bold">
                             <NavLink className="nav-link" exact to="/">Home <span className="sr-only">(current)</span></NavLink>
@@ -29,17 +28,15 @@ const Navigation = (props) => {
                             <NavLink className="nav-link" to="/heros/">Heros</NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-                            <a className="nav-link" href = "/comics/list/1">Comics</a>
+                            <a className = {props.isComic ==='true' ? 'nav-link active' : 'nav-link'} href = "/comics/list/1">Comics</a>
                         </li>
                     </ul>
                 </div>
 
-                <div id="LoggedDiv" className="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <div id="LoggedDiv" className="collapse navbar-collapse justify-content-end">
                     <ul className="navbar-nav">
                         <li className="nav-item navItems">
-
                             <Searchbar type={props.type} handleProfileChange={props.handleProfileChange} />
-
                         </li>
                         <li className="nav-item navItems font-weight-bold">
                             <NavLink className="nav-link" to="/LogIn_SignUp">Log in / Sign up</NavLink>
@@ -72,7 +69,7 @@ const Navigation = (props) => {
                             <NavLink className="nav-link" to="/heros">Heros</NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-                            <a className = "nav-link" href = "/comics/list/1">Comics</a>
+                            <a className = {`nav-link${props.isComic === 'true' ? 'active' : '' }`} href = "/comics/list/1">Comics</a>
                         </li>
                         
                     </ul>
