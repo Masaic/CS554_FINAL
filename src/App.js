@@ -8,7 +8,7 @@ import { savePDF } from '@progress/kendo-react-pdf';
 //import Info from './Information'; 
 // import Navigation from './components/Navigation';
 import LogIn_SignUp from './components/LogIn_SignUp';
-import ComicList from './components/ComicList';
+import Comics from './components/Comics';
 
 // firebase api
 import fire from './config/Fire';
@@ -83,8 +83,7 @@ class App extends Component {
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
           <Route exact path = "/" component = {Main} />
           <Route path = "/heros" component = {Main} />
-          <Route path = "/comics/" component = { ComicList } />
-
+          <Route path = "/comics/" component = { Comics } />
         </Switch>
         </div>
       </div>

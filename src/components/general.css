@@ -23,17 +23,17 @@
 }
 
 .card-list-config {
-    margin-left: 80px;
-    margin-right: 80px;
+    margin-left: 45px;
+    margin-right: 45px;
     margin-top: 40px;
 }
 .one-card {
-    cursor: pointer;
 	transition: all 0.6s;
 }
 
 .one-card:hover {
     transform: scale(1.2);
+    z-index:30;
 }
 
 .pags {
@@ -44,5 +44,26 @@
 
 .nav-title {
     margin-left: 20px;
+}
 
+.detail-img {
+    height: 500px;
+
+}
+
+.comic-detail {
+    margin-left: 8%;
+    margin-top: 4%;
+}
+.comic-detail-info {
+    margin-left : 4%;
+}
+
+.labelLen {
+    width : 10
+    100px;
+}
+
+.detail-width {
+    width: 600px;
 }
