@@ -9,3 +9,40 @@
 .pagination {
     width: 100px;
 }
+
+.card-config {
+   
+    margin-bottom: 60px;
+    width: 20rem;
+}
+.card-img {
+    height:350px;
+}
+.card-intro {
+    height: 65px;
+}
+
+.card-list-config {
+    margin-left: 80px;
+    margin-right: 80px;
+    margin-top: 40px;
+}
+.one-card {
+    cursor: pointer;
+	transition: all 0.6s;
+}
+
+.one-card:hover {
+    transform: scale(1.2);
+}
+
+.pags {
+    position: absolute;
+    left: 50%;
+    transform : translate(-50%, 0%);
+}
+
+.nav-title {
+    margin-left: 20px;
+
+}

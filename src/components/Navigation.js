@@ -1,33 +1,36 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom'
+
+import { NavLink } from 'react-router-dom';
+
 import Searchbar from './Searchbar';
 import './general.css';
 //import SignOutButton from './SignOut'
 //import {firebase} from '../firebase';
 
+import logo from '../images/MarvelLogo.png';
+
+
 const Navigation = (props) => {
     if (props.handleProfileChange) {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-                <NavLink class="navbar-brand" to="/">
 
-                    <img src={'../images/MarvelLogo.png'} width="60" height="30" alt="" />
-                    <strong>MarvelPedia</strong>
+                <NavLink className="navbar-brand" to="/">
+                    <img src={logo} width="130" height="40" alt="" />
+                    <span className = "font-weight-bold nav-title">MarvelPedia</span>
                 </NavLink>
 
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
-                        <li className="nav-item active navItems font-weight-bold">
-                            <NavLink className="nav-link" exact to="/">Home <span class="sr-only">(current)</span></NavLink>
+                        <li className="nav-item navItems font-weight-bold">
+                            <NavLink className="nav-link" exact to="/">Home <span className="sr-only">(current)</span></NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-                            <NavLink className="nav-link" to="javscript:void(0)">Heros</NavLink>
+                            <NavLink className="nav-link" to="/heros/">Heros</NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-                            <NavLink className="nav-link" to="javscript:void(0)">Comics</NavLink>
-                        </li>
-                        <li className="nav-item navItems font-weight-bold">
-                            <NavLink className="nav-link" to="javscript:void(0)">Movies</NavLink>
+                            <a className="nav-link" href = "/comics/1">Comics</a>
+
                         </li>
                     </ul>
                 </div>
@@ -35,7 +38,9 @@ const Navigation = (props) => {
                 <div id="LoggedDiv" className="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item navItems">
-                            <Searchbar handleProfileChange={props.handleProfileChange} />
+
+                            <Searchbar type={props.type} handleProfileChange={props.handleProfileChange} />
+
                         </li>
                         <li className="nav-item navItems font-weight-bold">
                             <NavLink className="nav-link" to="/LogIn_SignUp">Log in / Sign up</NavLink>
@@ -52,25 +57,25 @@ const Navigation = (props) => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
                 <NavLink className="navbar-brand" to="/">
-                
-                    <img src={'../images/MarvelLogo.png'} width="60" height="30" alt="" />
-                    <strong>MarvelPedia</strong>
+
+                    <img src={logo} width="130" height="40" alt="" />
+                    <span className = "font-weight-bold nav-title">MarvelPedia</span>
+
                 </NavLink>
             
                 <div className="collapse navbar-collapse">
                     <ul className = "navbar-nav">
-                        <li className = "nav-item active navItems font-weight-bold">
 
+                        <li className = "nav-item navItems font-weight-bold">
+                            <NavLink className="nav-link" to="/">Home</NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-                            <NavLink className="nav-link" to="javscript:void(0)">Heros</NavLink>
+                            <NavLink className="nav-link" to="/heros">Heros</NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-                            <NavLink className = "nav-link" to = "/comicList/1">Comics</NavLink>
+                            <a className = "nav-link" href = "/comics/1">Comics</a>
                         </li>
-                        <li className="nav-item navItems font-weight-bold">
-                            <NavLink className="nav-link" to="javscript:void(0)">Movies</NavLink>
-                        </li>
+                        
                     </ul>
                 </div>
 
