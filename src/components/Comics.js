@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './general.css';
+
 import ComicItem from './ComicItem.js';
 import Navigation from './Navigation.js';
 import ComicDetail from './ComicDetail.js';
@@ -39,6 +40,7 @@ class comicList extends Component {
         this.PUBLIC_KEY = `cb14e7ba87e9828d048d677e1d1681dd`;
         this.PRIV_KEY = `aa9b09760131eac24ed73bff8b665e8fa27c8999`;
     }
+
 
     handleProfileChange = profileTitle => {
         // This state change will force Profile component to be re-rendered
@@ -107,6 +109,7 @@ class comicList extends Component {
 
         // When the cur page is to show the comic list.
         let pagination = null;
+
         let nextPage = `/comics/${this.state.curPage + 1}`;
         let prevPage = `/comics/${this.state.curPage - 1}`;
         if (this.state.curPage === 1) {
@@ -118,11 +121,13 @@ class comicList extends Component {
                         </li>
                         
                     </ul>
+
                 </div>
             );
         } else {
             pagination = (
                 <div>
+
                     <ul className = "pagination">
                         <li className = "page-item">
                             <a className = "page-link" href = {prevPage}>Privious</a>
@@ -131,11 +136,14 @@ class comicList extends Component {
                             <a className = "page-link" href = {nextPage}>Next</a>
                         </li>
                     </ul>
+
                 </div>
             );
         }
-        
+
+
         return (
+
             <div>
                 <div>
                     <Navigation type={`Comic`} handleProfileChange={this.handleProfileChange} />
@@ -153,6 +161,7 @@ class comicList extends Component {
                     { pagination } 
                 </div>
                
+
             </div>
         );
     }

@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
+
 import { NavLink } from 'react-router-dom';
 import imgNA from '../images/imgNA.jpg';
 import './general.css';
 
 
-class comicItem extends Component {
+class ComicItem extends Component {
     constructor(props) {
         super(props);
+
         let imgSrc = props.info.images.length > 0 ? `${props.info.images[0].path}.${props.info.images[0].extension}` : imgNA;
         this.state = {
             info: props.info,
@@ -25,12 +27,14 @@ class comicItem extends Component {
                         <a href = {`/comics/detail/${this.state.info.id}`} className="btn btn-primary">Check details</a>
                     </div>
                 </div>
+
             </div>
         );
     }
 }
 
-export default comicItem;
+
+export default ComicItem;
 
 /*
 
@@ -46,3 +50,4 @@ export default comicItem;
 
 
 */
+

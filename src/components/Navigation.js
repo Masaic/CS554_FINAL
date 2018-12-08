@@ -1,15 +1,20 @@
 import React from 'react';
+
 import { NavLink } from 'react-router-dom';
+
 import Searchbar from './Searchbar';
 import './general.css';
 //import SignOutButton from './SignOut'
 //import {firebase} from '../firebase';
+
 import logo from '../images/MarvelLogo.png';
+
 
 const Navigation = (props) => {
     if (props.handleProfileChange) {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
+
                 <NavLink className="navbar-brand" to="/">
                     <img src={logo} width="130" height="40" alt="" />
                     <span className = "font-weight-bold nav-title">MarvelPedia</span>
@@ -32,7 +37,9 @@ const Navigation = (props) => {
                 <div id="LoggedDiv" className="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item navItems">
+
                             <Searchbar type={props.type} handleProfileChange={props.handleProfileChange} />
+
                         </li>
                         <li className="nav-item navItems font-weight-bold">
                             <NavLink className="nav-link" to="/LogIn_SignUp">Log in / Sign up</NavLink>
@@ -49,12 +56,15 @@ const Navigation = (props) => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
                 <NavLink className="navbar-brand" to="/">
+
                     <img src={logo} width="130" height="40" alt="" />
                     <span className = "font-weight-bold nav-title">MarvelPedia</span>
+
                 </NavLink>
             
                 <div className="collapse navbar-collapse">
                     <ul className = "navbar-nav">
+
                         <li className = "nav-item navItems font-weight-bold">
                             <NavLink className="nav-link" to="/">Home</NavLink>
                         </li>

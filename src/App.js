@@ -26,6 +26,10 @@ class App extends Component {
     };
   }
 
+  componentDidMount () {
+    this.authListener();
+  }
+
   // authen state monitor
   authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
@@ -42,6 +46,7 @@ class App extends Component {
   authenTest = async (event) => {
     event.preventDefault();
     await api.signInWithEmailAndPassword('ee06b056@gmail.com','006361');
+    console.log(this.state.user);
   }
 
 
@@ -55,6 +60,11 @@ class App extends Component {
         <div className="App-body">
 
         <button onClick={this.authenTest}>Test</button>
+        <button onClick={(e) => {e.preventDefault();fire.auth().signOut()}}>Logout</button>
+        
+
+
+        
 
         <Switch>
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
