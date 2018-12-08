@@ -1,6 +1,7 @@
 import React from 'react';
 import Navigation from './Navigation';
 import './LogIn_SignUp.css'
+import api from '../api';
 
 class LogIn_SignUp extends React.Component {
   constructor(props) {
@@ -9,6 +10,8 @@ class LogIn_SignUp extends React.Component {
     this.state = {
       logIn: true
     };
+    this.logIn.bind(this);
+    this.signUp.bind(this);
   }
 
   //Set new state
@@ -34,6 +37,35 @@ class LogIn_SignUp extends React.Component {
     }
   }
 
+  async logIn() {
+    console.log('eat shit');
+    let email = document.getElementById('logInEmail');
+    let password = document.getElementById('logInPassword');
+    let res = await api.signInWithEmailAndPassword(email, password);
+    console.log(res);
+    //window.location.href = '/';
+  }
+  
+  async signUp() {
+    let email = document.getElementById('signUpEmail').value;
+    let password1 = document.getElementById('signUpPassword').value;
+    let password2 = document.getElementById('passwordTwo').value;
+    console.log(email+" " +password1+ " "+password2);
+    if (password1.length < 6) {
+      alert("The password should at least have 6 characters.")
+      return false;
+    }
+    if (password1 !== password2) {
+      alert("Please make sure the two passwords are the same.");
+      return false;
+    }
+
+    let res = await api.registerWithEmailAndPassword(email,password1);
+    console.log(res);
+    window.location.href = '/';
+
+  }
+
   render() {
     let logInPage = (
       <div>
@@ -44,21 +76,17 @@ class LogIn_SignUp extends React.Component {
           <div className="logAndSign rounded border test-align">
             <div id="logInPart">
               <div className="input row">
-                <strong className="labelLen">Username: </strong>
-                <input type="text" className="form-control inputLen" id="logInUsername" />
+                <strong className="labelLen text-right">Email: </strong>
+                <input type="text" className="form-control inputLen" id="logInEmail" />
               </div>
               <div className="input row">
-                <strong className="labelLen">Password: </strong>
+                <strong className="labelLen text-right">Password: </strong>
                 <input type="password" className="form-control inputLen" id="logInPassword" />
               </div>
-              <a href="javascript:void(0)" className="btn btn-primary btnProperty text-white font-weight-bold">Log in</a>
+              <a href="javascript:void(0)" onClick = {this.logIn} className="btn btn-primary btnProperty text-white font-weight-bold">Log in</a>
             </div>
 
             <div id="signUpPart">
-              <div className="input row">
-                <strong className="labelLen text-right">Username: </strong>
-                <input type="text" className="form-control inputLen" id="signUpUsername" />
-              </div>
               <div className="input row">
                 <strong className="labelLen text-right">Email: </strong>
                 <input type="test" className="form-control inputLen" id="signUpEmail" />
@@ -71,7 +99,9 @@ class LogIn_SignUp extends React.Component {
                 <strong className="labelLen text-right">Reinput Password: </strong>
                 <input type="password" className="form-control inputLen" id="passwordTwo" />
               </div>
-              <a href="javascript:void(0)" className="btn btn-success btnProperty text-white font-weight-bold">Sign up</a>
+              <a href="javascript:void(0)" onClick = {this.signUp} className="btn btn-success btnProperty text-white font-weight-bold">Sign up</a>
+              <br/>
+              <a href = "javascript:void(0)" onClick = {this.forgotPassword}>Forgot password?</a>
             </div>
 
             <div className="changePart">
