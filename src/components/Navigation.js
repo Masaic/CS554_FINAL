@@ -24,7 +24,7 @@ const Navigation = (props) => {
                             <NavLink className="nav-link" to="/heros/">Heros</NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-                            <a className="nav-link" href = "/comics/1">Comics</a>
+                            <a className="nav-link" href = "/comics/list/1">Comics</a>
                         </li>
                     </ul>
                 </div>
@@ -62,7 +62,7 @@ const Navigation = (props) => {
                             <NavLink className="nav-link" to="/heros">Heros</NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-                            <a className = "nav-link" href = "/comics/1">Comics</a>
+                            <a className = "nav-link" href = "/comics/list/1">Comics</a>
                         </li>
                         
                     </ul>

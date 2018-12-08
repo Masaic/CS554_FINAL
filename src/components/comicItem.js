@@ -19,10 +19,10 @@ class comicItem extends Component {
         return (
             <div className = "mx-auto one-card">
                 <div className="card card-config">
-                    <img className="card-img-top card-img" src = {this.state.src} alt="Card image cap" />
+                    <img className="card-img-top card-img" src = {this.state.src} alt={this.state.info.title} />
                     <div className="card-body ">
                         <h5 className="card-title card-intro">{this.state.info.title}</h5>
-                        <NavLink to = 'javascript:void(0)' className="btn btn-primary">Check details</NavLink>
+                        <a href = {`/comics/detail/${this.state.info.id}`} className="btn btn-primary">Check details</a>
                     </div>
                 </div>
             </div>

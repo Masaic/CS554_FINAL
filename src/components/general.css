@@ -28,7 +28,6 @@
     margin-top: 40px;
 }
 .one-card {
-    cursor: pointer;
 	transition: all 0.6s;
 }
 
@@ -44,4 +43,8 @@
 
 .nav-title {
     margin-left: 20px;
+}
+
+.detail-img {
+    height: 500px;
 }
