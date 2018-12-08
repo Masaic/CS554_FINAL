@@ -127,7 +127,6 @@ class comicList extends Component {
         } else {
             pagination = (
                 <div>
-
                     <ul className = "pagination">
                         <li className = "page-item">
                             <a className = "page-link" href = {prevPage}>Privious</a>
@@ -136,7 +135,6 @@ class comicList extends Component {
                             <a className = "page-link" href = {nextPage}>Next</a>
                         </li>
                     </ul>
-
                 </div>
             );
         }
