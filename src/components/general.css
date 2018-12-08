@@ -36,11 +36,13 @@
     transform: scale(1.2);
 }
 
-.pag {
-    position: abusolute;
+.pags {
+    position: absolute;
     left: 50%;
+    transform : translate(-50%, 0%);
 }
 
-.left-30-px {
-    margin-left: 30px;
+.nav-title {
+    margin-left: 20px;
+    font-size:18px;
 }

@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './general.css';
-import ComicItem from './comicItem.js';
+import ComicItem from './ComicItem.js';
 import Navigation from './Navigation';
 import './general.css'
-import { NavLink } from 'react-router-dom';
+
 var CryptoJS = require("crypto-js");
 
 class comicList extends Component {
@@ -19,7 +19,7 @@ class comicList extends Component {
             comicList: undefined,
             curPage: pageNum,
             title: "no title"
-        }
+        };
         this.PUBLIC_KEY = `cb14e7ba87e9828d048d677e1d1681dd`;
         this.PRIV_KEY = `aa9b09760131eac24ed73bff8b665e8fa27c8999`;
     }
@@ -56,7 +56,7 @@ class comicList extends Component {
                 <div>
                     <ul className = "pagination">
                         <li className = "page-item">
-                            <a className = "page-link" href = {nextPage}>Next page</a>
+                            <a className = "page-link" href = {nextPage}>Next</a>
                         </li>
                         
                     </ul>
@@ -67,10 +67,10 @@ class comicList extends Component {
                 <div>
                     <ul className = "pagination">
                         <li className = "page-item">
-                            <a className = "page-link" href = {prevPage}>Privious page</a>
+                            <a className = "page-link" href = {prevPage}>Privious</a>
                         </li>
                         <li className = "page-item">
-                            <a className = "page-link" href = {nextPage}>Next page</a>
+                            <a className = "page-link" href = {nextPage}>Next</a>
                         </li>
                     </ul>
                 </div>
@@ -88,7 +88,6 @@ class comicList extends Component {
             );
         }
         return (
-            
             <div>
                 <div>
                     <Navigation type={`Comic`} handleProfileChange={this.handleProfileChange} />
@@ -102,7 +101,7 @@ class comicList extends Component {
                         })
                     }
                 </div>
-                <div className = "justify-content-center">
+                <div className = "pags">
                     { pagination } 
                 </div>
                

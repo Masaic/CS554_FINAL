@@ -12,7 +12,7 @@ const Navigation = (props) => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
                 <NavLink className="navbar-brand" to="/">
                     <img src={logo} width="130" height="40" alt="" />
-                    <span className = "font-weight-bold left-30-px">MarvelPedia</span>
+                    <span className = "font-weight-bold nav-title">MarvelPedia</span>
                 </NavLink>
 
                 <div className="collapse navbar-collapse" id="navbarNav">
@@ -49,8 +49,8 @@ const Navigation = (props) => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
                 <NavLink className="navbar-brand" to="/">
-                    <img src={'../images/MarvelLogo.png'} width="130" height="40" alt="" />
-                    <span className = "font-weight-bold left-30-px">MarvelPedia</span>
+                    <img src={logo} width="130" height="40" alt="" />
+                    <span className = "font-weight-bold nav-title">MarvelPedia</span>
                 </NavLink>
             
                 <div className="collapse navbar-collapse">
