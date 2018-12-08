@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import { NavLink } from 'react-router-dom';
 import imgNA from '../images/imgNA.jpg';
 import './general.css';
@@ -7,6 +8,7 @@ import './general.css';
 class comicItem extends Component {
     constructor(props) {
         super(props);
+
         let imgSrc = props.info.images.length > 0 ? `${props.info.images[0].path}.${props.info.images[0].extension}` : imgNA;
         this.state = {
             info: props.info,
@@ -25,10 +27,12 @@ class comicItem extends Component {
                         <NavLink to = 'javascript:void(0)' className="btn btn-primary">Check details</NavLink>
                     </div>
                 </div>
+
             </div>
         );
     }
 }
+
 
 export default comicItem;
 
@@ -46,3 +50,4 @@ export default comicItem;
 
 
 */
+

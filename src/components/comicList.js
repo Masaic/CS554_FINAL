@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './general.css';
+
 import ComicItem from './ComicItem.js';
 import Navigation from './Navigation';
 import './general.css'
@@ -11,6 +12,7 @@ class comicList extends Component {
     constructor(props) {
         super(props);
         let url = this.props.location.pathname;
+
         console.log(url);
         let urlArr = url.split('/');
         let pageNum = parseInt(urlArr[urlArr.length - 1]);
@@ -20,9 +22,11 @@ class comicList extends Component {
             curPage: pageNum,
             title: "no title"
         };
+
         this.PUBLIC_KEY = `cb14e7ba87e9828d048d677e1d1681dd`;
         this.PRIV_KEY = `aa9b09760131eac24ed73bff8b665e8fa27c8999`;
     }
+
 
     handleProfileChange = profileTitle => {
         // This state change will force Profile component to be re-rendered
@@ -31,6 +35,7 @@ class comicList extends Component {
 
     componentWillMount() {
         this.getComics();
+
     }
 
     async getComics() {
@@ -49,6 +54,7 @@ class comicList extends Component {
     render() {
        console.log(this.state.comicList);
         let pagination = null;
+
         let nextPage = `/comics/${this.state.curPage + 1}`;
         let prevPage = `/comics/${this.state.curPage - 1}`;
         if (this.state.curPage === 1) {
@@ -60,11 +66,13 @@ class comicList extends Component {
                         </li>
                         
                     </ul>
+
                 </div>
             );
         } else {
             pagination = (
                 <div>
+
                     <ul className = "pagination">
                         <li className = "page-item">
                             <a className = "page-link" href = {prevPage}>Privious</a>
@@ -73,6 +81,7 @@ class comicList extends Component {
                             <a className = "page-link" href = {nextPage}>Next</a>
                         </li>
                     </ul>
+
                 </div>
             );
         }
@@ -80,14 +89,17 @@ class comicList extends Component {
         if (this.state.comicList === undefined) {
             return (
                 <div>
+
                     <div>
                         <Navigation type={`Comic`} handleProfileChange={this.handleProfileChange} />
                     </div>
+
                     Still loading info.
                 </div>
             );
         }
         return (
+
             <div>
                 <div>
                     <Navigation type={`Comic`} handleProfileChange={this.handleProfileChange} />
@@ -105,6 +117,7 @@ class comicList extends Component {
                     { pagination } 
                 </div>
                
+
             </div>
         );
     }
