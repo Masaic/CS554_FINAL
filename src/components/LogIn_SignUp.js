@@ -39,18 +39,17 @@ class LogIn_SignUp extends React.Component {
 
   async logIn() {
     console.log('eat shit');
-    let email = document.getElementById('logInEmail');
-    let password = document.getElementById('logInPassword');
+    let email = document.getElementById('logInEmail').value;
+    let password = document.getElementById('logInPassword').value;
     let res = await api.signInWithEmailAndPassword(email, password);
     console.log(res);
-    //window.location.href = '/';
+    window.location.href = document.referrer;
   }
   
   async signUp() {
     let email = document.getElementById('signUpEmail').value;
     let password1 = document.getElementById('signUpPassword').value;
     let password2 = document.getElementById('passwordTwo').value;
-    console.log(email+" " +password1+ " "+password2);
     if (password1.length < 6) {
       alert("The password should at least have 6 characters.")
       return false;
@@ -61,9 +60,7 @@ class LogIn_SignUp extends React.Component {
     }
 
     let res = await api.registerWithEmailAndPassword(email,password1);
-    console.log(res);
-    window.location.href = '/';
-
+    window.location.href = document.referrer;
   }
 
   render() {

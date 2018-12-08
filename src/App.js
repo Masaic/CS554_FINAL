@@ -82,8 +82,8 @@ class App extends Component {
         <Switch>
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
           <Route exact path = "/" component = {props => <Main {...props} user = {this.state.user} />} />
-          <Route path = "/heros" component = {Main} />
-          <Route path = "/comics/" component = { Comics } />
+          <Route path = "/heros" component = {props => <Main {...props} user = {this.state.user} />}  />
+          <Route path = "/comics/" component = {props => <Comics {...props} user = {this.state.user} />}  />
         </Switch>
         </div>
       </div>

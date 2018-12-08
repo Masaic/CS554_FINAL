@@ -13,6 +13,7 @@ import logo from '../images/MarvelLogo.png';
 let signOut = async() => {
     console.log("shit");
     await api.signout();
+    //window.location.href = '/';
     
 }
 
@@ -49,15 +50,15 @@ const Navigation = (props) => {
                             <Searchbar type={props.type} handleProfileChange={props.handleProfileChange} />
                         </li>
                         {
-                            props.user !== null ?<li className = "nav-item"> <a className = "nav-link text-white font-weight-bold">{props.user.email}</a></li> :  null
+                            !!props.user  ?<li className = "nav-item"> <a className = "nav-link text-white font-weight-bold">{props.user.email}</a></li> :  null
                         }
                         {
-                            props.user === null ? <li className="nav-item navItems font-weight-bold">
+                            !!props.user ?  <li className="nav-item navItems font-weight-bold">
+                                                <a onClick = {signOut} className="nav-link" href = "javascript:void(0)">Sign out</a>
+                                            </li>  
+                                            :   <li className="nav-item navItems font-weight-bold">
                                                     <a  className="nav-link" href = "/logIn_signUp">Log in / Sign up</a>
-                                                  </li>
-                                                : <li className="nav-item navItems font-weight-bold" style={{ 'display': 'none' }}>
-                                                    <a onClick = {signOut} className="nav-link" href = "javascript:void(0)">Sign out</a>
-                                                  </li>    
+                                                </li>
                         }
                         
                         
