@@ -4,15 +4,17 @@ import './general.css';
 import ComicItem from './comicItem.js';
 import Navigation from './Navigation';
 import './general.css'
+import { NavLink } from 'react-router-dom';
 var CryptoJS = require("crypto-js");
 
 class comicList extends Component {
     constructor(props) {
         super(props);
         let url = this.props.location.pathname;
+        console.log(url);
         let urlArr = url.split('/');
         let pageNum = parseInt(urlArr[urlArr.length - 1]);
-        
+        pageNum = url === '/comics/' || url === '/comics' ? 1 : pageNum;
         this.state = {
             comicList: undefined,
             curPage: pageNum,
@@ -27,9 +29,8 @@ class comicList extends Component {
         this.setState({ title: profileTitle });
     }
 
-    async componentWillMount() {
-        await this.getComics();
-        console.log(this.state.comicList);
+    componentWillMount() {
+        this.getComics();
     }
 
     async getComics() {
@@ -48,19 +49,30 @@ class comicList extends Component {
     render() {
        console.log(this.state.comicList);
         let pagination = null;
-        let nextPage = `/comicList/${parseInt(this.state.curPage) + 1}`;
-        let prevPage = `/comicList/${parseInt(this.state.curPage) - 1}`;
-        if (this.state.curPage === '1') {
+        let nextPage = `/comics/${this.state.curPage + 1}`;
+        let prevPage = `/comics/${this.state.curPage - 1}`;
+        if (this.state.curPage === 1) {
             pagination = (
                 <div>
-                    <a className = "pagination" href = {nextPage} className = 'btn btn-primary'>Next page</a>
+                    <ul className = "pagination">
+                        <li className = "page-item">
+                            <a className = "page-link" href = {nextPage}>Next page</a>
+                        </li>
+                        
+                    </ul>
                 </div>
             );
         } else {
             pagination = (
                 <div>
-                    <a className = "pagination" href = { prevPage } className = 'btn btn-primary'>Previous page</a>
-                    <a className = "pagination" href = { nextPage } className = 'btn btn-primary'>Next page</a> 
+                    <ul className = "pagination">
+                        <li className = "page-item">
+                            <a className = "page-link" href = {prevPage}>Privious page</a>
+                        </li>
+                        <li className = "page-item">
+                            <a className = "page-link" href = {nextPage}>Next page</a>
+                        </li>
+                    </ul>
                 </div>
             );
         }
@@ -81,18 +93,19 @@ class comicList extends Component {
                 <div>
                     <Navigation type={`Comic`} handleProfileChange={this.handleProfileChange} />
                 </div>
-                <div className = "row card-list-config">
+                <div className = "card-list-config row">
                     {
                         this.state.comicList.map((arr, index) => {
                             return (
                                 <ComicItem info = {arr} key = {index} />
                             );
                         })
-                    } 
+                    }
                 </div>
-                <div>
-                { pagination }  
+                <div className = "justify-content-center">
+                    { pagination } 
                 </div>
+               
             </div>
         );
     }

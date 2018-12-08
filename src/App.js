@@ -60,7 +60,7 @@ class App extends Component {
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
           <Route exact path = "/" component = {Main} />
           <Route path = "/heros" component = {Main} />
-          <Route path = "/comics/1" component = { comicList } />
+          <Route path = "/comics/" component = { comicList } />
         </Switch>
         </div>
       </div>
