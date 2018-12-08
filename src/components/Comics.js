@@ -36,7 +36,6 @@ class comicList extends Component {
             comicId: comicId,
             title: "no title"
         };
-
         this.PUBLIC_KEY = `cb14e7ba87e9828d048d677e1d1681dd`;
         this.PRIV_KEY = `aa9b09760131eac24ed73bff8b665e8fa27c8999`;
     }
@@ -100,7 +99,7 @@ class comicList extends Component {
             return (
                 <div>
                     <div>
-                        <Navigation isComic = "false" type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                        <Navigation isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
                     </div>
                     <ComicDetail info = {this.state.comicInfo}/>
                 </div>

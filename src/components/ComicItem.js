@@ -15,6 +15,7 @@ class ComicItem extends Component {
         //console.log(this.state.info);
         
     }
+
     render() {
         return (
             <div className = "mx-auto one-card">

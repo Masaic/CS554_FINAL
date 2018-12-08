@@ -50,3 +50,20 @@
     height: 500px;
 
 }
+
+.comic-detail {
+    margin-left: 8%;
+    margin-top: 4%;
+}
+.comic-detail-info {
+    margin-left : 4%;
+}
+
+.labelLen {
+    width : 10
+    100px;
+}
+
+.detail-width {
+    width: 600px;
+}

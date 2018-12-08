@@ -9,7 +9,6 @@ import './general.css';
 import logo from '../images/MarvelLogo.png';
 
 const Navigation = (props) => {
-    console.log("Look at this shit",props.isComic);
     if (props.handleProfileChange) {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -69,7 +68,7 @@ const Navigation = (props) => {
                             <NavLink className="nav-link" to="/heros">Heros</NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-                            <a className = {`nav-link${props.isComic === 'true' ? 'active' : '' }`} href = "/comics/list/1">Comics</a>
+                            <a className = {props.isComic ==='true' ? 'nav-link active' : 'nav-link'} href = "/comics/list/1">Comics</a>
                         </li>
                         
                     </ul>
