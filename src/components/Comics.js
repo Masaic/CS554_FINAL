@@ -29,6 +29,7 @@ class comicList extends Component {
         }
         
         this.state = {
+            user: this.props.user,
             target: target,
             comicList: undefined,
             comicInfo: undefined,
@@ -84,7 +85,7 @@ class comicList extends Component {
             return (
                 <div>
                     <div>
-                        <Navigation isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                        <Navigation user = {this.state.user} isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
                     </div>
                     <div>
                         Still loading info.
@@ -99,7 +100,7 @@ class comicList extends Component {
             return (
                 <div>
                     <div>
-                        <Navigation isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                        <Navigation user = {this.state.user} isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
                     </div>
                     <ComicDetail info = {this.state.comicInfo}/>
                 </div>
@@ -139,7 +140,7 @@ class comicList extends Component {
         return (
             <div>
                 <div>
-                    <Navigation isComic = 'true' type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                    <Navigation user = {this.state.user} isComic = 'true' type={`Comic`} handleProfileChange={this.handleProfileChange} />
                 </div>
                 <div className = "card-list-config row">
                     {

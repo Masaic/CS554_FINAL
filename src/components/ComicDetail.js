@@ -40,13 +40,7 @@ class ComicDetail extends Component {
                             </div>
                            
                         </div>
-                    </div>
-                   
-                        
-                   
-                       
-                    
-                    
+                    </div>                  
                 </div>
             </div>
         );

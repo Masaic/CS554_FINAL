@@ -7,6 +7,7 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            user: this.props.user,
             name: "no name"
         }
     }
@@ -21,7 +22,7 @@ class Main extends Component {
             <div>
                 <div>
 
-                    <Navigation type={`Hero`} handleProfileChange={this.handleProfileChange} />
+                    <Navigation type={`Hero`} handleProfileChange={this.handleProfileChange} {...this.state}/>
 
                 </div>
                 <div className="container">
