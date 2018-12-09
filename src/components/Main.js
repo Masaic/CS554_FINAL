@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Searchbar from './Searchbar';
+// import Searchbar from './Searchbar';
 import Profile from './Profile';
 import Navigation from './Navigation';
 
@@ -8,7 +8,7 @@ class Main extends Component {
         super(props);
         this.state = {
             user: this.props.user,
-            name: "no name"
+            name: "1009610"
         }
     }
 

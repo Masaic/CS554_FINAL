@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './general.css';
-
+import Loading from './Loading.js';
 import ComicItem from './ComicItem.js';
 import Navigation from './Navigation.js';
 import ComicDetail from './ComicDetail.js';
@@ -72,10 +72,8 @@ class comicList extends Component {
             let ts = new Date().getTime();
             let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
             let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
-            //console.log(this.state.comicId);
             const response = await axios.get(`https://gateway.marvel.com/v1/public/comics/${this.state.comicId}?${script}`);
             this.setState({ comicInfo: response.data.data.results[0]});
-            //console.log(this.state.comicInfo);
         } catch (e) {
             console.log(e);
         }
@@ -89,9 +87,7 @@ class comicList extends Component {
                     <div>
                         <Navigation user = {this.state.user} isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
                     </div>
-                    <div>
-                        Still loading info.
-                    </div>
+                    <Loading />
                    
                 </div>
             );
