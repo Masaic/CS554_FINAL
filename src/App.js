@@ -24,22 +24,27 @@ class App extends Component {
     super(props, context);
     this.state = {
       home: true,
-      user: null
+      user: null,
+      isMounted: false
     };
     this.myRef = React.createRef();
   }
 
-  componentDidMount () {
+  componentWillUpdate() {
     this.authListener();
   }
+
+  
 
   // authen state monitor
   authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
-      // console.log(user);
-      if (user) {
+       console.log(user);
+      if (user != this.state.user) {
         this.setState({user});
-      } else {
+
+        //this.setState({isMounted:true});
+      }  else {
         this.setState({user: null});
       }
     })
@@ -76,8 +81,6 @@ class App extends Component {
         <button onClick={(e) => {e.preventDefault();fire.auth().signOut()}}>Logout</button>
         <button onClick={(e) => {e.preventDefault(); fire.auth().sendPasswordResetEmail('ee06b056@gmail.com')}}>Send Email</button>
         <button onClick={(e) => {e.preventDefault();this.pdfGenerator();}}>PDF</button>
-
-        
 
         <Switch>
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />

@@ -59,7 +59,7 @@ class LogIn_SignUp extends React.Component {
       return false;
     }
 
-    let res = await api.registerWithEmailAndPassword(email,password1);
+    await api.registerWithEmailAndPassword(email,password1);
     window.location.href = document.referrer;
   }
 

@@ -17,7 +17,7 @@ class ComicDetail extends Component {
             <div>
                 <div className = "row comic-detail">
                     <div className = "">
-                        <img className = "detail-img" src = {imgSrc}/>
+                        <img className = "detail-img" src = {imgSrc} alt = "" />
                     </div>
                     <div className = "comic-detail-info">
                         <h4>{this.state.info.title}</h4>

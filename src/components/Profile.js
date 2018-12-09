@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+import { Link, Element} from 'react-scroll';
 import Loading from './Loading.js';
 import './general.css';
 const CryptoJS = require("crypto-js");

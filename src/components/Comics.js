@@ -9,7 +9,7 @@ import './general.css'
 
 var CryptoJS = require("crypto-js");
 
-class comicList extends Component {
+class Comics extends Component {
     constructor(props) {
         super(props);
         console.log('contructor');
@@ -42,16 +42,22 @@ class comicList extends Component {
         this.PRIV_KEY = `aa9b09760131eac24ed73bff8b665e8fa27c8999`;
     }
 
+    componentWillMount() {
+        if (!this.isMounted && this.state.target === 'list') this.getComics();
+        else if (!this.isMounted)this.getComicDetail();
+    }
+
+   componentWillUnmount() {
+    if (!this.isMounted && this.state.target === 'list') this.getComics();
+    else if (!this.isMounted)this.getComicDetail();
+   }
 
     handleProfileChange = profileTitle => {
         // This state change will force Profile component to be re-rendered
         this.setState({ title: profileTitle });
     }
 
-    componentWillMount() {
-        if (this.state.target === 'list') this.getComics();
-        else this.getComicDetail();
-    }
+    
 
     async getComics() {
         try {
@@ -80,32 +86,9 @@ class comicList extends Component {
     }
     
     render() {
-        console.log("Rendered");
-        if ((this.state.target === 'list' && this.state.comicList === undefined )|| (this.state.target === 'detail' && this.state.comicInfo === undefined)) {
-            return (
-                <div>
-                    <div>
-                        <Navigation user = {this.state.user} isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                    </div>
-                    <Loading />
-                   
-                </div>
-            );
-        }
-
-        // When the cur page is to show the comic details.
-        if (this.state.target === 'detail') {
-            return (
-                <div>
-                    <div>
-                        <Navigation user = {this.state.user} isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                    </div>
-                    <ComicDetail info = {this.state.comicInfo}/>
-                </div>
-            );
-        }
-
-        // When the cur page is to show the comic list.
+        console.log("Comic.js rendered");
+        let noInfo = (this.state.target === 'list' && this.state.comicList === undefined )|| (this.state.target === 'detail' && this.state.comicInfo === undefined);
+        let isDetail = this.state.target === 'detail';
         let pagination = null;
         let nextPage = `/comics/list/${this.state.curPage + 1}`;
         let prevPage = `/comics/list/${this.state.curPage - 1}`;
@@ -137,24 +120,46 @@ class comicList extends Component {
 
         return (
             <div>
-                <div>
-                    <Navigation user = {this.state.user} isComic = 'true' type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                </div>
-                <div className = "card-list-config row">
-                    {
-                        this.state.comicList.map((arr, index) => {
-                            return (
-                                <ComicItem info = {arr} key = {index} />
-                            );
-                        })
-                    }
-                </div>
-                <div className = "pags">
-                    { pagination } 
-                </div>
+            {
+                noInfo ? (
+                    <div>
+                        <div>
+                            <Navigation user = {this.state.user} isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                        </div>
+                        <Loading />
+                    </div>
+                ): 
+                    isDetail ?(
+                        <div>
+                            <div>
+                                <Navigation user = {this.state.user} isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                            </div>
+                            <ComicDetail info = {this.state.comicInfo}/>
+                        </div>
+                    )
+                    :(
+                        <div>
+                            <div>
+                                <Navigation user = {this.state.user} isComic = 'true' type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                            </div>
+                            <div className = "card-list-config row">
+                                {
+                                    this.state.comicList.map((arr, index) => {
+                                        return (
+                                            <ComicItem info = {arr} key = {index} />
+                                        );
+                                    })
+                                }
+                            </div>
+                            <div className = "pags">
+                                { pagination } 
+                            </div>
+                        </div>
+                    )
+            }
             </div>
         );
     }
 }
 
-export default comicList;
+export default Comics;

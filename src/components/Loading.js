@@ -12,7 +12,7 @@ class Loading extends Component {
     render() {
         return (
             <div className = "top-margin-10">
-                <img src = {loading}/>
+                <img src = {loading} alt = "Loading" />
                 <h3>Loading...</h3>
             </div>
         );
