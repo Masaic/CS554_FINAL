@@ -101,8 +101,10 @@ class Searchbar extends Component {
                 onChange={selection => {
                     alert(`You selected ${selection.value}`);
                     let profileName = selection.id;
-                    this.props.handleProfileChange(profileName);
-                    if(this.props.type === `Comic`){
+                    if (this.props.type === `Hero`) {
+                        this.props.handleProfileChange(profileName);
+                    }
+                    if (this.props.type === `Comic`) {
                         window.location.href = `http://localhost:3000/comics/detail/${profileName}`
                     }
                 }

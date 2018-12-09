@@ -24,33 +24,11 @@ class App extends Component {
     super(props, context);
     this.state = {
       home: true,
-     // user: null,
     };
     this.myRef = React.createRef();
   }
 
 
-  /*----------------------------------------------------
-  componentWillUpdate() {
-    this.authListener();
-  }
-
-  
-
-  // authen state monitor
-  authListener = () => {
-    fire.auth().onAuthStateChanged((user) => {
-       console.log(user);
-      if (user != this.state.user) {
-        this.setState({user});
-
-        //this.setState({isMounted:true});
-      }  else {
-        this.setState({user: null});
-      }
-    })
-  }
-  -----------------------------------------------------*/
   // pdf generator by Boli
 
   pdfGenerator = () => {
@@ -72,7 +50,10 @@ class App extends Component {
   
   
   
-  render() {   
+  render() {
+    if(this.state.user === `pending`){
+      return <div>Loading</div>
+    }   
     return (
       <Router>
       <div className="App" ref={this.myRef}>
