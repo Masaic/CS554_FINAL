@@ -80,7 +80,7 @@ class comicList extends Component {
     }
     
     render() {
-        console.log(this.state.comicInfo);
+        console.log("Rendered");
         if ((this.state.target === 'list' && this.state.comicList === undefined )|| (this.state.target === 'detail' && this.state.comicInfo === undefined)) {
             return (
                 <div>
