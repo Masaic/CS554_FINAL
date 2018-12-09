@@ -29,6 +29,7 @@ class Searchbar extends Component {
 
     handleChange = (e) => {
         let value = e.target.value;
+
         if (this.props.type == `Hero`) {
             this.setState({ searchTerm: value }, () => {
                 this.searchHeros();
@@ -64,6 +65,7 @@ class Searchbar extends Component {
             }
         }
 
+
     }
 
     async searchHeros() {
@@ -81,6 +83,7 @@ class Searchbar extends Component {
                         item.push({ value: `${name}` })
                     })
                     this.setState({ items: item });
+
                 }
             } catch (e) {
                 console.log(e);
@@ -95,7 +98,9 @@ class Searchbar extends Component {
                     alert(`You selected ${selection.value}`);
                     let profileName = selection.value;
                     this.props.handleProfileChange(profileName);
+
                 }
+
                 }
                 itemToString={item => (item ? item.value : '')}
             >
@@ -108,6 +113,7 @@ class Searchbar extends Component {
                     highlightedIndex,
                     selectedItem,
                 }) => (
+
                         <div style={{ position: `relative` }}>
                             <div className="input-group">
                                 <div className="input-group-prepend">
