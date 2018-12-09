@@ -45,6 +45,14 @@ const api = {
             console.log(e);
             return e.code;
         }
+    },
+    getCommentsByComicId: async (comicId) => {
+        const comicCommentRef = fire.database().ref('comic');
+        try {
+
+        } catch (e) {
+
+        }
     }
 
     
