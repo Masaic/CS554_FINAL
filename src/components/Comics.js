@@ -12,6 +12,7 @@ var CryptoJS = require("crypto-js");
 class comicList extends Component {
     constructor(props) {
         super(props);
+        console.log('contructor');
         let url = this.props.location.pathname;
         let urlArr = url.split('/');
         let pageNum = -1;
@@ -81,6 +82,7 @@ class comicList extends Component {
     }
     
     render() {
+        console.log(this.state.comicInfo);
         if ((this.state.target === 'list' && this.state.comicList === undefined )|| (this.state.target === 'detail' && this.state.comicInfo === undefined)) {
             return (
                 <div>

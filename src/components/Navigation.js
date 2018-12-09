@@ -19,7 +19,7 @@ let signOut = async() => {
 
 
 const Navigation = (props) => {
-    console.log(props.user);
+   // console.log(props.user);
    
     if (props.handleProfileChange) {
         return (
