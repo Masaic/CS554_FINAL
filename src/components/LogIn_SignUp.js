@@ -49,6 +49,7 @@ class LogIn_SignUp extends React.Component {
     } catch(e) {
       alert('Email or password invalid. Please try again.')
     }
+
   }
   
   async signUp() {
