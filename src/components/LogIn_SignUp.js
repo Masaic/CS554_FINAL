@@ -43,7 +43,7 @@ class LogIn_SignUp extends React.Component {
     let email = document.getElementById('logInEmail').value;
     let password = document.getElementById('logInPassword').value;
     try{
-      let res = await api.signInWithEmailAndPassword(email, password);
+      await api.signInWithEmailAndPassword(email, password);
       cookie.save('email', email, { path: '/' });
       window.location.href = document.referrer;
     } catch(e) {
@@ -65,7 +65,7 @@ class LogIn_SignUp extends React.Component {
     }
 
     try {
-      let res = await api.registerWithEmailAndPassword(email,password1);
+      await api.registerWithEmailAndPassword(email,password1);
       cookie.save('email', email, { path: '/' });
       window.location.href = document.referrer;
     } catch(e) {
