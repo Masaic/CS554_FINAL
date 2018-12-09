@@ -40,7 +40,7 @@ class Searchbar extends Component {
                     this.searchComics();
                 });
             } else {
-                throw (`no search type`);
+                //throw (`no search type`);
             }
     }
 
@@ -57,7 +57,8 @@ class Searchbar extends Component {
                     this.state.searchData.data.results.map(comics => {
                         let title = comics.title;
                         let id = comics.id;
-                        item.push({ value: `${title}`, id: id })
+                        item.push({ value: `${title}`,id: id });
+                        return null;
                     })
                     this.setState({ items: item });
                 }
@@ -82,7 +83,8 @@ class Searchbar extends Component {
                     this.state.searchData.data.results.map(heros => {
                         let name = heros.name;
                         let id = heros.id;
-                        item.push({ value: `${name}`, id: id })
+                        item.push({ value: `${name}`,id: id });
+                        return null;
                     })
                     this.setState({ items: item });
 
