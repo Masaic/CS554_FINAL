@@ -24,26 +24,10 @@ class App extends Component {
     super(props, context);
     this.state = {
       home: true,
-      user: null,
       rootRef: React.createRef()
     };
   }
 
-  componentDidMount () {
-    this.authListener();
-  }
-
-  // authen state monitor
-  authListener = () => {
-    fire.auth().onAuthStateChanged((user) => {
-      // console.log(user);
-      if (user) {
-        this.setState({user});
-      } else {
-        this.setState({user: null});
-      }
-    })
-  }
 
   // pdf generator by Boli
 
@@ -66,7 +50,10 @@ class App extends Component {
   
   
   
-  render() {   
+  render() {
+    if(this.state.user === `pending`){
+      return <div>Loading</div>
+    }   
     return (
       <Router>
       <div className="App" ref={this.myRef}>
@@ -79,9 +66,9 @@ class App extends Component {
 
         <Switch>
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
-          <Route exact path = "/" component = {props => <Main {...props} user = {this.state.user} />} />
-          <Route path = "/heros" component = {props => <Main {...props} user = {this.state.user} />}  />
-          <Route path = "/comics/" component = {props => <Comics {...props} user = {this.state.user} />}  />
+          <Route exact path = '/' component = {Main} />
+          <Route path = '/heros' component = {Main} />
+          <Route path = '/comics' component = {Comics} />
         </Switch>
         </div>
       </div>
@@ -92,3 +79,8 @@ class App extends Component {
 
 
 export default App;
+/*
+            <Route exact path = "/" component = {props => <Main {...props} user = {this.state.user} />} />
+            <Route path = "/heros" component = {props => <Main {...props} user = {this.state.user} />}  />
+            <Route path = "/comics/" component = {props => <Comics {...props} user = {this.state.user} />}  />
+            */

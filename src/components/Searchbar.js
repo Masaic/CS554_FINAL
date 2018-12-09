@@ -30,17 +30,17 @@ class Searchbar extends Component {
     handleChange = (e) => {
         let value = e.target.value;
 
-        if (this.props.type == `Hero`) {
+        if (this.props.type === `Hero`) {
             this.setState({ searchTerm: value }, () => {
                 this.searchHeros();
             });
         } else
-            if (this.props.type == `Comic`) {
+            if (this.props.type === `Comic`) {
                 this.setState({ searchTerm: value }, () => {
                     this.searchComics();
                 });
             } else {
-                throw (`no search type`);
+                //throw (`no search type`);
             }
     }
 
@@ -56,7 +56,9 @@ class Searchbar extends Component {
                 if (this.state.searchData.data.results) {
                     this.state.searchData.data.results.map(comics => {
                         let title = comics.title;
-                        item.push({ value: `${title}` })
+                        let id = comics.id;
+                        item.push({ value: `${title}`,id: id });
+                        return null;
                     })
                     this.setState({ items: item });
                 }
@@ -80,7 +82,9 @@ class Searchbar extends Component {
                 if (this.state.searchData.data.results) {
                     this.state.searchData.data.results.map(heros => {
                         let name = heros.name;
-                        item.push({ value: `${name}` })
+                        let id = heros.id;
+                        item.push({ value: `${name}`,id: id });
+                        return null;
                     })
                     this.setState({ items: item });
 
@@ -96,9 +100,13 @@ class Searchbar extends Component {
             <Downshift
                 onChange={selection => {
                     alert(`You selected ${selection.value}`);
-                    let profileName = selection.value;
-                    this.props.handleProfileChange(profileName);
-
+                    let profileName = selection.id;
+                    if (this.props.type === `Hero`) {
+                        this.props.handleProfileChange(profileName);
+                    }
+                    if (this.props.type === `Comic`) {
+                        window.location.href = `http://localhost:3000/comics/detail/${profileName}`
+                    }
                 }
 
                 }

@@ -2,6 +2,7 @@ import React from 'react';
 import Navigation from './Navigation';
 import './LogIn_SignUp.css'
 import api from '../api';
+import cookie from 'react-cookies';
 
 class LogIn_SignUp extends React.Component {
   constructor(props) {
@@ -38,14 +39,17 @@ class LogIn_SignUp extends React.Component {
   }
 
   async logIn() {
+    console.log('Called logIn()');
     let email = document.getElementById('logInEmail').value;
     let password = document.getElementById('logInPassword').value;
-    let res = await api.signInWithEmailAndPassword(email, password);
-    if (typeof res == 'string') {
-      alert(res);
-      return 
+    try{
+      let res = await api.signInWithEmailAndPassword(email, password);
+      cookie.save('email', email, { path: '/' });
+      window.location.href = document.referrer;
+    } catch(e) {
+      alert('Email or password invalid. Please try again.')
     }
-    window.location.href = document.referrer;
+
   }
   
   async signUp() {
@@ -61,8 +65,13 @@ class LogIn_SignUp extends React.Component {
       return false;
     }
 
-    let res = await api.registerWithEmailAndPassword(email,password1);
-    window.location.href = document.referrer;
+    try {
+      let res = await api.registerWithEmailAndPassword(email,password1);
+      cookie.save('email', email, { path: '/' });
+      window.location.href = document.referrer;
+    } catch(e) {
+      alert("The email has already been registered");
+    }  
   }
 
   render() {

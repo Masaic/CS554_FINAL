@@ -17,7 +17,7 @@ class ComicDetail extends Component {
             <div>
                 <div className = "row comic-detail">
                     <div className = "">
-                        <img className = "detail-img" src = {imgSrc}/>
+                        <img className = "detail-img" src = {imgSrc} alt = "" />
                     </div>
                     <div className = "comic-detail-info">
                         <h4>{this.state.info.title}</h4>
@@ -36,7 +36,7 @@ class ComicDetail extends Component {
                                     <label className = "comic-detail-info">${this.state.info.prices[0].price}</label>
                                 </div>
                                 <p>{this.state.info.description !== null ? this.state.info.description : 'Description not available'}</p>
-                                <a className = "btn btn-primary text-white font-weight-bold" href = {document.referrer}>Back to comic list</a>
+                                <a className = "btn btn-primary text-white font-weight-bold" href = {document.referrer}>Back</a>
                             </div>
                            
                         </div>
