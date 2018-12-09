@@ -70,18 +70,11 @@ const Navigation = (props) => {
         return (
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
-<<<<<<< HEAD
-                <NavLink className="navbar-brand" to="/1">
-                
-                    <img src={'../images/MarvelLogo.png'} width="60" height="30" alt="" />
-                    <strong>MarvelPedia</strong>
-=======
                 <NavLink className="navbar-brand" to="/">
 
                     <img src={logo} width="130" height="40" alt="" />
                     <span className = "font-weight-bold nav-title">MarvelPedia</span>
 
->>>>>>> origin/master
                 </NavLink>
             
                 <div className="collapse navbar-collapse">
@@ -91,14 +84,7 @@ const Navigation = (props) => {
                             <NavLink className="nav-link" to="/">Home</NavLink>
                         </li>
                         <li className="nav-item navItems font-weight-bold">
-<<<<<<< HEAD
-                            <NavLink className="nav-link" to="javscript:void(0)">Heros</NavLink>
-                        </li>
-                        <li className="nav-item navItems font-weight-bold">
-                            <NavLink className = "nav-link" to = "/comics/1">Comics</NavLink>
-=======
                             <NavLink className="nav-link" to="/heros">Heros</NavLink>
->>>>>>> origin/master
                         </li>
                         <li className="nav-item navItems font-weight-bold">
                             <a className = {props.isComic ==='true' ? 'nav-link active' : 'nav-link'} href = "/comics/list/1">Comics</a>
