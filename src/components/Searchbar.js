@@ -30,12 +30,12 @@ class Searchbar extends Component {
     handleChange = (e) => {
         let value = e.target.value;
 
-        if (this.props.type == `Hero`) {
+        if (this.props.type === `Hero`) {
             this.setState({ searchTerm: value }, () => {
                 this.searchHeros();
             });
         } else
-            if (this.props.type == `Comic`) {
+            if (this.props.type === `Comic`) {
                 this.setState({ searchTerm: value }, () => {
                     this.searchComics();
                 });
@@ -56,7 +56,8 @@ class Searchbar extends Component {
                 if (this.state.searchData.data.results) {
                     this.state.searchData.data.results.map(comics => {
                         let title = comics.title;
-                        item.push({ value: `${title}` })
+                        let id = comics.id;
+                        item.push({ value: `${title}`,id: id })
                     })
                     this.setState({ items: item });
                 }
@@ -80,7 +81,8 @@ class Searchbar extends Component {
                 if (this.state.searchData.data.results) {
                     this.state.searchData.data.results.map(heros => {
                         let name = heros.name;
-                        item.push({ value: `${name}` })
+                        let id = heros.id;
+                        item.push({ value: `${name}`,id: id })
                     })
                     this.setState({ items: item });
 
@@ -96,9 +98,11 @@ class Searchbar extends Component {
             <Downshift
                 onChange={selection => {
                     alert(`You selected ${selection.value}`);
-                    let profileName = selection.value;
+                    let profileName = selection.id;
                     this.props.handleProfileChange(profileName);
-
+                    if(this.props.type === `Comic`){
+                        window.location.href = `http://localhost:3000/comics/detail/${profileName}`
+                    }
                 }
 
                 }

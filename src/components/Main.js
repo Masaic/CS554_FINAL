@@ -8,7 +8,7 @@ class Main extends Component {
         super(props);
         this.state = {
             user: this.props.user,
-            name: "Spider-Man"
+            name: "1009610"
         }
     }
 

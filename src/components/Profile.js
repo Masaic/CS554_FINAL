@@ -19,9 +19,9 @@ class Profile extends Component {
         let ts = new Date().getTime();
         let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
         let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
-        let name = encodeURIComponent(this.props.profileName);
-        console.log(name);
-        const response = axios.get(`https://gateway.marvel.com/v1/public/characters?name=${name}&orderBy=name&limit=1&${script}`);
+        // let name = encodeURIComponent(this.props.profileName);
+        // console.log(name);
+        const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${this.props.profileName}?${script}`);
         response.then((result) =>
             this.setState({ profile: result.data.data.results[0] })
         )
@@ -31,9 +31,9 @@ class Profile extends Component {
         let ts = new Date().getTime();
         let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
         let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
-        let name = encodeURIComponent(next.profileName);
-        console.log(name);
-        const response = axios.get(`https://gateway.marvel.com/v1/public/characters?name=${name}&orderBy=name&limit=1&${script}`);
+        // let name = encodeURIComponent(next.profileName);
+        // console.log(name);
+        const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${next.profileName}?${script}`);
         response.then((result) =>
             this.setState({ profile: result.data.data.results[0] })
         )
@@ -48,7 +48,7 @@ class Profile extends Component {
         return (
             <div style={{ margin: '0 auto' }}>
                 <div>
-                <img className="card-img-top card-img" src = {this.state.profile.thumbnail.path+`.`+this.state.profile.thumbnail.extension} alt={this.props.profileName} />
+                <img className="card-img-top card-img" src = {this.state.profile.thumbnail.path+`.`+this.state.profile.thumbnail.extension} alt={this.state.profile.name} />
                 </div>
                 <Link activeClass="active" to="firstInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block', margin: '20px' }}>
                     Go to description
