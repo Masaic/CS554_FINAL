@@ -24,9 +24,9 @@ class App extends Component {
     super(props, context);
     this.state = {
       home: true,
-      user: null
+      user: null,
+      rootRef: React.createRef()
     };
-    this.myRef = React.createRef();
   }
 
   componentDidMount () {
@@ -59,7 +59,7 @@ class App extends Component {
     // await api.signInWithEmailAndPassword('ee06b056@gmail.com','006361');
     // await api.signInWithGoogleAccount();
     // console.log(this.state.user);
-    console.log(await api.registerWithEmailAndPassword('418907463@qq.com','123456'));
+    // console.log(await api.registerWithEmailAndPassword('418907463@qq.com','123456'));
   }
 
   
@@ -72,12 +72,10 @@ class App extends Component {
       <div className="App" ref={this.myRef}>
         <div className="App-body">
 
-        <button onClick={this.authenTest}>Test</button>
+        {/* <button onClick={this.authenTest}>Test</button>
         <button onClick={(e) => {e.preventDefault();fire.auth().signOut()}}>Logout</button>
         <button onClick={(e) => {e.preventDefault(); fire.auth().sendPasswordResetEmail('ee06b056@gmail.com')}}>Send Email</button>
-        <button onClick={(e) => {e.preventDefault();this.pdfGenerator();}}>PDF</button>
-
-        
+        <button onClick={(e) => {e.preventDefault();this.pdfGenerator();}}>PDF</button> */}
 
         <Switch>
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />

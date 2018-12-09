@@ -38,11 +38,13 @@ class LogIn_SignUp extends React.Component {
   }
 
   async logIn() {
-    console.log('eat shit');
     let email = document.getElementById('logInEmail').value;
     let password = document.getElementById('logInPassword').value;
     let res = await api.signInWithEmailAndPassword(email, password);
-    console.log(res);
+    if (typeof res == 'string') {
+      alert(res);
+      return 
+    }
     window.location.href = document.referrer;
   }
   
