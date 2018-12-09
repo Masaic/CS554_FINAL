@@ -57,7 +57,7 @@ class Searchbar extends Component {
                     this.state.searchData.data.results.map(comics => {
                         let title = comics.title;
                         let id = comics.id;
-                        item.push({ value: `${title}`,id: id })
+                        item.push({ value: `${title}`, id: id })
                     })
                     this.setState({ items: item });
                 }
@@ -82,7 +82,7 @@ class Searchbar extends Component {
                     this.state.searchData.data.results.map(heros => {
                         let name = heros.name;
                         let id = heros.id;
-                        item.push({ value: `${name}`,id: id })
+                        item.push({ value: `${name}`, id: id })
                     })
                     this.setState({ items: item });
 
@@ -99,8 +99,10 @@ class Searchbar extends Component {
                 onChange={selection => {
                     alert(`You selected ${selection.value}`);
                     let profileName = selection.id;
-                    this.props.handleProfileChange(profileName);
-                    if(this.props.type === `Comic`){
+                    if (this.props.type === `Hero`) {
+                        this.props.handleProfileChange(profileName);
+                    }
+                    if (this.props.type === `Comic`) {
                         window.location.href = `http://localhost:3000/comics/detail/${profileName}`
                     }
                 }

@@ -35,16 +35,16 @@ class comicList extends Component {
             comicInfo: undefined,
             curPage: pageNum,
             comicId: comicId,
-            title: "no title"
         };
         this.PUBLIC_KEY = `cb14e7ba87e9828d048d677e1d1681dd`;
         this.PRIV_KEY = `aa9b09760131eac24ed73bff8b665e8fa27c8999`;
     }
 
 
-    handleProfileChange = profileTitle => {
+    handleProfileChange = () => {
         // This state change will force Profile component to be re-rendered
-        this.setState({ title: profileTitle });
+        // this.setState({ title: profileTitle });
+        console.log(1);
     }
 
     componentWillMount() {

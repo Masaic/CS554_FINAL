@@ -16,6 +16,7 @@ class Profile extends Component {
     }
 
     componentWillMount() {
+        console.log('here1');
         let ts = new Date().getTime();
         let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
         let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
@@ -28,6 +29,7 @@ class Profile extends Component {
     }
 
     componentWillReceiveProps(next) {
+        console.log('here2');
         let ts = new Date().getTime();
         let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
         let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;

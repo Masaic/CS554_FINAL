@@ -24,24 +24,29 @@ class App extends Component {
     super(props, context);
     this.state = {
       home: true,
-      user: null
+      user: `pending`
     };
     this.myRef = React.createRef();
   }
 
-  componentDidMount () {
+  componentWillMount () {
     this.authListener();
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   this.authListener();
+  // }
 
   // authen state monitor
   authListener = () => {
     fire.auth().onAuthStateChanged((user) => {
-      // console.log(user);
-      if (user) {
+      console.log(user);
+      if (user !== this.state.user) {
         this.setState({user});
-      } else {
-        this.setState({user: null});
-      }
+      } 
+      // else {
+      //   this.setState({user: null});
+      // }
     })
   }
 
@@ -66,7 +71,10 @@ class App extends Component {
   
   
   
-  render() {   
+  render() {
+    if(this.state.user === `pending`){
+      return <div>Loading</div>
+    }   
     return (
       <Router>
       <div className="App" ref={this.myRef}>
