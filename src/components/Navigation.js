@@ -1,5 +1,5 @@
 import React from 'react';
-
+import cookie from 'react-cookies';
 import { NavLink, Link } from 'react-router-dom';
 import Searchbar from './Searchbar';
 import './general.css';
@@ -12,11 +12,18 @@ import logo from '../images/MarvelLogo.png';
 // Sign out function.
 let signOut = async() => {
     console.log("shit");
-    await api.signout();
-    //window.location.href = '/';
-    
+    try {
+        let res = await api.signout();
+        cookie.remove('email',{ path : '/' });
+        //console.log(cookie.load('email'));
+        window.location.reload();
+    } catch(e) {
+        alert('Could not sin out!');
+    }    
 }
 
+var email = cookie.load('email');
+console.log(email);
 
 const Navigation = (props) => {
    // console.log(props.user);
@@ -50,10 +57,10 @@ const Navigation = (props) => {
                             <Searchbar type={props.type} handleProfileChange={props.handleProfileChange} />
                         </li>
                         {
-                            !!props.user  ?<li className = "nav-item"> <span className = "nav-link text-white font-weight-bold">{props.user.email}</span></li> :  null
+                            email !== undefined  ?<li className = "nav-item"> <span className = "nav-link text-white font-weight-bold">{email}</span></li> :  null
                         }
                         {
-                            !!props.user ?  <li className="nav-item navItems font-weight-bold">
+                            email !== undefined ?  <li className="nav-item navItems font-weight-bold">
                                                 <a onClick = {signOut} className="nav-link" href = "javascript:void(0)">Sign out</a>
                                             </li>  
                                             :   <li className="nav-item navItems font-weight-bold">

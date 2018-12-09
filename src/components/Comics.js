@@ -30,7 +30,7 @@ class Comics extends Component {
         }
         
         this.state = {
-            user: this.props.user,
+            //user: this.props.user,
             target: target,
             comicList: undefined,
             comicInfo: undefined,
@@ -47,10 +47,6 @@ class Comics extends Component {
         else if (!this.isMounted)this.getComicDetail();
     }
 
-   componentWillUnmount() {
-    if (!this.isMounted && this.state.target === 'list') this.getComics();
-    else if (!this.isMounted)this.getComicDetail();
-   }
 
     handleProfileChange = profileTitle => {
         // This state change will force Profile component to be re-rendered
@@ -124,7 +120,7 @@ class Comics extends Component {
                 noInfo ? (
                     <div>
                         <div>
-                            <Navigation user = {this.state.user} isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                            <Navigation  isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
                         </div>
                         <Loading />
                     </div>
@@ -132,7 +128,7 @@ class Comics extends Component {
                     isDetail ?(
                         <div>
                             <div>
-                                <Navigation user = {this.state.user} isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                                <Navigation  isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
                             </div>
                             <ComicDetail info = {this.state.comicInfo}/>
                         </div>
@@ -140,7 +136,7 @@ class Comics extends Component {
                     :(
                         <div>
                             <div>
-                                <Navigation user = {this.state.user} isComic = 'true' type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                                <Navigation  isComic = 'true' type={`Comic`} handleProfileChange={this.handleProfileChange} />
                             </div>
                             <div className = "card-list-config row">
                                 {

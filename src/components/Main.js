@@ -7,7 +7,7 @@ class Main extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user: this.props.user,
+            // user: this.props.user,
             name: "1009610"
         }
     }
