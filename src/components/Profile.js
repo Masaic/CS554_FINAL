@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll'
+import { Link, DirectLink, Element, Events, animateScroll as scroll, scrollSpy, scroller } from 'react-scroll';
+import Loading from './Loading.js';
+import './general.css';
 const CryptoJS = require("crypto-js");
 // const querystring = require("querystring");
 
@@ -42,7 +44,9 @@ class Profile extends Component {
     render() {
         if(!this.state.profile){
             return (
-                <div>Loading</div>
+                <div className = "pags">
+                    <Loading />
+                </div>
             )
         }
         return (

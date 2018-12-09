@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './general.css';
-import loading from '../images/loading.gif';
+import Loading from './Loading.js';
 import ComicItem from './ComicItem.js';
 import Navigation from './Navigation.js';
 import ComicDetail from './ComicDetail.js';
@@ -87,10 +87,7 @@ class comicList extends Component {
                     <div>
                         <Navigation user = {this.state.user} isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
                     </div>
-                    <div className = "top-margin-10">
-                       <img src = {loading}/>
-                       <h3>Loading...</h3>
-                    </div>
+                    <Loading />
                    
                 </div>
             );
