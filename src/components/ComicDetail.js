@@ -21,13 +21,12 @@ class ComicDetail extends Component {
 
     }
 
-    async componentWillMount() {
-        console.log('执行了Detail的WillMount');
+    async getData(id) {
         try {
             let ts = new Date().getTime();
             let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
             let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
-            const response = await axios.get(`https://gateway.marvel.com/v1/public/comics/${this.state.id}?${script}`); 
+            const response = await axios.get(`https://gateway.marvel.com/v1/public/comics/${id}?${script}`); 
             
             console.log(response.data.data.results[0]);
             await this.setState({ 
@@ -43,26 +42,12 @@ class ComicDetail extends Component {
         }
     }
 
+    async componentWillMount() {
+        await this.getData(this.state.id);
+    }
+
     async componentWillReceiveProps(next) {
-        console.log('执行了Detail的WillReceiveProps');
-        try {
-            let ts = new Date().getTime();
-            let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
-            let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
-            const response = await axios.get(`https://gateway.marvel.com/v1/public/comics/${next.id}?${script}`); 
-            
-            console.log(response.data.data.results[0]);
-            await this.setState({ 
-                info: response.data.data.results[0],
-            });
-            let imgSrc =  this.state.info.images.length !== 0 ? `${this.state.info.images[0].path}.${this.state.info.images[0].extension}` : imgNA
-            await this.setState({
-                imgSrc:imgSrc
-            });
-           console.log(this.state.info, this.state.imgSrc);
-        } catch (e) {
-            console.log(e);
-        }
+        await this.getData(next.id);
     }
 
     render() {
@@ -71,7 +56,7 @@ class ComicDetail extends Component {
             !this.state.info ?
                 (<Loading />)
             :(<div>
-                <div className = "row comic-detail">
+                <div className = "row comic-detail bg-light">
                     <div className = "">
                         <img className = "detail-img" src = {this.state.imgSrc} alt = "" />
                     </div>

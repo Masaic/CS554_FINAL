@@ -80,48 +80,64 @@ class Profile extends Component {
                 </div>
             )
         }
+        console.log(this.state.profile.stories);
         return (
-            <div style={{ margin: '0 auto' }}>
+            <div className = "hero-detail">
                 <div>
-                <img className="card-img-top card-img" src = {this.state.profile.thumbnail.path+`.`+this.state.profile.thumbnail.extension} alt={this.state.profile.name} />
+                <img className="detail-hero-img" src = {this.state.profile.thumbnail.path+`.`+this.state.profile.thumbnail.extension} alt={this.state.profile.name} />
                 </div>
-                <Link activeClass="active" to="firstInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block', margin: '20px' }}>
-                    Go to description
-                </Link>
+                <div className = "btn-group profile-top-2">
+                    <Link className = "btn btn-primary text-white font-weight-bold" activeClass="active" to="firstInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block' }}>
+                        Description
+                    </Link>
 
-                <Link activeClass="active" to="secondInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block', margin: '20px' }}>
-                    Go to stories
-                </Link>
+                    <Link className = "btn btn-primary text-white font-weight-bold" activeClass="active" to="secondInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block'}}>
+                        Stories
+                    </Link>
 
-                <Link activeClass="active" to="thridInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block', margin: '20px' }}>
-                    Go to comments
-                </Link>
+                    <Link className = "btn btn-primary text-white font-weight-bold" activeClass="active" to="thridInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block' }}>
+                        Comments
+                    </Link>
+                </div>
+                <div>
+                <Element name="test7" className="element profile-elements" id="containerElement" >
+                        <Element className = "bg-success" name="firstInsideContainer" >
+                            <div className = "passage-center">
+                                {this.state.profile.description ? this.state.profile.description : (
+                                    <div className = "font-weight-bold">Description inavailable</div>
+                                )}
+                            </div>
+                            
+                        </Element>
 
-                <Element name="test7" className="element" id="containerElement" style={{
-                    position: 'relative',
-                    height: '200px',
-                    overflow: 'scroll',
-                    marginBottom: '100px'
-                }}>
+                        <Element name="secondInsideContainer" className = "bg-warning">
+                        <div className = "passage-center">
+                            {
+                               this.state.profile.stories.items.length === 0 ? (
+                                    <div className = "font-weight-bold">Stories inavailable</div>
+                                ) : (
+                                    <div>{this.state.profile.stories.items.map((item, index) => (
+                                        <div key = {index}>
+                                            <span>{item.name}</span>
+                                        </div>
+                                    ))}</div>
+                                    )
+                          }
+                        </div>
+                       
+                            
+                        </Element>
 
-                    <Element name="firstInsideContainer" style={{
-                        marginBottom: '200px'
-                    }}>
-                        {this.state.profile.description}
-                </Element>
+                        <Element name="thridInsideContainer" className = " min-height-profile">
+                            <div className = "bg-info">
+                                test-comment-panel
+                                <ul>{this.state.comments.map((comment, index) => <li key={index}>{comment.name}</li>)}</ul>
+                            </div>
+                        </Element>
+                    </Element>
+                </div>
 
-                    <Element name="secondInsideContainer" style={{
-                        marginBottom: '200px'
-                    }}>
-                        <ul>{this.state.profile.stories.items.map((item, index) => <li key={index}>{item.name}</li>)}</ul>
-                </Element>
-
-                <Element name="thridInsideContainer" style={{
-                        marginBottom: '200px'
-                    }}>
-                        <ul>{this.state.comments.map((comment, index) => <li key={index}>{comment.name}</li>)}</ul>
-                </Element>
-                </Element>
+                
             </div>
         )
     }
@@ -129,3 +145,15 @@ class Profile extends Component {
 }
 
 export default Profile;
+
+
+/* 
+
+style={{
+    position: 'relative',
+    height: '200px',
+    overflow: 'scroll',
+    marginBottom: '100px'
+}}
+
+*/

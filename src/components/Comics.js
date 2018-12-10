@@ -57,7 +57,6 @@ class Comics extends Component {
 
         return (
             <div>
-               
             { 
                 isDetail ?(
                     <ComicDetail id = {this.state.comicId}/>
