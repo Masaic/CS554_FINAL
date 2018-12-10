@@ -29,11 +29,7 @@ class Comics extends Component {
             pageNum = url === '/comics/list' || url === '/comics/list/' ? 1 : pageNum;
             target = 'list';
         }
-<<<<<<< HEAD
-
-=======
         console.log('pageNum',pageNum);
->>>>>>> origin/master
         this.state = {
             //user: this.props.user,
             target: target,
@@ -52,13 +48,6 @@ class Comics extends Component {
         else if (!this.isMounted) this.getComicDetail();
     }
 
-<<<<<<< HEAD
-    // componentWillUnmount() {
-    //     if (!this.isMounted && this.state.target === 'list') this.getComics();
-    //     else if (!this.isMounted) this.getComicDetail();
-    // }
-=======
->>>>>>> origin/master
 
     handleProfileChange = () => {
         // This state change will force Profile component to be re-rendered
@@ -98,76 +87,6 @@ class Comics extends Component {
         console.log("Comic.js rendered");
         let noInfo = (this.state.target === 'list' && this.state.comicList === undefined) || (this.state.target === 'detail' && this.state.comicInfo === undefined);
         let isDetail = this.state.target === 'detail';
-<<<<<<< HEAD
-        let pagination = null;
-        let nextPage = `/comics/list/${this.state.curPage + 1}`;
-        let prevPage = `/comics/list/${this.state.curPage - 1}`;
-        if (this.state.curPage === 1) {
-            pagination = (
-                <div>
-                    <ul className="pagination">
-                        <li className="page-item">
-                            <a className="page-link" href={nextPage}>Next</a>
-                        </li>
-                    </ul>
-                </div>
-            );
-        } else {
-            pagination = (
-                <div>
-                    <ul className="pagination">
-                        <li className="page-item">
-                            <a className="page-link" href={prevPage}>Privious</a>
-                        </li>
-                        <li className="page-item">
-                            <a className="page-link" href={nextPage}>Next</a>
-                        </li>
-                    </ul>
-                </div>
-            );
-        }
-
-
-        return (
-            <div>
-                {
-                    noInfo ? (
-                        <div>
-                            <div>
-                                <Navigation user={this.state.user} isComic="true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                            </div>
-                            <Loading />
-                        </div>
-                    ) :
-                        isDetail ? (
-                            <div>
-                                <div>
-                                    <Navigation user={this.state.user} isComic="true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                                </div>
-                                <ComicDetail info={this.state.comicInfo} />
-                            </div>
-                        )
-                            : (
-                                <div>
-                                    <div>
-                                        <Navigation user={this.state.user} isComic='true' type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                                    </div>
-                                    <div className="card-list-config row">
-                                        {
-                                            this.state.comicList.map((arr, index) => {
-                                                return (
-                                                    <ComicItem info={arr} key={index} />
-                                                );
-                                            })
-                                        }
-                                    </div>
-                                    <div className="pags">
-                                        {pagination}
-                                    </div>
-                                </div>
-                            )
-                }
-=======
 
         return (
             <div>
@@ -206,7 +125,6 @@ class Comics extends Component {
                         </div>
                     )
             }
->>>>>>> origin/master
             </div>
         );
     }
