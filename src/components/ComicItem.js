@@ -18,7 +18,7 @@ class ComicItem extends Component{
     }
 
     async handleChange(id) {
-        await this.props.handle(id);
+        await this.props.handleDetail(id);
     }
     render() {
         return (
