@@ -18,7 +18,7 @@ let signOut = async() => {
         //console.log(cookie.load('email'));
        // window.location.reload();
     } catch(e) {
-        alert('Could not sin out!');
+        alert('Could not sign out!');
     }    
 }
 

@@ -90,28 +90,26 @@ class Comics extends Component {
 
         return (
             <div>
+                <div>
+                    <Navigation  isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                </div>
             {
+                
                 noInfo ? (
                     <div>
-                        <div>
-                            <Navigation  isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                        </div>
+                        
                         <Loading />
                     </div>
                 ): 
                     isDetail ?(
                         <div>
-                            <div>
-                                <Navigation  isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                            </div>
+                            
                             <ComicDetail info = {this.state.comicInfo}/>
                         </div>
                     )
                     :(
                         <div>
-                            <div>
-                                <Navigation  isComic = 'true' type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                            </div>
+                            
                             <div className = "card-list-config row">
                                 {
                                     this.state.comicList.map((arr, index) => {
