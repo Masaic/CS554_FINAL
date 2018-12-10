@@ -52,6 +52,9 @@ const api = {
         const comicCommentRef = fire.database().ref('comicComents').child(comicId);
         try {
             const valObj = (await comicCommentRef.orderByKey().once('value')).val();
+            if (!valObj) {
+                return [];
+            }
             return Object.values(valObj);
 
         } catch (e) {
