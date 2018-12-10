@@ -16,34 +16,59 @@ class Profile extends Component {
         }
         this.PUBLIC_KEY = `b297a0863017d3e43a78d69c0102bab1`;
         this.PRIV_KEY = `6cfadf50b9063ab192b648f5d892f9d89101bb6b`;
+        this.getData = this.getData.bind(this);
 
+    }
+
+    getData(heroId) {
+        let ts = new Date().getTime();
+        let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
+        let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
+        const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${heroId}?${script}`);
+        response.then((result) =>
+            this.setState({ profile: result.data.data.results[0] })
+        )
+        let comments = api.getCommentsByComicId(heroId);
+        comments.then((comment)=>{
+            console.log(comment);
+            // if(comment){
+            //     this.setState()
+            // }
+        })
     }
 
     componentWillMount() {
         console.log('here1');
-        let ts = new Date().getTime();
-        let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
-        let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
-        // let name = encodeURIComponent(this.props.profileName);
-        // console.log(name);
-        const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${this.props.profileName}?${script}`);
-        response.then((result) =>
-            this.setState({ profile: result.data.data.results[0] })
-        )
+        this.getData(this.props.profileName);
+        // let ts = new Date().getTime();
+        // let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
+        // let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
+        // // let name = encodeURIComponent(this.props.profileName);
+        // // console.log(name);
+        // const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${this.props.profileName}?${script}`);
+        // response.then((result) =>
+        //     this.setState({ profile: result.data.data.results[0] })
+        // )
+        // let comments = api.getCommentsByComicId(this.props.profileName);
+        // comments.then((comment)=>{
+        //     console.log(comment);
+        // })
     }
 
     componentWillReceiveProps(next) {
         console.log('here2');
-        let ts = new Date().getTime();
-        let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
-        let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
-        // let name = encodeURIComponent(next.profileName);
-        // console.log(name);
-        const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${next.profileName}?${script}`);
-        response.then((result) =>
-            this.setState({ profile: result.data.data.results[0] })
-        )
-        let comments = api.getCommentsByComicId(next.profileName);
+        this.getData(next.profileName);
+        // let ts = new Date().getTime();
+        // let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
+        // let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
+        // // let name = encodeURIComponent(next.profileName);
+        // // console.log(name);
+        // const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${next.profileName}?${script}`);
+        // response.then((result) =>
+        //     this.setState({ profile: result.data.data.results[0] })
+        // )
+        // let comments = api.getCommentsByComicId(next.profileName);
+        // console.log(comments);
     }
 
     render() {
@@ -67,6 +92,10 @@ class Profile extends Component {
                     Go to stories
                 </Link>
 
+                <Link activeClass="active" to="thridInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block', margin: '20px' }}>
+                    Go to comments
+                </Link>
+
                 <Element name="test7" className="element" id="containerElement" style={{
                     position: 'relative',
                     height: '200px',
@@ -84,6 +113,12 @@ class Profile extends Component {
                         marginBottom: '200px'
                     }}>
                         <ul>{this.state.profile.stories.items.map((item, index) => <li key={index}>{item.name}</li>)}</ul>
+                </Element>
+
+                <Element name="thridInsideContainer" style={{
+                        marginBottom: '200px'
+                    }}>
+                        <ul>{this.state.comments.map((comment, index) => <li key={index}>{comment.name}</li>)}</ul>
                 </Element>
                 </Element>
             </div>
