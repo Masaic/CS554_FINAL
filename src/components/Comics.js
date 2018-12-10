@@ -5,6 +5,7 @@ import Loading from './Loading.js';
 import ComicItem from './ComicItem.js';
 import Navigation from './Navigation.js';
 import ComicDetail from './ComicDetail.js';
+import PaginationComic from './PaginationComic';
 import './general.css'
 
 var CryptoJS = require("crypto-js");
@@ -25,10 +26,10 @@ class Comics extends Component {
             target = 'detail';
         } else {
             pageNum = parseInt(urlArr[urlArr.length - 1]);
-            pageNum = url === '/comics/' || url === '/comics' ? 1 : pageNum;
+            pageNum = url === '/comics/list' || url === '/comics/list/' ? 1 : pageNum;
             target = 'list';
         }
-        
+        console.log('pageNum',pageNum);
         this.state = {
             //user: this.props.user,
             target: target,
@@ -37,6 +38,7 @@ class Comics extends Component {
             curPage: pageNum,
             comicId: comicId,
         };
+        console.log(this.state.curPage);
         this.PUBLIC_KEY = `cb14e7ba87e9828d048d677e1d1681dd`;
         this.PRIV_KEY = `aa9b09760131eac24ed73bff8b665e8fa27c8999`;
     }
@@ -85,59 +87,29 @@ class Comics extends Component {
         console.log("Comic.js rendered");
         let noInfo = (this.state.target === 'list' && this.state.comicList === undefined )|| (this.state.target === 'detail' && this.state.comicInfo === undefined);
         let isDetail = this.state.target === 'detail';
-        let pagination = null;
-        let nextPage = `/comics/list/${this.state.curPage + 1}`;
-        let prevPage = `/comics/list/${this.state.curPage - 1}`;
-        if (this.state.curPage === 1) {
-            pagination = (
-                <div>
-                    <ul className = "pagination">
-                        <li className = "page-item">
-                            <a className = "page-link" href = {nextPage}>Next</a>
-                        </li>                      
-                    </ul>
-                </div>
-            );
-        } else {
-            pagination = (
-                <div>
-                    <ul className = "pagination">
-                        <li className = "page-item">
-                            <a className = "page-link" href = {prevPage}>Privious</a>
-                        </li>
-                        <li className = "page-item">
-                            <a className = "page-link" href = {nextPage}>Next</a>
-                        </li>
-                    </ul>
-                </div>
-            );
-        }
-
 
         return (
             <div>
+                <div>
+                    <Navigation  isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                </div>
             {
+                
                 noInfo ? (
                     <div>
-                        <div>
-                            <Navigation  isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                        </div>
+                        
                         <Loading />
                     </div>
                 ): 
                     isDetail ?(
                         <div>
-                            <div>
-                                <Navigation  isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                            </div>
+                            
                             <ComicDetail info = {this.state.comicInfo}/>
                         </div>
                     )
                     :(
                         <div>
-                            <div>
-                                <Navigation  isComic = 'true' type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                            </div>
+                            
                             <div className = "card-list-config row">
                                 {
                                     this.state.comicList.map((arr, index) => {
@@ -147,8 +119,8 @@ class Comics extends Component {
                                     })
                                 }
                             </div>
-                            <div className = "pags">
-                                { pagination } 
+                            <div className = "pags pag-width">
+                                <PaginationComic curPage = {this.state.curPage} /> 
                             </div>
                         </div>
                     )

@@ -1,6 +1,6 @@
 import React from 'react';
 import cookie from 'react-cookies';
-import { NavLink, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Searchbar from './Searchbar';
 import './general.css';
 //import SignOutButton from './SignOut'
@@ -13,12 +13,12 @@ import logo from '../images/MarvelLogo.png';
 let signOut = async() => {
     console.log("shit");
     try {
-        let res = await api.signout();
+        await api.signout();
         cookie.remove('email',{ path : '/' });
         //console.log(cookie.load('email'));
-        window.location.reload();
+       // window.location.reload();
     } catch(e) {
-        alert('Could not sin out!');
+        alert('Could not sign out!');
     }    
 }
 
