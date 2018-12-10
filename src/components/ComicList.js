@@ -44,7 +44,7 @@ class ComicList extends Component {
                     {
                         this.state.list.map((arr, index) => {
                             return (
-                                <ComicItem handle = {this.props.handle} info = {arr} key = {index} />
+                                <ComicItem handleDetail = {this.props.handleDetail} info = {arr} key = {index} />
                               
                             );
                         })

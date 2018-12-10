@@ -29,7 +29,7 @@ class Comics extends Component {
         };
         this.PUBLIC_KEY = `b297a0863017d3e43a78d69c0102bab1`;
         this.PRIV_KEY = `6cfadf50b9063ab192b648f5d892f9d89101bb6b`;
-        this.handle.bind(this);
+        this.handleDetail.bind(this);
     }
 
 
@@ -39,7 +39,7 @@ class Comics extends Component {
         console.log(1);
     }
 
-    handle = async(tid) => {
+    handleDetail = async(tid) => {
         console.log('开始handle',tid);
         await this.setState({
             target:'detail',
@@ -57,13 +57,12 @@ class Comics extends Component {
 
         return (
             <div>
-               
             { 
                 isDetail ?(
                     <ComicDetail id = {this.state.comicId}/>
                 )
                 :(
-                    <ComicList curPage = {this.state.curPage} handle = {this.handle}/>
+                    <ComicList curPage = {this.state.curPage} handleDetail = {this.handleDetail}/>
                 )
             }
             </div>

@@ -53,9 +53,10 @@
 .comic-detail {
     margin-left: 8%;
     margin-top: 4%;
+    margin-right: 8%;
 }
 .comic-detail-info {
-    margin-left : 4%;
+    margin-left : 8%;
 }
 
 .labelLen {
@@ -69,6 +70,48 @@
 
 .top-margin-10 {
     margin-top:10%;
+}
+
+.detail-hero-img {
+    margin-top : 3%;
+    height: 280px;
+    width: 400px;
+}
+.profile-top-2 {
+     margin-top:2%;
+ }
+
+
+
+.profile-elements {
+    margin-top:3%;
+    position: relative;
+    max-height: 400px;
+    overflow: scroll;
+}
+
+.hero-detail { 
+    width: 80%;
+    position: absolute;
+    left:50%;
+    transform: translate(-50%, 0%);
+}
+
+.horizonal-middle {
+    position: absolute;
+    left:50%;
+    transform: translate(-50%, 0%);
+}
+
+.passage-center {
+   
+    margin-bottom: 4%;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+
+.min-height-profile {
+    min-height: 400px;
 }
 
 

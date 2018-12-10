@@ -3,15 +3,24 @@ import './general.css';
 import Comics from './Comics';
 import Navigation from './Navigation';
 
-var ComicMain = props =>   {
 
-   // console.log(props.location.pathname)
-    return (
-        <div>
-            <Navigation  isComic = "true" type={`Comic`}  />
-            <Comics pathName = {props.location.pathname} />
-        </div>     
-    );
+
+class ComicMain extends Component {
+    handleProfileChange() {
+        console.log(1);
+        this.state = {
+            id: undefined
+        };
+    }
+
+    render() {
+        return (
+            <div>
+                <Navigation  isComic = "true" type={`Comic`} handleProfileChange = {this.handleProfileChange} {...this.state} />
+                <Comics pathName = {this.props.location.pathname} />
+            </div>     
+        );
+    }  
 }
 
 export default ComicMain;
