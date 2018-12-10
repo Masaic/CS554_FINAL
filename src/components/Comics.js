@@ -87,34 +87,6 @@ class Comics extends Component {
         console.log("Comic.js rendered");
         let noInfo = (this.state.target === 'list' && this.state.comicList === undefined )|| (this.state.target === 'detail' && this.state.comicInfo === undefined);
         let isDetail = this.state.target === 'detail';
-        let pagination = null;
-        let nextPage = `/comics/list/${this.state.curPage + 1}`;
-        let prevPage = `/comics/list/${this.state.curPage - 1}`;
-        if (this.state.curPage === 1) {
-            pagination = (
-                <div>
-                    <ul className = "pagination">
-                        <li className = "page-item">
-                            <a className = "page-link" href = {nextPage}>Next</a>
-                        </li>                      
-                    </ul>
-                </div>
-            );
-        } else {
-            pagination = (
-                <div>
-                    <ul className = "pagination">
-                        <li className = "page-item">
-                            <a className = "page-link" href = {prevPage}>Privious</a>
-                        </li>
-                        <li className = "page-item">
-                            <a className = "page-link" href = {nextPage}>Next</a>
-                        </li>
-                    </ul>
-                </div>
-            );
-        }
-
 
         return (
             <div>
@@ -149,7 +121,7 @@ class Comics extends Component {
                                     })
                                 }
                             </div>
-                            <div className = "pags">
+                            <div className = "pags pag-width">
                                 <PaginationComic curPage = {this.state.curPage} /> 
                             </div>
                         </div>

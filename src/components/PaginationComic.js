@@ -47,38 +47,3 @@ class PaginationComics extends Component {
 }
 
 export default PaginationComics;
-/*
-                        <li className = "page-item"><a className = {this.state.startPage === this.state.curPage? "page-link active" : "page-link"} href = {`/comics/list/${this.state.startPage}`}>{this.state.startPage}</a></li>
-                        <li className = "page-item"><a className = {this.state.startPage + 1 === this.state.curPage? "page-link active" : "page-link"} href = {`/comics/list/${this.state.startPage + 1}`}>{this.state.startPage + 1}</a></li>
-                        <li className = "page-item"><a className = {this.state.startPage + 2 === this.state.curPage? "page-link active" : "page-link"} href = {`/comics/list/${this.state.startPage + 2}`}>{this.state.startPage + 2}</a></li>
-                        <li className = "page-item"><a className = {this.state.startPage + 3 === this.state.curPage? "page-link active" : "page-link"} href = {`/comics/list/${this.state.startPage + 3}`}>{this.state.startPage + 3}</a></li>
-                        <li className = "page-item"><a className = {this.state.startPage + 4 === this.state.curPage? "page-link active" : "page-link"} href = {`/comics/list/${this.state.startPage + 4}`}>{this.state.startPage + 4}</a></li>
-
-
-
-
-if (this.state.curPage === 1) {
-            pagination = (
-                <div>
-                    <ul className = "pagination">
-                        <li className = "page-item">
-                            <a className = "page-link" href = {nextPage}>Next</a>
-                        </li>                      
-                    </ul>
-                </div>
-            );
-        } else {
-            pagination = (
-                <div>
-                    <ul className = "pagination">
-                        <li className = "page-item">
-                            <a className = "page-link" href = {prevPage}>Privious</a>
-                        </li>
-                        <li className = "page-item">
-                            <a className = "page-link" href = {nextPage}>Next</a>
-                        </li>
-                    </ul>
-                </div>
-            );
-        }
-*/ 
