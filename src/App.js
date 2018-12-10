@@ -47,6 +47,8 @@ class App extends Component {
     // await api.signInWithGoogleAccount();
     // console.log(this.state.user);
     // console.log(await api.registerWithEmailAndPassword('418907463@qq.com','123456'));
+    const value = await api.getCommentsByComicId('33333');
+    // console.log(value);
   }
 
   
@@ -62,6 +64,7 @@ class App extends Component {
       <div className="App" ref={this.myRef}>
         <div className="App-body">
 
+      {/* <button onClick={this.authenTest}>test</button> */}
 
 
         <Switch>
