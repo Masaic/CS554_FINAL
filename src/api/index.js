@@ -69,8 +69,8 @@ const api = {
             console.log(e);
         }
     },
-    generatePdf = (rootRef) => {
-        savePDF(ReactDOM.findDOMNode(root),{paperSize: 'A4'});
+    generatePdf: (rootRef) => {
+        savePDF(ReactDOM.findDOMNode(rootRef),{paperSize: 'A4'});
     }
 
     
