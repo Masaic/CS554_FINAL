@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, Element} from 'react-scroll';
 import Loading from './Loading.js';
 import './general.css';
+import cookie from 'react-cookies';
 import api from '../api';
 const CryptoJS = require("crypto-js");
 // const querystring = require("querystring");
