@@ -14,8 +14,8 @@ class Profile extends Component {
             profile: undefined,
             comments: []
         }
-        this.PUBLIC_KEY = `cb14e7ba87e9828d048d677e1d1681dd`;
-        this.PRIV_KEY = `aa9b09760131eac24ed73bff8b665e8fa27c8999`;
+        this.PUBLIC_KEY = `b297a0863017d3e43a78d69c0102bab1`;
+        this.PRIV_KEY = `6cfadf50b9063ab192b648f5d892f9d89101bb6b`;
 
     }
 

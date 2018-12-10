@@ -27,10 +27,10 @@ class PaginationComics extends Component {
                     <li className = {this.state.startPage + 1 === this.state.curPage? "page-item active" : "page-item"}><a className = "page-link" href = {`/comics/list/${this.state.startPage + 1}`}>{this.state.startPage + 1}</a></li>
                     <li className = {this.state.startPage + 2 === this.state.curPage? "page-item active" : "page-item"}><a className = "page-link" href = {`/comics/list/${this.state.startPage + 2}`}>{this.state.startPage + 2}</a></li>
                     {
-                        this.state.startPage === 3596 ? null : (<li className = {this.state.startPage + 3 === this.state.curPage? "page-item active" : "page-item"}><a className = "page-link" href = {`/comics/list/${this.state.startPage}`}>{this.state.startPage + 3}</a></li>)
+                        this.state.startPage === 3596 ? null : (<li className = {this.state.startPage + 3 === this.state.curPage? "page-item active" : "page-item"}><a className = "page-link" href = {`/comics/list/${this.state.startPage + 3}`}>{this.state.startPage + 3}</a></li>)
                     }
                     {
-                        this.state.startPage === 3596 ? null : (<li className = {this.state.startPage + 4 === this.state.curPage? "page-item active" : "page-item"}><a className = "page-link" href = {`/comics/list/${this.state.startPage}`}>{this.state.startPage + 4}</a></li>)
+                        this.state.startPage === 3596 ? null : (<li className = {this.state.startPage + 4 === this.state.curPage? "page-item active" : "page-item"}><a className = "page-link" href = {`/comics/list/${this.state.startPage + 4}`}>{this.state.startPage + 4}</a></li>)
                     }
                     
                     {

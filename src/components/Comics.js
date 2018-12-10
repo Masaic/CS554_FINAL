@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './general.css';
-import Loading from './Loading.js';
-import ComicItem from './ComicItem.js';
 import Navigation from './Navigation.js';
 import ComicDetail from './ComicDetail.js';
-import PaginationComic from './PaginationComic';
+import ComicList from './ComicList.js';
 import './general.css'
 
 var CryptoJS = require("crypto-js");
@@ -16,36 +13,26 @@ class Comics extends Component {
         console.log('contructor');
         let url = this.props.location.pathname;
         let urlArr = url.split('/');
-        let pageNum = -1;
+        let pageNum = undefined;
         let comicId = undefined;
         let target = undefined;
 
         if (url.indexOf('list') === -1) {
             comicId = urlArr[urlArr.length - 1];
-            //console.log(url,comicId);
             target = 'detail';
         } else {
             pageNum = parseInt(urlArr[urlArr.length - 1]);
             pageNum = url === '/comics/list' || url === '/comics/list/' ? 1 : pageNum;
             target = 'list';
         }
-        console.log('pageNum',pageNum);
         this.state = {
-            //user: this.props.user,
             target: target,
-            comicList: undefined,
-            comicInfo: undefined,
             curPage: pageNum,
             comicId: comicId,
         };
-        console.log(this.state.curPage);
-        this.PUBLIC_KEY = `cb14e7ba87e9828d048d677e1d1681dd`;
-        this.PRIV_KEY = `aa9b09760131eac24ed73bff8b665e8fa27c8999`;
-    }
-
-    componentWillMount() {
-        if (!this.isMounted && this.state.target === 'list') this.getComics();
-        else if (!this.isMounted) this.getComicDetail();
+        this.PUBLIC_KEY = `b297a0863017d3e43a78d69c0102bab1`;
+        this.PRIV_KEY = `6cfadf50b9063ab192b648f5d892f9d89101bb6b`;
+        this.handle.bind(this);
     }
 
 
@@ -55,37 +42,20 @@ class Comics extends Component {
         console.log(1);
     }
 
-
-
-    async getComics() {
-        try {
-            let ts = new Date().getTime();
-            let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
-            let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
-            let skip = ((this.state.curPage - 1) * 12) + '';
-            const response = await axios.get(`https://gateway.marvel.com/v1/public/comics?offset=${skip}&limit=12&${script}`);
-            this.setState({ comicList: response.data.data.results });
-            //console.log(this.state.comicList);
-        } catch (e) {
-            console.log(e);
-        }
+     handle = async(tid) => {
+        console.log('开始handle',tid);
+        await this.setState({
+            target:'detail',
+            comicId: tid,
+            curPage: undefined
+        });
+        console.log('comics state:', this.state);
     }
 
-    async getComicDetail() {
-        try {
-            let ts = new Date().getTime();
-            let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
-            let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
-            const response = await axios.get(`https://gateway.marvel.com/v1/public/comics/${this.state.comicId}?${script}`);
-            this.setState({ comicInfo: response.data.data.results[0] });
-        } catch (e) {
-            console.log(e);
-        }
-    }
 
+    
     render() {
         console.log("Comic.js rendered");
-        let noInfo = (this.state.target === 'list' && this.state.comicList === undefined) || (this.state.target === 'detail' && this.state.comicInfo === undefined);
         let isDetail = this.state.target === 'detail';
 
         return (
@@ -95,35 +65,12 @@ class Comics extends Component {
                 </div>
             {
                 
-                noInfo ? (
-                    <div>
-                        
-                        <Loading />
-                    </div>
-                ): 
-                    isDetail ?(
-                        <div>
-                            
-                            <ComicDetail info = {this.state.comicInfo}/>
-                        </div>
-                    )
-                    :(
-                        <div>
-                            
-                            <div className = "card-list-config row">
-                                {
-                                    this.state.comicList.map((arr, index) => {
-                                        return (
-                                            <ComicItem info = {arr} key = {index} />
-                                        );
-                                    })
-                                }
-                            </div>
-                            <div className = "pags pag-width">
-                                <PaginationComic curPage = {this.state.curPage} /> 
-                            </div>
-                        </div>
-                    )
+                isDetail ?(
+                    <ComicDetail id = {this.state.comicId}/>
+                )
+                :(
+                    <ComicList curPage = {this.state.curPage} />
+                )
             }
             </div>
         );
