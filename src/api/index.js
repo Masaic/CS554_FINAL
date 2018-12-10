@@ -1,5 +1,7 @@
 import firebase from 'firebase';
 import fire from '../config/Fire'
+import ReactDOM from 'react-dom';
+import { savePDF } from '@progress/kendo-react-pdf';
 
 const api = {
 
@@ -10,19 +12,17 @@ const api = {
             return userCredential.user;
         } catch (e) {
             console.log(e);
-            return null;
+            return e.code;
         }
         
     },
-
     signInWithEmailAndPassword: async (email, password) => {
         try {
             const userCredential = await fire.auth().signInWithEmailAndPassword(email, password);
-            console.log(userCredential);
             return userCredential;
         } catch (e) {
             console.log(e);
-            return null;
+            return e.code;
         }
         
     },
@@ -30,17 +30,47 @@ const api = {
         const googleProvider = new firebase.auth.GoogleAuthProvider();
         try {
             const userCredential = await firebase.auth().signInWithPopup(googleProvider);
-            console.log(userCredential.user);
             return userCredential.user;
         } catch (e) {
-            console.log(e);
-            return null;
+            return e.code;
         }
         
     },
     signout: async () => {
         console.log('logout');
         await fire.auth().signOut();
+    },
+    forgetPassword: async (email) => {
+        try {
+            return fire.auth().sendPasswordResetEmail(email);
+        } catch (e) {
+            console.log(e);
+            return e.code;
+        }
+    },
+    getCommentsByComicId: async (comicId) => {
+        const comicCommentRef = fire.database().ref('comicComents').child(comicId);
+        try {
+            const valObj = (await comicCommentRef.orderByKey().once('value')).val();
+            return Object.values(valObj);
+
+        } catch (e) {
+            console.log(e);
+        }
+    },
+    createComentByComicId: async (comicId, userEmail, comment) => {
+        const comicComentsRef = fire.database().ref('comicComents').child(comicId);
+        try {
+            await comicComentsRef.push().set({
+                userEmail,
+                comment
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    },
+    generatePdf: (rootRef) => {
+        savePDF(ReactDOM.findDOMNode(rootRef),{paperSize: 'A4'});
     }
 
     

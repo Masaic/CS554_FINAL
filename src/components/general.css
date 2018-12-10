@@ -37,6 +37,7 @@
 }
 
 .pags {
+    margin-top: 3%;
     position: absolute;
     left: 50%;
     transform : translate(-50%, 0%);
@@ -70,5 +71,9 @@
 
 .top-margin-10 {
     margin-top:10%;
+}
+
+.pag-width {
+    width: 320px;
 }
 

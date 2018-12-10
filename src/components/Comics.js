@@ -5,6 +5,7 @@ import Loading from './Loading.js';
 import ComicItem from './ComicItem.js';
 import Navigation from './Navigation.js';
 import ComicDetail from './ComicDetail.js';
+import PaginationComic from './PaginationComic';
 import './general.css'
 
 var CryptoJS = require("crypto-js");
@@ -25,18 +26,23 @@ class Comics extends Component {
             target = 'detail';
         } else {
             pageNum = parseInt(urlArr[urlArr.length - 1]);
-            pageNum = url === '/comics/' || url === '/comics' ? 1 : pageNum;
+            pageNum = url === '/comics/list' || url === '/comics/list/' ? 1 : pageNum;
             target = 'list';
         }
+<<<<<<< HEAD
 
+=======
+        console.log('pageNum',pageNum);
+>>>>>>> origin/master
         this.state = {
-            user: this.props.user,
+            //user: this.props.user,
             target: target,
             comicList: undefined,
             comicInfo: undefined,
             curPage: pageNum,
             comicId: comicId,
         };
+        console.log(this.state.curPage);
         this.PUBLIC_KEY = `cb14e7ba87e9828d048d677e1d1681dd`;
         this.PRIV_KEY = `aa9b09760131eac24ed73bff8b665e8fa27c8999`;
     }
@@ -46,10 +52,13 @@ class Comics extends Component {
         else if (!this.isMounted) this.getComicDetail();
     }
 
+<<<<<<< HEAD
     // componentWillUnmount() {
     //     if (!this.isMounted && this.state.target === 'list') this.getComics();
     //     else if (!this.isMounted) this.getComicDetail();
     // }
+=======
+>>>>>>> origin/master
 
     handleProfileChange = () => {
         // This state change will force Profile component to be re-rendered
@@ -89,6 +98,7 @@ class Comics extends Component {
         console.log("Comic.js rendered");
         let noInfo = (this.state.target === 'list' && this.state.comicList === undefined) || (this.state.target === 'detail' && this.state.comicInfo === undefined);
         let isDetail = this.state.target === 'detail';
+<<<<<<< HEAD
         let pagination = null;
         let nextPage = `/comics/list/${this.state.curPage + 1}`;
         let prevPage = `/comics/list/${this.state.curPage - 1}`;
@@ -157,6 +167,46 @@ class Comics extends Component {
                                 </div>
                             )
                 }
+=======
+
+        return (
+            <div>
+                <div>
+                    <Navigation  isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                </div>
+            {
+                
+                noInfo ? (
+                    <div>
+                        
+                        <Loading />
+                    </div>
+                ): 
+                    isDetail ?(
+                        <div>
+                            
+                            <ComicDetail info = {this.state.comicInfo}/>
+                        </div>
+                    )
+                    :(
+                        <div>
+                            
+                            <div className = "card-list-config row">
+                                {
+                                    this.state.comicList.map((arr, index) => {
+                                        return (
+                                            <ComicItem info = {arr} key = {index} />
+                                        );
+                                    })
+                                }
+                            </div>
+                            <div className = "pags pag-width">
+                                <PaginationComic curPage = {this.state.curPage} /> 
+                            </div>
+                        </div>
+                    )
+            }
+>>>>>>> origin/master
             </div>
         );
     }

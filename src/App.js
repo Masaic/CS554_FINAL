@@ -24,38 +24,20 @@ class App extends Component {
     super(props, context);
     this.state = {
       home: true,
-      user: `pending`
+      rootRef: React.createRef()
     };
-    this.myRef = React.createRef();
+    
   }
 
-  componentWillMount () {
-    this.authListener();
-  }
+  
 
-  // shouldComponentUpdate(nextProps, nextState) {
-  //   this.authListener();
-  // }
-
-  // authen state monitor
-  authListener = () => {
-    fire.auth().onAuthStateChanged((user) => {
-      console.log(user);
-      if (user !== this.state.user) {
-        this.setState({user});
-      } 
-      // else {
-      //   this.setState({user: null});
-      // }
-    })
-  }
 
   // pdf generator by Boli
 
-  pdfGenerator = () => {
-    const root = this.myRef.current;
-    savePDF(ReactDOM.findDOMNode(root),{paperSize: 'A4'});
-  }
+  // pdfGenerator = () => {
+  //   const root = this.myRef.current;
+  //   savePDF(ReactDOM.findDOMNode(root),{paperSize: 'A4'});
+  // }
 
 
   // test button function by BoLi
@@ -64,7 +46,7 @@ class App extends Component {
     // await api.signInWithEmailAndPassword('ee06b056@gmail.com','006361');
     // await api.signInWithGoogleAccount();
     // console.log(this.state.user);
-    console.log(await api.registerWithEmailAndPassword('418907463@qq.com','123456'));
+    // console.log(await api.registerWithEmailAndPassword('418907463@qq.com','123456'));
   }
 
   
@@ -80,16 +62,13 @@ class App extends Component {
       <div className="App" ref={this.myRef}>
         <div className="App-body">
 
-        <button onClick={this.authenTest}>Test</button>
-        <button onClick={(e) => {e.preventDefault();fire.auth().signOut()}}>Logout</button>
-        <button onClick={(e) => {e.preventDefault(); fire.auth().sendPasswordResetEmail('ee06b056@gmail.com')}}>Send Email</button>
-        <button onClick={(e) => {e.preventDefault();this.pdfGenerator();}}>PDF</button>
+
 
         <Switch>
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
-          <Route exact path = "/" component = {props => <Main {...props} user = {this.state.user} />} />
-          <Route path = "/heros" component = {props => <Main {...props} user = {this.state.user} />}  />
-          <Route path = "/comics/" component = {props => <Comics {...props} user = {this.state.user} />}  />
+          <Route exact path = '/' component = {Main} />
+          <Route path = '/heros' component = {Main} />
+          <Route path = '/comics' component = {Comics} />
         </Switch>
         </div>
       </div>
@@ -100,3 +79,8 @@ class App extends Component {
 
 
 export default App;
+/*
+            <Route exact path = "/" component = {props => <Main {...props} user = {this.state.user} />} />
+            <Route path = "/heros" component = {props => <Main {...props} user = {this.state.user} />}  />
+            <Route path = "/comics/" component = {props => <Comics {...props} user = {this.state.user} />}  />
+            */
