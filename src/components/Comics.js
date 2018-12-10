@@ -1,17 +1,14 @@
 import React, { Component } from 'react';
 import './general.css';
-import Navigation from './Navigation.js';
 import ComicDetail from './ComicDetail.js';
 import ComicList from './ComicList.js';
 import './general.css'
-
-var CryptoJS = require("crypto-js");
 
 class Comics extends Component {
     constructor(props) {
         super(props);
         console.log('contructor');
-        let url = this.props.location.pathname;
+        let url = this.props.pathName;
         let urlArr = url.split('/');
         let pageNum = undefined;
         let comicId = undefined;
@@ -42,7 +39,7 @@ class Comics extends Component {
         console.log(1);
     }
 
-     handle = async(tid) => {
+    handle = async(tid) => {
         console.log('开始handle',tid);
         await this.setState({
             target:'detail',
@@ -60,16 +57,13 @@ class Comics extends Component {
 
         return (
             <div>
-                <div>
-                    <Navigation  isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                </div>
-            {
-                
+               
+            { 
                 isDetail ?(
                     <ComicDetail id = {this.state.comicId}/>
                 )
                 :(
-                    <ComicList curPage = {this.state.curPage} />
+                    <ComicList curPage = {this.state.curPage} handle = {this.handle}/>
                 )
             }
             </div>

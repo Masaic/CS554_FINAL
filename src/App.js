@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Main from './components/Main';
+import ComicsMain from './components/ComicsMain';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import { savePDF } from '@progress/kendo-react-pdf';
@@ -8,7 +9,6 @@ import { savePDF } from '@progress/kendo-react-pdf';
 //import Info from './Information'; 
 // import Navigation from './components/Navigation';
 import LogIn_SignUp from './components/LogIn_SignUp';
-import Comics from './components/Comics';
 
 // firebase api
 import fire from './config/Fire';
@@ -68,7 +68,7 @@ class App extends Component {
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
           <Route exact path = '/' component = {Main} />
           <Route path = '/heros' component = {Main} />
-          <Route path = '/comics' component = {Comics} />
+          <Route path = '/comics' component = {ComicsMain} />
         </Switch>
         </div>
       </div>

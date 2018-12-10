@@ -43,6 +43,28 @@ class ComicDetail extends Component {
         }
     }
 
+    async componentWillReceiveProps(next) {
+        console.log('执行了Detail的WillReceiveProps');
+        try {
+            let ts = new Date().getTime();
+            let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
+            let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
+            const response = await axios.get(`https://gateway.marvel.com/v1/public/comics/${next.id}?${script}`); 
+            
+            console.log(response.data.data.results[0]);
+            await this.setState({ 
+                info: response.data.data.results[0],
+            });
+            let imgSrc =  this.state.info.images.length !== 0 ? `${this.state.info.images[0].path}.${this.state.info.images[0].extension}` : imgNA
+            await this.setState({
+                imgSrc:imgSrc
+            });
+           console.log(this.state.info, this.state.imgSrc);
+        } catch (e) {
+            console.log(e);
+        }
+    }
+
     render() {
         console.log('detail render', this.state.id, this.state.info);
         return (
