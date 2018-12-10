@@ -26,15 +26,18 @@ class App extends Component {
       home: true,
       rootRef: React.createRef()
     };
+    
   }
+
+  
 
 
   // pdf generator by Boli
 
-  pdfGenerator = () => {
-    const root = this.myRef.current;
-    savePDF(ReactDOM.findDOMNode(root),{paperSize: 'A4'});
-  }
+  // pdfGenerator = () => {
+  //   const root = this.myRef.current;
+  //   savePDF(ReactDOM.findDOMNode(root),{paperSize: 'A4'});
+  // }
 
 
   // test button function by BoLi
@@ -59,10 +62,7 @@ class App extends Component {
       <div className="App" ref={this.myRef}>
         <div className="App-body">
 
-        {/* <button onClick={this.authenTest}>Test</button>
-        <button onClick={(e) => {e.preventDefault();fire.auth().signOut()}}>Logout</button>
-        <button onClick={(e) => {e.preventDefault(); fire.auth().sendPasswordResetEmail('ee06b056@gmail.com')}}>Send Email</button>
-        <button onClick={(e) => {e.preventDefault();this.pdfGenerator();}}>PDF</button> */}
+
 
         <Switch>
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
