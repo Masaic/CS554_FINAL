@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link, Element} from 'react-scroll';
 import Loading from './Loading.js';
 import './general.css';
+import api from '../api';
 const CryptoJS = require("crypto-js");
 // const querystring = require("querystring");
 
@@ -10,7 +11,8 @@ class Profile extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            profile: undefined
+            profile: undefined,
+            comments: []
         }
         this.PUBLIC_KEY = `cb14e7ba87e9828d048d677e1d1681dd`;
         this.PRIV_KEY = `aa9b09760131eac24ed73bff8b665e8fa27c8999`;
@@ -41,6 +43,7 @@ class Profile extends Component {
         response.then((result) =>
             this.setState({ profile: result.data.data.results[0] })
         )
+        let comments = api.getCommentsByComicId(next.profileName);
     }
 
     render() {
