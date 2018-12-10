@@ -1,5 +1,7 @@
 import firebase from 'firebase';
 import fire from '../config/Fire'
+import ReactDOM from 'react-dom';
+import { savePDF } from '@progress/kendo-react-pdf';
 
 const api = {
 
@@ -47,12 +49,28 @@ const api = {
         }
     },
     getCommentsByComicId: async (comicId) => {
-        const comicCommentRef = fire.database().ref('comic');
+        const comicCommentRef = fire.database().ref('comicComents').child(comicId);
         try {
+            const valObj = (await comicCommentRef.orderByKey().once('value')).val();
+            return Object.values(valObj);
 
         } catch (e) {
-
+            console.log(e);
         }
+    },
+    createComentByComicId: async (comicId, userEmail, comment) => {
+        const comicComentsRef = fire.database().ref('comicComents').child(comicId);
+        try {
+            await comicComentsRef.push().set({
+                userEmail,
+                comment
+            });
+        } catch (e) {
+            console.log(e);
+        }
+    },
+    generatePdf: (rootRef) => {
+        savePDF(ReactDOM.findDOMNode(rootRef),{paperSize: 'A4'});
     }
 
     
