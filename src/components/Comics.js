@@ -28,7 +28,7 @@ class Comics extends Component {
             pageNum = url === '/comics/' || url === '/comics' ? 1 : pageNum;
             target = 'list';
         }
-        
+
         this.state = {
             user: this.props.user,
             target: target,
@@ -43,13 +43,13 @@ class Comics extends Component {
 
     componentWillMount() {
         if (!this.isMounted && this.state.target === 'list') this.getComics();
-        else if (!this.isMounted)this.getComicDetail();
+        else if (!this.isMounted) this.getComicDetail();
     }
 
-   componentWillUnmount() {
-    if (!this.isMounted && this.state.target === 'list') this.getComics();
-    else if (!this.isMounted)this.getComicDetail();
-   }
+    // componentWillUnmount() {
+    //     if (!this.isMounted && this.state.target === 'list') this.getComics();
+    //     else if (!this.isMounted) this.getComicDetail();
+    // }
 
     handleProfileChange = () => {
         // This state change will force Profile component to be re-rendered
@@ -57,7 +57,7 @@ class Comics extends Component {
         console.log(1);
     }
 
-    
+
 
     async getComics() {
         try {
@@ -79,15 +79,15 @@ class Comics extends Component {
             let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
             let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
             const response = await axios.get(`https://gateway.marvel.com/v1/public/comics/${this.state.comicId}?${script}`);
-            this.setState({ comicInfo: response.data.data.results[0]});
+            this.setState({ comicInfo: response.data.data.results[0] });
         } catch (e) {
             console.log(e);
         }
     }
-    
+
     render() {
         console.log("Comic.js rendered");
-        let noInfo = (this.state.target === 'list' && this.state.comicList === undefined )|| (this.state.target === 'detail' && this.state.comicInfo === undefined);
+        let noInfo = (this.state.target === 'list' && this.state.comicList === undefined) || (this.state.target === 'detail' && this.state.comicInfo === undefined);
         let isDetail = this.state.target === 'detail';
         let pagination = null;
         let nextPage = `/comics/list/${this.state.curPage + 1}`;
@@ -95,22 +95,22 @@ class Comics extends Component {
         if (this.state.curPage === 1) {
             pagination = (
                 <div>
-                    <ul className = "pagination">
-                        <li className = "page-item">
-                            <a className = "page-link" href = {nextPage}>Next</a>
-                        </li>                      
+                    <ul className="pagination">
+                        <li className="page-item">
+                            <a className="page-link" href={nextPage}>Next</a>
+                        </li>
                     </ul>
                 </div>
             );
         } else {
             pagination = (
                 <div>
-                    <ul className = "pagination">
-                        <li className = "page-item">
-                            <a className = "page-link" href = {prevPage}>Privious</a>
+                    <ul className="pagination">
+                        <li className="page-item">
+                            <a className="page-link" href={prevPage}>Privious</a>
                         </li>
-                        <li className = "page-item">
-                            <a className = "page-link" href = {nextPage}>Next</a>
+                        <li className="page-item">
+                            <a className="page-link" href={nextPage}>Next</a>
                         </li>
                     </ul>
                 </div>
@@ -120,43 +120,43 @@ class Comics extends Component {
 
         return (
             <div>
-            {
-                noInfo ? (
-                    <div>
-                        <div>
-                            <Navigation user = {this.state.user} isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
-                        </div>
-                        <Loading />
-                    </div>
-                ): 
-                    isDetail ?(
+                {
+                    noInfo ? (
                         <div>
                             <div>
-                                <Navigation user = {this.state.user} isComic = "true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                                <Navigation user={this.state.user} isComic="true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
                             </div>
-                            <ComicDetail info = {this.state.comicInfo}/>
+                            <Loading />
                         </div>
-                    )
-                    :(
-                        <div>
+                    ) :
+                        isDetail ? (
                             <div>
-                                <Navigation user = {this.state.user} isComic = 'true' type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                                <div>
+                                    <Navigation user={this.state.user} isComic="true" type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                                </div>
+                                <ComicDetail info={this.state.comicInfo} />
                             </div>
-                            <div className = "card-list-config row">
-                                {
-                                    this.state.comicList.map((arr, index) => {
-                                        return (
-                                            <ComicItem info = {arr} key = {index} />
-                                        );
-                                    })
-                                }
-                            </div>
-                            <div className = "pags">
-                                { pagination } 
-                            </div>
-                        </div>
-                    )
-            }
+                        )
+                            : (
+                                <div>
+                                    <div>
+                                        <Navigation user={this.state.user} isComic='true' type={`Comic`} handleProfileChange={this.handleProfileChange} />
+                                    </div>
+                                    <div className="card-list-config row">
+                                        {
+                                            this.state.comicList.map((arr, index) => {
+                                                return (
+                                                    <ComicItem info={arr} key={index} />
+                                                );
+                                            })
+                                        }
+                                    </div>
+                                    <div className="pags">
+                                        {pagination}
+                                    </div>
+                                </div>
+                            )
+                }
             </div>
         );
     }
