@@ -4,7 +4,6 @@ import { Link, Element} from 'react-scroll';
 import Loading from './Loading.js';
 import CommentForm from './commentForm.js';
 import './general.css';
-import cookie from 'react-cookies';
 import api from '../api';
 const CryptoJS = require("crypto-js");
 // const querystring = require("querystring");
@@ -14,7 +13,7 @@ class Profile extends Component {
         super(props);
         this.state = {
             profile: undefined,
-            user: cookie.load('email'),
+            user: props.user,
             comments: []
         }
         this.PUBLIC_KEY = `b297a0863017d3e43a78d69c0102bab1`;
@@ -64,6 +63,7 @@ class Profile extends Component {
 
     componentWillReceiveProps(next) {
         console.log('here2');
+        this.setState({user:next.user});
         this.getData(next.profileName);
         // let ts = new Date().getTime();
         // let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
