@@ -40,29 +40,36 @@ class Comics extends Component {
     }
 
     handleDetail = async(tid) => {
-        console.log('开始handle',tid);
+        console.log('comics.handleDetail',tid);
         await this.setState({
             target:'detail',
             comicId: tid,
             curPage: undefined
         });
-        console.log('comics state:', this.state);
+        // console.log('comics state:', this.state);
     }
 
-
+    handlePage = async(pageNum) => {
+        console.log('comics.handlePage', pageNum);
+        await this.setState({
+            target: 'list',
+            comicId: undefined,
+            curPage: pageNum
+        });
+        // console.log('comics state:', this.state);
+    }
     
     render() {
-        console.log("Comic.js rendered");
+        //console.log("Comic.js rendered");
         let isDetail = this.state.target === 'detail';
-
         return (
             <div>
             { 
                 isDetail ?(
-                    <ComicDetail id = {this.state.comicId}/>
+                    <ComicDetail handlePage = {this.handlePage} id = {this.state.comicId}/>
                 )
                 :(
-                    <ComicList curPage = {this.state.curPage} handleDetail = {this.handleDetail}/>
+                    <ComicList pathName = {this.props.pathName} curPage = {this.state.curPage} handleDetail = {this.handleDetail}/>
                 )
             }
             </div>

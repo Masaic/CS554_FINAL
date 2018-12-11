@@ -35,7 +35,7 @@ class ComicList extends Component {
     }
 
     render() {
-        console.log(this.state.list);
+      //  console.log(this.state.list);
         return (
             !this.state.list ?
             (<Loading />)
@@ -44,8 +44,7 @@ class ComicList extends Component {
                     {
                         this.state.list.map((arr, index) => {
                             return (
-                                <ComicItem handleDetail = {this.props.handleDetail} info = {arr} key = {index} />
-                              
+                                <ComicItem pathName = {this.props.pathName} handleDetail = {this.props.handleDetail} info = {arr} key = {index} />
                             );
                         })
                     }

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import imgNA from '../images/imgNA.jpg';
 import {NavLink} from 'react-router-dom';
+import cookie from 'react-cookies';
 import './general.css';
 
 
@@ -15,9 +16,11 @@ class ComicItem extends Component{
         this.state = {
             imgSrc: this.props.info.images.length > 0 ? `${this.props.info.images[0].path}.${this.props.info.images[0].extension}` : imgNA
         };
+        // console.log(this.props.pathName);
     }
 
     async handleChange(id) {
+        cookie.save('prevUrl', this.props.pathName, {path: '/'});
         await this.props.handleDetail(id);
     }
     render() {

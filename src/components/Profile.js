@@ -38,13 +38,13 @@ class Profile extends Component {
     getComments(heroId) {
         let comments = api.getCommentsByComicId(heroId);
         comments.then((comment)=>{
-            console.log(comment);
+            // console.log(comment);
             this.setState({comments: comment})
         })
     }
 
     componentWillMount() {
-        console.log('here1');
+        // console.log('here1');
         this.getData(this.props.profileName);
         // let ts = new Date().getTime();
         // let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
@@ -62,7 +62,7 @@ class Profile extends Component {
     }
 
     componentWillReceiveProps(next) {
-        console.log('here2');
+        // console.log('here2');
         this.setState({user:next.user});
         this.getData(next.profileName);
         // let ts = new Date().getTime();
@@ -109,7 +109,7 @@ class Profile extends Component {
                 </div>
             )
         }
-        console.log(this.state.profile.stories);
+        // console.log(this.state.profile.stories);
         return (
             <div className = "hero-detail">
                 <div>

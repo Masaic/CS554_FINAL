@@ -3,6 +3,8 @@ import imgNA from '../images/imgNA.jpg';
 import axios from 'axios';
 import './general.css';
 import Loading from './Loading.js';
+import {NavLink} from 'react-router-dom';
+import cookie from 'react-cookies';
 const CryptoJS = require("crypto-js");
 
 
@@ -13,12 +15,12 @@ class ComicDetail extends Component {
         this.state = {
             id: this.props.id,
             info: undefined,
-            imgSrc: undefined
+            imgSrc: undefined,
+            prevUrl: cookie.load('prevUrl')
         }
-        console.log(this.state.id)
+        // console.log(this.state.prevUrl);
         this.PUBLIC_KEY = `b297a0863017d3e43a78d69c0102bab1`;
         this.PRIV_KEY = `6cfadf50b9063ab192b648f5d892f9d89101bb6b`;
-
     }
 
     async getData(id) {
@@ -27,8 +29,7 @@ class ComicDetail extends Component {
             let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
             let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
             const response = await axios.get(`https://gateway.marvel.com/v1/public/comics/${id}?${script}`); 
-            
-            console.log(response.data.data.results[0]);
+            // console.log(response.data.data.results[0]);
             await this.setState({ 
                 info: response.data.data.results[0],
             });
@@ -36,7 +37,6 @@ class ComicDetail extends Component {
             await this.setState({
                 imgSrc:imgSrc
             });
-           console.log(this.state.info, this.state.imgSrc);
         } catch (e) {
             console.log(e);
         }
@@ -50,15 +50,28 @@ class ComicDetail extends Component {
         await this.getData(next.id);
     }
 
+    async handleBack(prevUrl) {
+        console.log(prevUrl);
+        if (prevUrl.indexOf('list') != -1) {
+            let tempArr = prevUrl.split('/');
+            let pageNum = tempArr[tempArr.length - 1];
+            await this.props.handlePage(pageNum);
+            // Clear cookie.
+            cookie.remove('prevUrl',{path: '/'});
+        }
+    }
+
     render() {
-        console.log('detail render', this.state.id, this.state.info);
+      //  console.log('detail render', this.state.id, this.state.info);
+      // console.log(this.state.prevUrl);
+
         return (
             !this.state.info ?
                 (<Loading />)
             :(<div>
                 <div className = "row comic-detail bg-info text-white">
-                    <div className = "border">
-                        <img className = "detail-img" src = {this.state.imgSrc} alt = "" />
+                    <div>
+                        <img className = "border detail-img" src = {this.state.imgSrc} alt = "" />
                     </div>
                 
                     <div className = "mx-auto">
@@ -78,7 +91,11 @@ class ComicDetail extends Component {
                                     <label className = "comic-detail-info">${this.state.info.prices[0].price}</label>
                                 </div>
                                 <p>{this.state.info.description !== null ? this.state.info.description : 'Description not available'}</p>
-                                <a className = "btn btn-primary text-white font-weight-bold" href = {document.referrer}>Back</a>
+                                {
+                                    !this.state.preUrl ? (<NavLink className = "btn btn-primary text-white font-weight-bold" onClick = {this.handleBack.bind(this, this.state.prevUrl)} to = {this.state.prevUrl}>
+                                                            Back
+                                                            </NavLink>) : null
+                                }
                             </div>
                         
                         </div>
