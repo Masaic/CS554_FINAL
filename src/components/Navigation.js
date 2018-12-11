@@ -10,14 +10,18 @@ import logo from '../images/MarvelLogo.png';
 // import { setupMaster } from 'cluster';
 
 // Sign out function.
-let signOut = async() => {
+let signOut = async(prop) => {
     console.log("shit");
     try {
         await api.signout();
         cookie.remove('email',{ path : '/' });
+        if(prop.type === 'Hero'){
+            prop.handleLoginChange();
+        }
         //console.log(cookie.load('email'));
        // window.location.reload();
     } catch(e) {
+        console.log(e);
         alert('Could not sign out!');
     }    
 }
@@ -61,7 +65,7 @@ const Navigation = (props) => {
                         }
                         {
                             email !== undefined ?  <li className="nav-item navItems font-weight-bold">
-                                                <a onClick = {signOut} className="nav-link" href = "javascript:void(0)">Sign out</a>
+                                                <a onClick = {() => signOut(props)} className="nav-link" href = "javascript:void(0)">Sign out</a>
                                             </li>  
                                             :   <li className="nav-item navItems font-weight-bold">
                                                     <a  className="nav-link" href = "/logIn_signUp">Log in / Sign up</a>
