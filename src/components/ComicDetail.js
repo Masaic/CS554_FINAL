@@ -56,12 +56,13 @@ class ComicDetail extends Component {
             !this.state.info ?
                 (<Loading />)
             :(<div>
-                <div className = "row comic-detail bg-light">
-                    <div className = "">
+                <div className = "row comic-detail bg-info text-white">
+                    <div className = "border">
                         <img className = "detail-img" src = {this.state.imgSrc} alt = "" />
                     </div>
-                    <div className = "comic-detail-info">
-                        <h4>{this.state.info.title}</h4>
+                
+                    <div className = "mx-auto">
+                        <h4 className = "top-margin-5">{this.state.info.title}</h4>
                         <div className = "detail-width"> 
                             <div>
                                 <div className = "text-left">
@@ -79,9 +80,10 @@ class ComicDetail extends Component {
                                 <p>{this.state.info.description !== null ? this.state.info.description : 'Description not available'}</p>
                                 <a className = "btn btn-primary text-white font-weight-bold" href = {document.referrer}>Back</a>
                             </div>
-                           
+                        
                         </div>
-                    </div>                  
+                    </div>
+                                      
                 </div>
             </div>)
         );

@@ -51,12 +51,9 @@
 }
 
 .comic-detail {
-    margin-left: 8%;
+    margin-left: 10%;
     margin-top: 4%;
-    margin-right: 8%;
-}
-.comic-detail-info {
-    margin-left : 8%;
+    margin-right: 10%;
 }
 
 .labelLen {
@@ -70,6 +67,9 @@
 
 .top-margin-10 {
     margin-top:10%;
+}
+.top-margin-5 {
+    margin-top: 5%;
 }
 
 .detail-hero-img {
