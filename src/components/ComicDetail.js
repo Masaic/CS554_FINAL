@@ -18,6 +18,7 @@ class ComicDetail extends Component {
             imgSrc: undefined,
             prevUrl: cookie.load('prevUrl')
         }
+        console.log(this.state.prevUrl);
         // console.log(this.state.prevUrl);
         this.PUBLIC_KEY = `b297a0863017d3e43a78d69c0102bab1`;
         this.PRIV_KEY = `6cfadf50b9063ab192b648f5d892f9d89101bb6b`;
@@ -52,13 +53,9 @@ class ComicDetail extends Component {
 
     async handleBack(prevUrl) {
         console.log(prevUrl);
-        if (prevUrl.indexOf('list') != -1) {
-            let tempArr = prevUrl.split('/');
-            let pageNum = tempArr[tempArr.length - 1];
-            await this.props.handlePage(pageNum);
-            // Clear cookie.
-            cookie.remove('prevUrl',{path: '/'});
-        }
+        await this.props.handleProfileChange(prevUrl);
+        // Clear cookie.
+        cookie.remove('prevUrl',{path: '/'});
     }
 
     render() {
@@ -69,7 +66,7 @@ class ComicDetail extends Component {
             !this.state.info ?
                 (<Loading />)
             :(<div>
-                <div className = "row comic-detail bg-info text-white">
+                <div className = "row comic-detail bg-dark text-white">
                     <div>
                         <img className = "border detail-img" src = {this.state.imgSrc} alt = "" />
                     </div>
@@ -91,11 +88,13 @@ class ComicDetail extends Component {
                                     <label className = "comic-detail-info">${this.state.info.prices[0].price}</label>
                                 </div>
                                 <p>{this.state.info.description !== null ? this.state.info.description : 'Description not available'}</p>
-                                {
-                                    !this.state.preUrl ? (<NavLink className = "btn btn-primary text-white font-weight-bold" onClick = {this.handleBack.bind(this, this.state.prevUrl)} to = {this.state.prevUrl}>
-                                                            Back
-                                                            </NavLink>) : null
-                                }
+                                
+                                <NavLink className = "btn btn-primary bottom-20 text-white font-weight-bold" 
+                                    onClick = {this.handleBack.bind(this, this.state.prevUrl)} 
+                                    to = {this.state.prevUrl}>
+                                    Back
+                                </NavLink>
+                                
                             </div>
                         
                         </div>

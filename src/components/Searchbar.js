@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './Searchbar.css';
 import axios from 'axios';
 import Downshift from 'downshift';
+import {NavLink} from 'react-router-dom';
 var CryptoJS = require("crypto-js");
 
 class Searchbar extends Component {
@@ -95,18 +96,25 @@ class Searchbar extends Component {
         }
     }
 
+    async handleClickComic(path) {
+        console.log(path);
+        await this.props.handleProfileChange(path);
+    }
+
     render() {
         return (
             <Downshift
                 onChange={selection => {
-                    alert(`You selected ${selection.value}`);
+                    // alert(`You selected ${selection.value}`);
                     let profileName = selection.id;
                     if (this.props.type === `Hero`) {
                         this.props.handleProfileChange(profileName);
                     }
+                    /*
                     if (this.props.type === `Comic`) {
-                        window.location.href = `http://localhost:3000/comics/detail/${profileName}`
+                        this.props.handleProfileChange(`/comics/detail/${profileName}`);
                     }
+                    */
                 }
 
                 }
@@ -135,7 +143,7 @@ class Searchbar extends Component {
 
                             {isOpen ? (
                                 <div>
-                                    <div className="downshift-dropdown">
+                                    <div className="downshift-dropdown border rounded">
                                         {this.state.items
                                             .filter(item => !inputValue || item.value.toLowerCase().includes(inputValue.toLowerCase()))
                                             .map((item, index) => (
@@ -151,7 +159,15 @@ class Searchbar extends Component {
                                                         },
                                                     })}
                                                 >
-                                                    {item.value}
+                                                {
+                                                    this.props.type === 'Hero' ? (
+                                                        <NavLink className = "nav-link text-dark" to = {`/heros/${item.id}`}>{item.value}</NavLink>
+                                                        ) : (
+                                                        <NavLink className = "nav-link text-dark" 
+                                                            onClick = {this.handleClickComic.bind(this, `/comics/detail/${item.id}`)}
+                                                            to = {`/comics/detail/${item.id}`}>{item.value}</NavLink>  
+                                                        )
+                                                }
                                                 </div>
                                             ))}
                                     </div>
