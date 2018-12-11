@@ -23,24 +23,18 @@ class Comics extends Component {
             target = 'list';
         }
         this.state = {
-            pathName: undefined,
             target: target,
             curPage: pageNum,
             comicId: comicId,
         };
         this.PUBLIC_KEY = `b297a0863017d3e43a78d69c0102bab1`;
         this.PRIV_KEY = `6cfadf50b9063ab192b648f5d892f9d89101bb6b`;
-        //this.handleDetail.bind(this);
     }
+    
     componentWillMount(){
-        this.setState({
-            pathName: this.props.pathName
-        })
+        
     }
-    componentWillReceiveProps(next) {
-        this.setState({
-            pathName: next.pathName
-        })
+    async componentWillReceiveProps(next) {
         console.log("willReceiveProps", next.pathName);
         let url = next.pathName;
         let urlArr = url.split('/');
@@ -56,12 +50,11 @@ class Comics extends Component {
             pageNum = url === '/comics/list' || url === '/comics/list/' ? 1 : pageNum;
             target = 'list';
         }
-        this.setState({
+        await this.setState({
             target: target,
             curPage: pageNum,
             comicId: comicId,
         });
-        console.log("看这里！！！",this.state);
     }
    
     render() {

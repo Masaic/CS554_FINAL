@@ -11,12 +11,12 @@ class ComicMain extends Component {
         this.state = {
             pathName: this.props.location.pathname
         }
-        this.handleProfileChange.bind(this);
+        this.hendleProfileChange = this.handleProfileChange.bind(this);
     }
     
-    handleProfileChange = async(path) => {
+    handleProfileChange = path => {
         console.log('ComicMain.handleSearch:',path);
-        await this.setState({
+        this.setState({
             pathName: path
         });
     }

@@ -97,7 +97,7 @@ class Searchbar extends Component {
     }
 
     async handleClickComic(path) {
-        console.log(path);
+        console.log("searchbar->handleCLickComic", path);
         await this.props.handleProfileChange(path);
     }
 
@@ -107,14 +107,15 @@ class Searchbar extends Component {
                 onChange={selection => {
                     // alert(`You selected ${selection.value}`);
                     let profileName = selection.id;
+                    console.log(selection);
                     if (this.props.type === `Hero`) {
                         this.props.handleProfileChange(profileName);
                     }
-                    /*
+                    
                     if (this.props.type === `Comic`) {
                         this.props.handleProfileChange(`/comics/detail/${profileName}`);
                     }
-                    */
+                    
                 }
 
                 }
@@ -164,7 +165,7 @@ class Searchbar extends Component {
                                                         <NavLink className = "nav-link text-dark" to = {`/heros/${item.id}`}>{item.value}</NavLink>
                                                         ) : (
                                                         <NavLink className = "nav-link text-dark" 
-                                                            onClick = {this.handleClickComic.bind(this, `/comics/detail/${item.id}`)}
+                                                            onClick = {this.handleClickComic.bind(this, `/comics/detail/${item.id}`)} 
                                                             to = {`/comics/detail/${item.id}`}>{item.value}</NavLink>  
                                                         )
                                                 }
