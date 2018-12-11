@@ -19,7 +19,7 @@ let signOut = async(prop) => {
             prop.handleLoginChange();
         }
         //console.log(cookie.load('email'));
-       // window.location.reload();
+        window.location.reload();
     } catch(e) {
         console.log(e);
         alert('Could not sign out!');

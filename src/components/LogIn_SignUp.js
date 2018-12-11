@@ -3,42 +3,59 @@ import Navigation from './Navigation';
 import './LogIn_SignUp.css'
 import api from '../api';
 import cookie from 'react-cookies';
+import './general.css';
 
 class LogIn_SignUp extends React.Component {
   constructor(props) {
     super(props);
     this.switchPage = this.switchPage.bind(this);
     this.state = {
-      logIn: true
+      logIn: true,
+      forgot: false
     };
-    this.logIn.bind(this);
-    this.signUp.bind(this);
+  
   }
 
   //Set new state
-  async changeState() {
-    this.setState({
+  changeState = async() => {
+    await this.setState({
       logIn: !this.state.logIn
     });
   }
 
   //Switch between log in page ans sign up page
-  async switchPage() {
+  switchPage = async() => {
     await this.changeState();
-
+    
     if (this.state.logIn) {
       document.getElementById("logInPart").style.setProperty('display', 'block');
       document.getElementById("signUpPart").style.setProperty('display', 'none');
-      document.getElementById("clickToChange").setAttribute('text', 'Doesn\'t have an account? Click to sign up.');
 
     } else {
       document.getElementById("logInPart").style.setProperty('display', 'none');
       document.getElementById("signUpPart").style.setProperty('display', 'block');
-      document.getElementById("clickToChange").setAttribute('text', 'Already have an account? Click to log in.');
     }
   }
 
-  async logIn() {
+  setForgot = () => {
+    this.setState({
+      forgot: true
+    });
+    document.getElementById('forgotPart').style.setProperty('display', 'block');
+    document.getElementById('logInPart').style.setProperty('display', 'none');
+    document.getElementById('signUpPart').style.setProperty('display', 'none');
+  }
+
+  resetFogot = () => {
+    this.setState({
+      forgot: false
+    });
+    document.getElementById('forgotPart').style.setProperty('display', 'none');
+    document.getElementById('logInPart').style.setProperty('display', 'block');
+    document.getElementById('signUpPart').style.setProperty('display', 'none');
+  }
+
+  logIn = async() => {
     console.log('Called logIn()');
     let email = document.getElementById('logInEmail').value;
     let password = document.getElementById('logInPassword').value;
@@ -52,7 +69,7 @@ class LogIn_SignUp extends React.Component {
 
   }
   
-  async signUp() {
+  signUp = async() => {
     let email = document.getElementById('signUpEmail').value;
     let password1 = document.getElementById('signUpPassword').value;
     let password2 = document.getElementById('passwordTwo').value;
@@ -74,6 +91,20 @@ class LogIn_SignUp extends React.Component {
     }  
   }
 
+  resetPassword = async() => {
+    try {
+      let email = document.getElementById('forgotEmail').value;
+      console.log(email);
+      await api.forgetPassword(email);
+      alert('Email sent. Please check your email');
+      this.resetFogot();
+    } catch(e) {
+      console.log(e);
+      alert('Email invalid. Please try again');
+      return false;
+    }
+  }
+
   render() {
     let logInPage = (
       <div>
@@ -84,37 +115,63 @@ class LogIn_SignUp extends React.Component {
           <div className="logAndSign rounded border test-align">
             <div id="logInPart">
               <div className="input row">
-                <strong className="labelLen text-right">Email: </strong>
+                <span className="labelLen text-right font-weight-bold">Email: </span>
                 <input type="text" className="form-control inputLen" id="logInEmail" />
               </div>
               <div className="input row">
-                <strong className="labelLen text-right">Password: </strong>
+                <span className="labelLen text-right font-weight-bold">Password: </span>
                 <input type="password" className="form-control inputLen" id="logInPassword" />
               </div>
               <a href="javascript:void(0)" onClick = {this.logIn} className="btn btn-primary btnProperty text-white font-weight-bold">Log in</a>
+              <div>
+                <a href = "javascript:void(0)" onClick = {this.setForgot}>Forgot password?</a>
+              </div>
             </div>
 
             <div id="signUpPart">
               <div className="input row">
-                <strong className="labelLen text-right">Email: </strong>
+                <span className="labelLen text-right font-weight-bold">Email: </span>
                 <input type="test" className="form-control inputLen" id="signUpEmail" />
               </div>
               <div className="input row">
-                <strong className="labelLen text-right">Password: </strong>
+                <span className="labelLen text-right font-weight-bold">Password: </span>
                 <input type="password" className="form-control inputLen" id="signUpPassword" />
               </div>
               <div className="input row">
-                <strong className="labelLen text-right">Reinput Password: </strong>
+                <span className="labelLen text-right font-weight-bold">Reinput Password: </span>
                 <input type="password" className="form-control inputLen" id="passwordTwo" />
               </div>
               <a href="javascript:void(0)" onClick = {this.signUp} className="btn btn-success btnProperty text-white font-weight-bold">Sign up</a>
               <br/>
-              <a href = "javascript:void(0)" onClick = {this.forgotPassword}>Forgot password?</a>
             </div>
 
-            <div className="changePart">
-              <a href="javascript:void(0)" id="clickToChange" onClick={this.switchPage}> Doesn't have an account? Click to sign up. </a>
+            <div id = "forgotPart" style = {{'display' : 'none'}}>
+              <h4 className = "mx-auto profile-top-2">Get an email to reset password.</h4>
+              <div className="input row bottom-20">
+                <span className = "labelLen text-right font-weight-bold">Email: </span>
+                <input type="text" className="form-control inputLen" id="forgotEmail" />
+              </div> 
+              <div>
+                <a href = "javascript: void(0)" className = 'btn btn-success' onClick = {this.resetPassword}>Reset password</a>
+                <br />
+                <a href = "javascript: void(0)" onClick = {this.resetFogot}>Back to log in</a>
+              </div>
             </div>
+
+            {
+              this.state.forgot ? null : (
+                <div className="changePart">
+                {
+                  this.state.logIn ? (
+                    <a href="javascript:void(0)" id="clickToChange" onClick={this.switchPage}> Doesn't have an account? Click to sign up. </a>
+                  ) : (
+                      <a href="javascript:void(0)" id="clickToChange" onClick={this.switchPage}> Already have an account? Click to log in. </a>
+                  )
+                }
+                </div>
+              )
+            }
+           
           </div>
         </div>
       </div>
