@@ -20,7 +20,7 @@ class CommentForm extends React.Component {
         if(this.state.comment !== ''){
         const result = api.createComentByComicId(this.props.heroId,this.props.user,this.state.comment);
         result.then(
-            this.props.rerender()
+            this.props.rerender(this.props.heroId)
         )
     }
     }
