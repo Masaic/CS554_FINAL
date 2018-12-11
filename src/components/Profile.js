@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link, Element} from 'react-scroll';
 import Loading from './Loading.js';
+import CommentForm from './commentForm.js';
 import './general.css';
 import cookie from 'react-cookies';
 import api from '../api';
@@ -13,11 +14,14 @@ class Profile extends Component {
         super(props);
         this.state = {
             profile: undefined,
+            user: cookie.load('email'),
             comments: []
         }
         this.PUBLIC_KEY = `b297a0863017d3e43a78d69c0102bab1`;
         this.PRIV_KEY = `6cfadf50b9063ab192b648f5d892f9d89101bb6b`;
         this.getData = this.getData.bind(this);
+        this.renderComments = this.renderComments.bind(this);
+        this.getComments = this.getComments.bind(this);
 
     }
 
@@ -29,12 +33,16 @@ class Profile extends Component {
         response.then((result) =>
             this.setState({ profile: result.data.data.results[0] })
         )
+        this.getComments(heroId);
+    }
+
+    getComments(heroId) {
         let comments = api.getCommentsByComicId(heroId);
         comments.then((comment)=>{
             console.log(comment);
-            // if(comment){
-            //     this.setState()
-            // }
+            if(comment.length > 0){
+                 this.setState({comments: comment})
+            }
         })
     }
 
@@ -70,6 +78,29 @@ class Profile extends Component {
         // )
         // let comments = api.getCommentsByComicId(next.profileName);
         // console.log(comments);
+    }
+
+    renderComments(){
+        if(this.state.user){
+            return (
+                <Element name="thridInsideContainer" className = " min-height-profile">
+                            <div className = "bg-info">
+                                test-comment-panel
+                                <ul>{this.state.comments.map((comment, index) => <li key={index}>{comment.userEmail}:<br />{comment.comment}</li>)}</ul>
+                                <CommentForm heroId = {this.props.profileName} user = {this.state.user} rerender = {this.getComments}></CommentForm>
+                            </div>
+                </Element>
+            )
+        }else{
+            return (
+                <Element name="thridInsideContainer" className = " min-height-profile">
+                            <div className = "bg-info">
+                                test-comment-panel
+                                <ul>{this.state.comments.map((comment, index) => <li key={index}>{comment.userEmail}:<br />{comment.comment}</li>)}</ul>
+                            </div>
+                </Element>
+            )
+        }
     }
 
     render() {
@@ -125,15 +156,16 @@ class Profile extends Component {
                           }
                         </div>
                        
-                            
                         </Element>
 
-                        <Element name="thridInsideContainer" className = " min-height-profile">
+                        {this.renderComments()}
+
+                        {/* <Element name="thridInsideContainer" className = " min-height-profile">
                             <div className = "bg-info">
                                 test-comment-panel
                                 <ul>{this.state.comments.map((comment, index) => <li key={index}>{comment.name}</li>)}</ul>
                             </div>
-                        </Element>
+                        </Element> */}
                     </Element>
                 </div>
 
