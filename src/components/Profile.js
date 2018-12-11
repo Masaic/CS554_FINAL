@@ -40,9 +40,7 @@ class Profile extends Component {
         let comments = api.getCommentsByComicId(heroId);
         comments.then((comment)=>{
             console.log(comment);
-            if(comment.length > 0){
-                 this.setState({comments: comment})
-            }
+            this.setState({comments: comment})
         })
     }
 
