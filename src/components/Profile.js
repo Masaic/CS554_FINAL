@@ -21,6 +21,8 @@ class Profile extends Component {
         this.getData = this.getData.bind(this);
         this.renderComments = this.renderComments.bind(this);
         this.getComments = this.getComments.bind(this);
+        this.heroRef = React.createRef();
+        this.pdf = this.pdf.bind(this);
 
     }
 
@@ -44,38 +46,12 @@ class Profile extends Component {
     }
 
     componentWillMount() {
-        // console.log('here1');
         this.getData(this.props.profileName);
-        // let ts = new Date().getTime();
-        // let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
-        // let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
-        // // let name = encodeURIComponent(this.props.profileName);
-        // // console.log(name);
-        // const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${this.props.profileName}?${script}`);
-        // response.then((result) =>
-        //     this.setState({ profile: result.data.data.results[0] })
-        // )
-        // let comments = api.getCommentsByComicId(this.props.profileName);
-        // comments.then((comment)=>{
-        //     console.log(comment);
-        // })
     }
 
     componentWillReceiveProps(next) {
-        // console.log('here2');
         this.setState({user:next.user});
         this.getData(next.profileName);
-        // let ts = new Date().getTime();
-        // let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
-        // let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
-        // // let name = encodeURIComponent(next.profileName);
-        // // console.log(name);
-        // const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${next.profileName}?${script}`);
-        // response.then((result) =>
-        //     this.setState({ profile: result.data.data.results[0] })
-        // )
-        // let comments = api.getCommentsByComicId(next.profileName);
-        // console.log(comments);
     }
 
     renderComments(){
@@ -101,6 +77,10 @@ class Profile extends Component {
         }
     }
 
+    async pdf() {
+        await api.generatePdf(this.heroRef.current);
+    }
+
     render() {
         if(!this.state.profile){
             return (
@@ -111,7 +91,7 @@ class Profile extends Component {
         }
         // console.log(this.state.profile.stories);
         return (
-            <div className = "hero-detail">
+            <div className = "hero-detail" ref = {this.heroRef}>
                 <div>
                 <img className="detail-hero-img" src = {this.state.profile.thumbnail.path+`.`+this.state.profile.thumbnail.extension} alt={this.state.profile.name} />
                 </div>
@@ -127,6 +107,7 @@ class Profile extends Component {
                     <Link className = "btn btn-primary text-white font-weight-bold" activeClass="active" to="thridInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block' }}>
                         Comments
                     </Link>
+                    <button className = "btn btn-success font-weight-bold" onClick = {this.pdf}>Download PDF</button>
                 </div>
                 <div>
                 <Element name="test7" className="element profile-elements" id="containerElement" >
