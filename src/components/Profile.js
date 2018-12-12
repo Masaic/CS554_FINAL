@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Link, Element} from 'react-scroll';
+import { Link, Element } from 'react-scroll';
 import Loading from './Loading.js';
 import CommentForm from './commentForm.js';
 import './general.css';
@@ -32,22 +32,32 @@ class Profile extends Component {
         let ts = new Date().getTime();
         let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
         let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
+        let profile;
+        let comics;
         const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${heroId}?${script}`);
-        response.then((result) =>
-            this.setState({ profile: result.data.data.results[0] })
-        )
-        const comics = axios.get(`https://gateway.marvel.com/v1/public/characters/${heroId}/comics?format=comic&limit=10&${script}`);
-        comics.then((result) =>
-            this.setState({ comics: result.data.data.results })
-        )
-        this.getComments(heroId);
+        response.then((result) => {
+            // this.setState({ profile: result.data.data.results[0] })
+            profile = result.data.data.results[0]
+            const comics = axios.get(`https://gateway.marvel.com/v1/public/characters/${heroId}/comics?format=comic&limit=10&${script}`)
+            return comics
+        }).then((result) => {
+            // this.setState({ comics: result.data.data.results }, {profile: profile})
+                 comics = result.data.data.results
+                 let comments = api.getCommentsByComicId(heroId);
+                 return comments
+            }).then((comment) => {
+                // console.log(comment);
+                this.setState({ comments: comment,
+                                profile: profile,
+                                comics: comics  })
+            });
     }
 
     getComments(heroId) {
         let comments = api.getCommentsByComicId(heroId);
-        comments.then((comment)=>{
+        comments.then((comment) => {
             // console.log(comment);
-            this.setState({comments: comment})
+            this.setState({ comments: comment })
         })
     }
 
@@ -56,28 +66,28 @@ class Profile extends Component {
     }
 
     componentWillReceiveProps(next) {
-        this.setState({user:next.user});
+        this.setState({ user: next.user });
         this.getData(next.profileName);
     }
 
-    renderComments(){
-        if(this.state.user){
+    renderComments() {
+        if (this.state.user) {
             return (
-                <Element name="thridInsideContainer" className = " min-height-profile">
-                            <div className = "bg-info">
-                                test-comment-panel
+                <Element name="thridInsideContainer" className=" min-height-profile">
+                    <div className="bg-info">
+                        test-comment-panel
                                 <ul>{this.state.comments.map((comment, index) => <li key={index}>{comment.userEmail}:<br />{comment.comment}</li>)}</ul>
-                                <CommentForm heroId = {this.props.profileName} user = {this.state.user} rerender = {this.getComments}></CommentForm>
-                            </div>
+                        <CommentForm heroId={this.props.profileName} user={this.state.user} rerender={this.getComments}></CommentForm>
+                    </div>
                 </Element>
             )
-        }else{
+        } else {
             return (
-                <Element name="thridInsideContainer" className = " min-height-profile">
-                            <div className = "bg-info">
-                                test-comment-panel
+                <Element name="thridInsideContainer" className=" min-height-profile">
+                    <div className="bg-info">
+                        test-comment-panel
                                 <ul>{this.state.comments.map((comment, index) => <li key={index}>{comment.userEmail}:<br />{comment.comment}</li>)}</ul>
-                            </div>
+                    </div>
                 </Element>
             )
         }
@@ -88,60 +98,60 @@ class Profile extends Component {
     }
 
     render() {
-        if(!this.state.profile){
+        if (!this.state.profile) {
             return (
-                <div className = "pags">
+                <div className="pags">
                     <Loading />
                 </div>
             )
         }
         // console.log(this.state.profile.stories);
         return (
-            <div className = "hero-detail" ref = {this.heroRef}>
+            <div className="hero-detail" ref={this.heroRef}>
                 <div>
-                <img className="detail-hero-img" src = {this.state.profile.thumbnail.path+`.`+this.state.profile.thumbnail.extension} alt={this.state.profile.name} />
+                    <img className="detail-hero-img" src={this.state.profile.thumbnail.path + `.` + this.state.profile.thumbnail.extension} alt={this.state.profile.name} />
                 </div>
-                <div className = "btn-group profile-top-2">
-                    <Link className = "btn btn-primary text-white font-weight-bold" activeClass="active" to="firstInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block' }}>
+                <div className="btn-group profile-top-2">
+                    <Link className="btn btn-primary text-white font-weight-bold" activeClass="active" to="firstInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block' }}>
                         Description
                     </Link>
 
-                    <Link className = "btn btn-primary text-white font-weight-bold" activeClass="active" to="secondInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block'}}>
+                    <Link className="btn btn-primary text-white font-weight-bold" activeClass="active" to="secondInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block' }}>
                         Stories
                     </Link>
 
-                    <Link className = "btn btn-primary text-white font-weight-bold" activeClass="active" to="thridInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block' }}>
+                    <Link className="btn btn-primary text-white font-weight-bold" activeClass="active" to="thridInsideContainer" spy={true} smooth={true} duration={250} containerId="containerElement" style={{ display: 'inline-block' }}>
                         Comments
                     </Link>
-                    <button className = "btn btn-success font-weight-bold" onClick = {this.pdf}>Download PDF</button>
+                    <button className="btn btn-success font-weight-bold" onClick={this.pdf}>Download PDF</button>
                 </div>
                 <div>
-                <Element name="test7" className="element profile-elements" id="containerElement" >
-                        <Element className = "bg-success" name="firstInsideContainer" >
-                            <div className = "passage-center">
+                    <Element name="test7" className="element profile-elements" id="containerElement" >
+                        <Element className="bg-success" name="firstInsideContainer" >
+                            <div className="passage-center">
                                 {this.state.profile.description ? this.state.profile.description : (
-                                    <div className = "font-weight-bold">Description inavailable</div>
+                                    <div className="font-weight-bold">Description inavailable</div>
                                 )}
                             </div>
-                            
+
                         </Element>
 
-                        <Element name="secondInsideContainer" className = "bg-warning">
-                        <div className = "passage-center row">
-                            {
-                               this.state.profile.stories.items.length === 0 ? (
-                                    <div className = "font-weight-bold">Stories inavailable</div>
-                                ) : (
-                                    this.state.comics.map((item, index) => (
-                                        <HeroComic imgSrc={item.thumbnail.path+`.`+item.thumbnail.extension} title={item.title}></HeroComic>
-                                        // <div key = {index}>
-                                        //     <span>{item.name}</span>
-                                        // </div>
-                                    ))
-                                    )
-                          }
-                        </div>
-                       
+                        <Element name="secondInsideContainer" className="bg-warning">
+                            <div className="passage-center row">
+                                {
+                                    this.state.profile.stories.items.length === 0 ? (
+                                        <div className="font-weight-bold">Stories inavailable</div>
+                                    ) : (
+                                            this.state.comics.map((item, index) => (
+                                                <HeroComic imgSrc={item.thumbnail.path + `.` + item.thumbnail.extension} title={item.title}></HeroComic>
+                                                // <div key = {index}>
+                                                //     <span>{item.name}</span>
+                                                // </div>
+                                            ))
+                                        )
+                                }
+                            </div>
+
                         </Element>
 
                         {this.renderComments()}
@@ -155,7 +165,7 @@ class Profile extends Component {
                     </Element>
                 </div>
 
-                
+
             </div>
         )
     }
