@@ -28,7 +28,7 @@ class Profile extends Component {
 
     }
 
-    getData(heroId) {
+    getData(heroId, optionUser = '0') {
         let ts = new Date().getTime();
         let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
         let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
@@ -48,9 +48,16 @@ class Profile extends Component {
                  return comments
             }).then((comment) => {
                 // console.log(comment);
+                if(optionUser !== '0'){
+                    this.setState({ comments: comment,
+                        profile: profile,
+                        comics: comics,
+                        user: optionUser  })
+                }else{
                 this.setState({ comments: comment,
                                 profile: profile,
                                 comics: comics  })
+                }
             });
     }
 
@@ -67,8 +74,8 @@ class Profile extends Component {
     }
 
     componentWillReceiveProps(next) {
-        this.setState({ user: next.user });
-        this.getData(next.profileName);
+        this.getData(next.profileName, next.user);
+        // this.setState({ user: next.user });
     }
 
     renderComments() {
@@ -144,7 +151,7 @@ class Profile extends Component {
                                         <div className="font-weight-bold">Stories inavailable</div>
                                     ) : (
                                             this.state.comics.map((item, index) => (
-                                                <HeroComic imgSrc={item.thumbnail.path + `.` + item.thumbnail.extension} title={item.title}></HeroComic>
+                                                <HeroComic key = {index} imgSrc={item.thumbnail.path + `.` + item.thumbnail.extension} title={item.title}></HeroComic>
                                                 // <div key = {index}>
                                                 //     <span>{item.name}</span>
                                                 // </div>
