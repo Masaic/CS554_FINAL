@@ -77,8 +77,8 @@ const api = {
         savePDF(ReactDOM.findDOMNode(rootRef),{
             paperSize: 'Executive',
             margin: 20,
-            scale: 0.6
-
+            scale: 0.6,
+            fileName: "CS554_Final.pdf"
             
         });
     }
