@@ -13,6 +13,11 @@
     margin-bottom: 60px;
     width: 20rem;
 }
+
+.card-config-hero{
+    width: 20%;
+    margin-bottom: 4%;
+}
 .card-img {
     height:350px;
 }
@@ -102,14 +107,17 @@
 }
 
 .passage-center {
-   
     margin-bottom: 4%;
+    margin-left: 4%;
+    margin-right: 4%;
+}
+.element-center {
     margin-left: 4%;
     margin-right: 4%;
 }
 
 .min-height-profile {
-    min-height: 400px;
+    min-height: 600px;
 }
 
 .bottom-20{
@@ -120,6 +128,27 @@
 }
 .left-10 {
     margin-left: 10%;
+}
+
+.comment-detail {
+    width: 30%;
+    height: 100px;
+    max-height: 400px;
+    overflow: auto;
+    transition: all 0.6s;
+}
+
+.comment-detail:hover {
+    transform: scale(1.2);
+    z-index:30;
+}
+.top-20 {
+    margin-top: 20px;
+}
+
+.comment-text-area {
+    width: 60%;
+    overflow: auto;
 }
 
 

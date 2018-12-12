@@ -28,7 +28,7 @@ class Profile extends Component {
 
     }
 
-    getData(heroId, optionUser = '0') {
+    getData(heroId) {
         let ts = new Date().getTime();
         let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
         let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
@@ -48,16 +48,9 @@ class Profile extends Component {
                  return comments
             }).then((comment) => {
                 // console.log(comment);
-                if(optionUser !== '0'){
-                    this.setState({ comments: comment,
-                        profile: profile,
-                        comics: comics,
-                        user: optionUser  })
-                }else{
                 this.setState({ comments: comment,
                                 profile: profile,
                                 comics: comics  })
-                }
             });
     }
 
@@ -74,17 +67,33 @@ class Profile extends Component {
     }
 
     componentWillReceiveProps(next) {
-        this.getData(next.profileName, next.user);
-        // this.setState({ user: next.user });
+        this.setState({ user: next.user });
+        this.getData(next.profileName);
     }
 
     renderComments() {
         if (this.state.user) {
             return (
-                <Element name="thridInsideContainer" className=" min-height-profile">
-                    <div className="bg-info">
-                        test-comment-panel
-                                <ul>{this.state.comments.map((comment, index) => <li key={index}>{comment.userEmail}:<br />{comment.comment}</li>)}</ul>
+                <Element name="thridInsideContainer" className = "min-height-profile">
+                    <div>
+                        {
+                            this.state.comments.length === 0 ? (<div className = "font-weight-bold">Comments inavailable</div>) : (
+                                <div className = "row passage-center">
+                                    {
+                                        this.state.comments.map((comment, index) => 
+                                            <div key = {index} className = "mx-auto top-20 rounded bg-light comment-detail border shadow bottom-20"> 
+                                                <div className = "bg-info text-white font-weight-bold">
+                                                    {comment.userEmail}
+                                                </div>
+                                                <div>
+                                                    {comment.comment}
+                                                </div>
+                                            </div>
+                                        )
+                                    }
+                                </div>
+                            )
+                        }
                         <CommentForm heroId={this.props.profileName} user={this.state.user} rerender={this.getComments}></CommentForm>
                     </div>
                 </Element>
@@ -93,8 +102,11 @@ class Profile extends Component {
             return (
                 <Element name="thridInsideContainer" className=" min-height-profile">
                     <div className="bg-info">
-                        test-comment-panel
+                        {
+                            this.state.comments.length === 0 ? (<div className = "font-weight-bold">Comments inavailable</div>) : (
                                 <ul>{this.state.comments.map((comment, index) => <li key={index}>{comment.userEmail}:<br />{comment.comment}</li>)}</ul>
+                            )
+                        }
                     </div>
                 </Element>
             )
@@ -134,42 +146,30 @@ class Profile extends Component {
                     <button className="btn btn-success font-weight-bold" onClick={this.pdf}>Download PDF</button>
                 </div>
                 <div>
-                    <Element name="test7" className="element profile-elements" id="containerElement" >
-                        <Element className="bg-success" name="firstInsideContainer" >
+                    <Element name="test7" className="element border bg-light profile-elements" id="containerElement" >
+                        <Element className="bg-success rounded shadow" name="firstInsideContainer" >
                             <div className="passage-center">
                                 {this.state.profile.description ? this.state.profile.description : (
-                                    <div className="font-weight-bold">Description inavailable</div>
+                                    <div className="font-weight-bold element-center">Description inavailable</div>
                                 )}
                             </div>
 
                         </Element>
 
-                        <Element name="secondInsideContainer" className="bg-warning">
-                            <div className="passage-center row">
+                        <Element name="secondInsideContainer">
+                            <div className="element-center row">
                                 {
                                     this.state.profile.stories.items.length === 0 ? (
                                         <div className="font-weight-bold">Stories inavailable</div>
-                                    ) : (
+                                    ) : (   
                                             this.state.comics.map((item, index) => (
                                                 <HeroComic key = {index} imgSrc={item.thumbnail.path + `.` + item.thumbnail.extension} title={item.title}></HeroComic>
-                                                // <div key = {index}>
-                                                //     <span>{item.name}</span>
-                                                // </div>
                                             ))
                                         )
                                 }
                             </div>
-
                         </Element>
-
                         {this.renderComments()}
-
-                        {/* <Element name="thridInsideContainer" className = " min-height-profile">
-                            <div className = "bg-info">
-                                test-comment-panel
-                                <ul>{this.state.comments.map((comment, index) => <li key={index}>{comment.name}</li>)}</ul>
-                            </div>
-                        </Element> */}
                     </Element>
                 </div>
 

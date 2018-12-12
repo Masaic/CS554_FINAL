@@ -81,15 +81,12 @@ const Navigation = (props) => {
             <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
 
                 <Link className="navbar-brand" to="/">
-
                     <img src={logo} width="130" height="40" alt="" />
                     <span className = "font-weight-bold nav-title">MarvelPedia</span>
-
                 </Link>
             
                 <div className="collapse navbar-collapse">
                     <ul className = "navbar-nav">
-
                         <li className = "nav-item navItems font-weight-bold">
                             <Link className="nav-link" to="/">Home</Link>
                         </li>
@@ -104,7 +101,6 @@ const Navigation = (props) => {
                 </div>
 
                 <div id = "LoggedDiv" className = "collapse navbar-collapse justify-content-end">
-
                     <ul className="navbar-nav">
                         <li className="nav-item navItems font-weight-bold">
                             <Link className="nav-link" to="/LogIn_SignUp">Log in / Sign up</Link>

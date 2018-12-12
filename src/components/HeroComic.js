@@ -3,15 +3,10 @@ import React, { Component } from 'react';
 const HeroComic = (props) => {
     return (
         <div className = "mx-auto one-card">
-            <div className="card card-config">
+            <div className="card card-config shadow-lg rounded">
                 <img className="card-img-top card-img" src = {props.imgSrc} alt={props.title} />
-                <div className="card-body ">
-                    <h5 className="card-title card-intro">{props.title}</h5>
-                    {/* <NavLink to = {`/comics/detail/${this.props.info.id}`}
-                     onClick = {this.handleChange.bind(this, this.props.info.id)} 
-                     className="btn btn-primary">
-                     Check details
-                     </NavLink> */}
+                <div className="card-body bg-dark">
+                    <h5 className="card-title card-intro text-white">{props.title}</h5>
                 </div>
             </div>
         </div>

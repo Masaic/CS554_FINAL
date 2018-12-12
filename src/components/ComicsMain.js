@@ -22,7 +22,7 @@ class ComicMain extends Component {
     }
 
     render() {
-        console.log("comic main 重新render了");
+        console.log("comic main rendered again");
         return (
             <div>
                 <Navigation  isComic = "true" type={`Comic`} handleProfileChange = {this.handleProfileChange} {...this.state} />

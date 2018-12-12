@@ -1,5 +1,6 @@
 import api from '../api';
 import React, { Component } from 'react';
+import './general.css';
 
 class CommentForm extends React.Component {
     constructor(props) {
@@ -27,17 +28,13 @@ class CommentForm extends React.Component {
 
     render() {
         return(
-            <form className="commentform" onSubmit={this.handleSubmit}>
-            <label>
-                    Leave your comment:<br />
-                    <input type="text" onChange={this.handleChange} />
-            </label>
-            <label>
-                    <input type="submit" value="Submit" />
-            </label>
-            </form>
+            <div className="commentform form-group" onSubmit={this.handleSubmit}>
+            
+                    <label className = "font-weight-bold">Leave your comment:</label>
+                    <textarea className = "mx-auto comment-text-area form-control bottom-20" type="text" onChange={this.handleChange} />
+                    <input className = "btn btn-primary font-weight-bold" type="submit" value="Submit" />
+            </div>
         )
     }
-
 }
 export default CommentForm;

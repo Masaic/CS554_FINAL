@@ -19,8 +19,8 @@ class ComicItem extends Component{
     }
     render() {
         return (
-            <div className = "mx-auto one-card">
-                <div className="card card-config">
+            <div className = "mx-auto one-card rounded">
+                <div className="card card-config shadow">
                     <img className="card-img-top card-img" src = {this.state.imgSrc} alt={this.props.info.title} />
                     <div className="card-body ">
                         <h5 className="card-title card-intro">{this.props.info.title}</h5>

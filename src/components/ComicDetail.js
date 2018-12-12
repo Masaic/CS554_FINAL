@@ -78,7 +78,7 @@ class ComicDetail extends Component {
             !this.state.info ?
                 (<Loading />)
             :(<div ref = {this.comicRef}>
-                <div className = "row comic-detail bg-dark text-white" >
+                <div className = "row comic-detail bg-dark text-white rounded shadow-lg" >
                     <div>
                         <img className = "border detail-img" src = {this.state.imgSrc} alt = "" />
                     </div>
