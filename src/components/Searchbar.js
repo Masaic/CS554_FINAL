@@ -162,7 +162,7 @@ class Searchbar extends Component {
                                                 >
                                                 {
                                                     this.props.type === 'Hero' ? (
-                                                        <NavLink className = "nav-link text-dark" to = {`/heros/${item.id}`}>{item.value}</NavLink>
+                                                        <a className = "nav-link text-dark" href = "javascript:void(0)">{item.value}</a>
                                                         ) : (
                                                         <NavLink className = "nav-link text-dark" 
                                                             onClick = {this.handleClickComic.bind(this, `/comics/detail/${item.id}`)} 

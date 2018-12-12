@@ -37,7 +37,8 @@ class Profile extends Component {
         const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${heroId}?${script}`);
         response.then((result) => {
             // this.setState({ profile: result.data.data.results[0] })
-            profile = result.data.data.results[0]
+            profile = result.data.data.results[0];
+            console.log(profile);
             const comics = axios.get(`https://gateway.marvel.com/v1/public/characters/${heroId}/comics?format=comic&limit=10&${script}`)
             return comics
         }).then((result) => {
