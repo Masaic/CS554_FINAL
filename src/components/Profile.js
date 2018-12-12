@@ -5,6 +5,7 @@ import Loading from './Loading.js';
 import CommentForm from './commentForm.js';
 import './general.css';
 import api from '../api';
+import HeroComic from './HeroComic.js';
 const CryptoJS = require("crypto-js");
 // const querystring = require("querystring");
 
@@ -13,6 +14,7 @@ class Profile extends Component {
         super(props);
         this.state = {
             profile: undefined,
+            comics: [],
             user: props.user,
             comments: []
         }
@@ -33,6 +35,10 @@ class Profile extends Component {
         const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${heroId}?${script}`);
         response.then((result) =>
             this.setState({ profile: result.data.data.results[0] })
+        )
+        const comics = axios.get(`https://gateway.marvel.com/v1/public/characters/${heroId}/comics?format=comic&limit=10&${script}`);
+        comics.then((result) =>
+            this.setState({ comics: result.data.data.results })
         )
         this.getComments(heroId);
     }
@@ -126,11 +132,12 @@ class Profile extends Component {
                                this.state.profile.stories.items.length === 0 ? (
                                     <div className = "font-weight-bold">Stories inavailable</div>
                                 ) : (
-                                    <div>{this.state.profile.stories.items.map((item, index) => (
-                                        <div key = {index}>
-                                            <span>{item.name}</span>
-                                        </div>
-                                    ))}</div>
+                                    this.state.comics.map((item, index) => (
+                                        <HeroComic imgSrc={item.thumbnail.path+`.`+item.thumbnail.extension} title={item.title}></HeroComic>
+                                        // <div key = {index}>
+                                        //     <span>{item.name}</span>
+                                        // </div>
+                                    ))
                                     )
                           }
                         </div>
