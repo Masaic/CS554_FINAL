@@ -4,6 +4,7 @@ import './LogIn_SignUp.css'
 import api from '../api';
 import cookie from 'react-cookies';
 import './general.css';
+import axios from 'axios';
 
 class LogIn_SignUp extends React.Component {
   constructor(props) {
@@ -62,6 +63,8 @@ class LogIn_SignUp extends React.Component {
     try{
       await api.signInWithEmailAndPassword(email, password);
       cookie.save('email', email, { path: '/' });
+      let res = axios.get(`http://localhost/4000/history/${email}`);
+      console.log(res);
       window.location.href = document.referrer;
     } catch(e) {
       alert('Email or password invalid. Please try again.')
