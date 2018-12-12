@@ -72,7 +72,7 @@ class Profile extends Component {
     }
 
     renderComments() {
-        if (this.state.user) {
+        
             return (
                 <Element name="thridInsideContainer" className = "min-height-profile">
                     <div>
@@ -94,23 +94,15 @@ class Profile extends Component {
                                 </div>
                             )
                         }
-                        <CommentForm heroId={this.props.profileName} user={this.state.user} rerender={this.getComments}></CommentForm>
-                    </div>
-                </Element>
-            )
-        } else {
-            return (
-                <Element name="thridInsideContainer" className=" min-height-profile">
-                    <div className="bg-info">
                         {
-                            this.state.comments.length === 0 ? (<div className = "font-weight-bold">Comments inavailable</div>) : (
-                                <ul>{this.state.comments.map((comment, index) => <li key={index}>{comment.userEmail}:<br />{comment.comment}</li>)}</ul>
-                            )
+                            this.state.user ? 
+                            <CommentForm heroId={this.props.profileName} user={this.state.user} rerender={this.getComments}></CommentForm>
+                            : null
                         }
                     </div>
                 </Element>
             )
-        }
+       
     }
 
     async pdf() {
