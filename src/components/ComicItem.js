@@ -10,7 +10,7 @@ class ComicItem extends Component{
         this.state = {
             imgSrc: this.props.info.images.length > 0 ? `${this.props.info.images[0].path}.${this.props.info.images[0].extension}` : imgNA
         };
-        // console.log(this.props.pathName);
+         console.log(this.props.info);
     }
 
     async handleChange(id) {

@@ -127,7 +127,7 @@ class Profile extends Component {
                         </Element>
 
                         <Element name="secondInsideContainer" className = "bg-warning">
-                        <div className = "passage-center">
+                        <div className = "passage-center row">
                             {
                                this.state.profile.stories.items.length === 0 ? (
                                     <div className = "font-weight-bold">Stories inavailable</div>
