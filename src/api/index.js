@@ -74,7 +74,13 @@ const api = {
     },
     generatePdf:async (rootRef) => {
         console.log(rootRef);
-        savePDF(ReactDOM.findDOMNode(rootRef),{paperSize: 'A4'});
+        savePDF(ReactDOM.findDOMNode(rootRef),{
+            paperSize: 'Executive',
+            margin: 20,
+            scale: 0.6
+
+            
+        });
     }
 
     
