@@ -79,9 +79,7 @@
 }
 .profile-top-2 {
      margin-top:2%;
- }
-
-
+}
 
 .profile-elements {
     margin-top:3%;
@@ -116,6 +114,12 @@
 
 .bottom-20{
     margin-bottom: 20px;
+}
+.right-3 {
+    margin-right: 3%;
+}
+.left-10 {
+    margin-left: 10%;
 }
 
 

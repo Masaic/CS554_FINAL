@@ -72,7 +72,8 @@ const api = {
             console.log(e);
         }
     },
-    generatePdf: (rootRef) => {
+    generatePdf:async (rootRef) => {
+        console.log(rootRef);
         savePDF(ReactDOM.findDOMNode(rootRef),{paperSize: 'A4'});
     }
 

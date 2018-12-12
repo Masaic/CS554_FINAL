@@ -5,9 +5,8 @@ import './general.css';
 import Loading from './Loading.js';
 import {NavLink} from 'react-router-dom';
 import cookie from 'react-cookies';
+import api from '../api';
 const CryptoJS = require("crypto-js");
-
-
 
 class ComicDetail extends Component {
     constructor(props) {
@@ -16,12 +15,13 @@ class ComicDetail extends Component {
             id: this.props.id,
             info: undefined,
             imgSrc: undefined,
-            prevUrl: cookie.load('prevUrl')
+            prevUrl: cookie.load('prevUrl'),
         }
-        console.log(this.state);
         this.PUBLIC_KEY = `b297a0863017d3e43a78d69c0102bab1`;
         this.PRIV_KEY = `6cfadf50b9063ab192b648f5d892f9d89101bb6b`;
         this.getData = this.getData.bind(this);
+        this.comicRef = React.createRef();
+       // this.pdf = this.pdf.bind(this);
     }
 
     async getData(id) {
@@ -30,11 +30,9 @@ class ComicDetail extends Component {
             let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
             let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
             const response = await axios.get(`https://gateway.marvel.com/v1/public/comics/${id}?${script}`); 
-             console.log("the fucking res",response.data.data);
             this.setState({ 
                 info: response.data.data.results[0],
             });
-            console.log("what the fuck???");
             let imgSrc =  this.state.info.images.length !== 0 ? `${this.state.info.images[0].path}.${this.state.info.images[0].extension}` : imgNA
              this.setState({
                 imgSrc:imgSrc
@@ -43,10 +41,20 @@ class ComicDetail extends Component {
             console.log(e);
         }
     }
+     pdf = async() => {
+        console.log('ref test')
+        console.log(this.state.ref);
+       // let ref = React.createRef();
+        //console.log(this.comicRef);
+        await api.generatePdf(this.comicRef.current);
+    }
 
     async componentWillMount() {
         console.log('will mount this shit',this.state.id);
         await this.getData(this.state.id);
+        this.setState({
+            ref: React.createRef()
+        });
         //console.log("res", res);
     }
 
@@ -69,8 +77,8 @@ class ComicDetail extends Component {
         return (
             !this.state.info ?
                 (<Loading />)
-            :(<div>
-                <div className = "row comic-detail bg-dark text-white">
+            :(<div ref = {this.comicRef}>
+                <div className = "row comic-detail bg-dark text-white" >
                     <div>
                         <img className = "border detail-img" src = {this.state.imgSrc} alt = "" />
                     </div>
@@ -92,20 +100,22 @@ class ComicDetail extends Component {
                                     <label className = "comic-detail-info">${this.state.info.prices[0].price}</label>
                                 </div>
                                 <p>{this.state.info.description !== null ? this.state.info.description : 'Description not available'}</p>
-                                {
-                                    this.state.prevUrl === undefined ? null : (
-                                        <NavLink className = "btn btn-primary bottom-20 text-white font-weight-bold"
-                                            onClick = {this.handleBack.bind(this, this.state.prevUrl)}
-                                            to = { this.state.prevUrl === undefined ? './comics/list/1' : this.state.prevUrl}>
-                                            Back to list
-                                        </NavLink>
-                                    )
-                                }
-                            </div>
-                        
+                                
+                            </div>                        
                         </div>
-                    </div>
-                                      
+                        <div className = "row left-10 bottom-20">
+                            {
+                                this.state.prevUrl === undefined ? null : (
+                                    <NavLink className = "btn btn-primary text-white font-weight-bold right-3"
+                                        onClick = {this.handleBack.bind(this, this.state.prevUrl)}
+                                        to = { this.state.prevUrl === undefined ? './comics/list/1' : this.state.prevUrl}>
+                                        Back to list
+                                    </NavLink>
+                                )
+                            }
+                            <button className = "btn btn-success font-weight-bold" onClick = {this.pdf}>Download PDF</button>
+                        </div>
+                    </div>    
                 </div>
             </div>)
         );
