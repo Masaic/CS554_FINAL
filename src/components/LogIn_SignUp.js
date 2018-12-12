@@ -63,7 +63,7 @@ class LogIn_SignUp extends React.Component {
     try{
       await api.signInWithEmailAndPassword(email, password);
       cookie.save('email', email, { path: '/' });
-      let res = axios.post(`http://localhost/4000/history/${email}`);
+      let res = axios.post(`http://localhost:4000/history/${email}`);
       console.log(res);
       window.location.href = document.referrer;
     } catch(e) {
