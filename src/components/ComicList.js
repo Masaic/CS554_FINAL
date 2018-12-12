@@ -50,7 +50,7 @@ class ComicList extends Component {
                     }
                 </div>
                 <div className = "pags">
-                    <PaginationComic curPage = {this.state.pageNum} /> 
+                    <PaginationComic handleProfilePage = {this.props.handleProfileChange} curPage = {this.state.pageNum} /> 
                 </div>
             </div>)
         );

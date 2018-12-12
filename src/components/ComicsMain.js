@@ -11,7 +11,7 @@ class ComicMain extends Component {
         this.state = {
             pathName: this.props.location.pathname
         }
-        this.hendleProfileChange = this.handleProfileChange.bind(this);
+        //this.hendleProfileChange = this.handleProfileChange.bind(this);
     }
     
     handleProfileChange = path => {

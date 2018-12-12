@@ -106,6 +106,7 @@ class Profile extends Component {
     }
 
     async pdf() {
+        console.log(this.heroRef.current);
         await api.generatePdf(this.heroRef.current);
     }
 
@@ -119,7 +120,7 @@ class Profile extends Component {
         }
         // console.log(this.state.profile.stories);
         return (
-            <div className="hero-detail" ref={this.heroRef}>
+            <div className="hero-detail" ref = {this.heroRef}>
                 <div>
                     <img className="detail-hero-img" src={this.state.profile.thumbnail.path + `.` + this.state.profile.thumbnail.extension} alt={this.state.profile.name} />
                 </div>
@@ -164,8 +165,6 @@ class Profile extends Component {
                         {this.renderComments()}
                     </Element>
                 </div>
-
-
             </div>
         )
     }
