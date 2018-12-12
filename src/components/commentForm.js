@@ -28,12 +28,12 @@ class CommentForm extends React.Component {
 
     render() {
         return(
-            <div className="commentform form-group" onSubmit={this.handleSubmit}>
+            <form className="commentform form-group" onSubmit={this.handleSubmit}>
             
                     <label className = "font-weight-bold">Leave your comment:</label>
                     <textarea className = "mx-auto comment-text-area form-control bottom-20" type="text" onChange={this.handleChange} />
                     <input className = "btn btn-primary font-weight-bold" type="submit" value="Submit" />
-            </div>
+            </form>
         )
     }
 }
