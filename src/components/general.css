@@ -153,8 +153,18 @@
 .pagination-input {
     width: 80px;
 }
-.left-20{
+
+.left-20 {
     margin-left: 20px;
+}
+
+.carousel-size {
+   width:60%;
+   height: auto;
+}
+
+.hand:hover {
+    cursor: hand;
 }
 
 

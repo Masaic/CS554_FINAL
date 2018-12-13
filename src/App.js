@@ -5,7 +5,7 @@ import ComicsMain from './components/ComicsMain';
 import { BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import { savePDF } from '@progress/kendo-react-pdf';
-
+import Home from './components/Home.js';
 //import Info from './Information'; 
 // import Navigation from './components/Navigation';
 import LogIn_SignUp from './components/LogIn_SignUp';
@@ -69,7 +69,7 @@ class App extends Component {
 
         <Switch>
           <Route path = "/LogIn_SignUp" component = { LogIn_SignUp } />
-          <Route exact path = '/' component = {Main} />
+          <Route exact path = '/' component = {Home} />
           <Route path = '/heros' component = {Main} />
           <Route path = '/comics' component = {ComicsMain} />
         </Switch>
