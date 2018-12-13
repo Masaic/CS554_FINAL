@@ -11,6 +11,7 @@ class PaginationComics extends Component {
             curPage: pageNum,
             startPage: startNum,
         }
+        this.handleForward = this.handleForward.bind(this);
         // this.handleChange = this.handleChange.bind(this);
     }
 
@@ -18,46 +19,65 @@ class PaginationComics extends Component {
         this.props.handleProfileChange(path);
     }
 
+    handleForward() {
+        let val = document.getElementById("toPage").value;
+        let path = `comics/list/${val}`;
+        window.location.href = val;
+    }
+
     render() {
         return (
-            <nav>
-                <ul className = "pagination">
-                    {
-                        this.state.curPage !== 1 ? 
-                        <li className = "page-item">
-                            <NavLink className = "page-link" onClick = {this.handleChange.bind(this, `/comics/list/${(this.state.curPage - 1) + ''}`)} to = {`/comics/list/${(this.state.curPage - 1) + ''}`}>Previous</NavLink>
+            <div>
+                <nav className = "row">
+                    <ul className = "pagination shadow">
+                        {
+                            this.state.curPage !== 1 ? 
+                            <li className = "page-item">
+                                <NavLink className = "page-link bg-light" onClick = {this.handleChange.bind(this, `/comics/list/${(this.state.curPage - 1) + ''}`)} to = {`/comics/list/${(this.state.curPage - 1) + ''}`}>Previous</NavLink>
+                            </li>
+                            : null
+                        }
+                        <li className = {this.state.startPage === this.state.curPage? "page-item active" : "page-item"}>
+                            <NavLink className = "page-link" onClick = {this.handleChange.bind(this, `/comics/list/${this.state.startPage}`)} to = {`/comics/list/${this.state.startPage}`}>{this.state.startPage}</NavLink>
                         </li>
-                        : null
-                    }
-                    <li className = {this.state.startPage === this.state.curPage? "page-item active" : "page-item"}>
-                        <NavLink className = "page-link" onClick = {this.handleChange.bind(this, `/comics/list/${this.state.startPage}`)} to = {`/comics/list/${this.state.startPage}`}>{this.state.startPage}</NavLink>
-                    </li>
-                    <li className = {this.state.startPage + 1 === this.state.curPage? "page-item active" : "page-item"}>
-                        <NavLink className = "page-link" onClick = {this.handleChange.bind(this, `/comics/list/${this.state.startPage + 1}`)} to = {`/comics/list/${this.state.startPage + 1}`}>{this.state.startPage + 1}</NavLink>
-                    </li>
-                    <li className = {this.state.startPage + 2 === this.state.curPage? "page-item active" : "page-item"}>
-                        <NavLink className = "page-link" onClick = {this.handleChange.bind(this, `/comics/list/${this.state.startPage + 2}`)} to = {`/comics/list/${this.state.startPage + 2}`}>{this.state.startPage + 2}</NavLink>
-                    </li>
-                    {
-                        this.state.startPage === 3596 ? null : (<li className = {this.state.startPage + 3 === this.state.curPage? "page-item active" : "page-item"}>
-                            <NavLink className = "page-link" onClick = {this.handleChange.bind(this, `/comics/list/${this.state.startPage + 3}`)} to = {`/comics/list/${this.state.startPage + 3}`}>{this.state.startPage + 3}</NavLink>
+                        <li className = {this.state.startPage + 1 === this.state.curPage? "page-item active" : "page-item"}>
+                            <NavLink className = "page-link" onClick = {this.handleChange.bind(this, `/comics/list/${this.state.startPage + 1}`)} to = {`/comics/list/${this.state.startPage + 1}`}>{this.state.startPage + 1}</NavLink>
+                        </li>
+                        <li className = {this.state.startPage + 2 === this.state.curPage? "page-item active" : "page-item"}>
+                            <NavLink className = "page-link" onClick = {this.handleChange.bind(this, `/comics/list/${this.state.startPage + 2}`)} to = {`/comics/list/${this.state.startPage + 2}`}>{this.state.startPage + 2}</NavLink>
+                        </li>
+                        {
+                            this.state.startPage === 3596 ? null : (<li className = {this.state.startPage + 3 === this.state.curPage? "page-item active" : "page-item"}>
+                                <NavLink className = "page-link" onClick = {this.handleChange.bind(this, `/comics/list/${this.state.startPage + 3}`)} to = {`/comics/list/${this.state.startPage + 3}`}>{this.state.startPage + 3}</NavLink>
+                                </li>)
+                        }
+                        {
+                            this.state.startPage === 3596 ? null : (<li className = {this.state.startPage + 4 === this.state.curPage? "page-item active" : "page-item"}>
+                            <NavLink className = "page-link" onClick = {this.handleChange.bind(this, `/comics/list/${this.state.startPage + 4}`)} to = {`/comics/list/${this.state.startPage + 4}`}>{this.state.startPage + 4}</NavLink>
                             </li>)
-                    }
-                    {
-                        this.state.startPage === 3596 ? null : (<li className = {this.state.startPage + 4 === this.state.curPage? "page-item active" : "page-item"}>
-                        <NavLink className = "page-link" onClick = {this.handleChange.bind(this, `/comics/list/${this.state.startPage + 4}`)} to = {`/comics/list/${this.state.startPage + 4}`}>{this.state.startPage + 4}</NavLink>
-                        </li>)
-                    }
-                    
-                    {
-                        this.state.curPage !== 3598 ? 
+                        }
+                        
+                        {
+                            this.state.curPage !== 3598 ? 
+                            <li className = "page-item">
+                                <NavLink className = "page-link bg-light" onClick = {this.handleChange.bind(this, `/comics/list/${(this.state.curPage + 1) + ''}`)} to = {`/comics/list/${(this.state.curPage + 1) + ''}`}>Next</NavLink>
+                            </li>
+                            : null
+                        }
+                    </ul>
+                    <ul className = "pagination left-20 shadow">
+                        <li className = "page-item disabled"><span className = "page-link bg-light">Page</span></li>
                         <li className = "page-item">
-                            <NavLink className = "page-link" onClick = {this.handleChange.bind(this, `/comics/list/${(this.state.curPage + 1) + ''}`)} to = {`/comics/list/${(this.state.curPage + 1) + ''}`}>Next</NavLink>
+                            <input id = "toPage" className = "page-link  pagination-input" placeholder = {this.state.curPage} defaultValue = {this.state.curPage}/>
                         </li>
-                        : null
-                    }
-                </ul>
-            </nav>
+                        <li className = "page-item disabled"><span className = "page-link bg-light">of 3598</span></li>
+                        <li className = "page-item">
+                            <button  className = "page-link bg-light" onClick = {this.handleForward}>Forward</button>
+                        </li>
+                    </ul>
+                </nav>
+               
+            </div>
         );
     }
 }

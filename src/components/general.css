@@ -62,8 +62,7 @@
 }
 
 .labelLen {
-    width : 10
-    100px;
+    width : 100px;
 }
 
 .detail-width {
@@ -150,5 +149,13 @@
     width: 60%;
     overflow: auto;
 }
+
+.pagination-input {
+    width: 80px;
+}
+.left-20{
+    margin-left: 20px;
+}
+
 
 
