@@ -16,7 +16,8 @@ class Profile extends Component {
             profile: undefined,
             comics: [],
             user: props.user,
-            comments: []
+            comments: [],
+            modalIndex: 0
         }
         this.PUBLIC_KEY = `b297a0863017d3e43a78d69c0102bab1`;
         this.PRIV_KEY = `6cfadf50b9063ab192b648f5d892f9d89101bb6b`;
@@ -25,7 +26,15 @@ class Profile extends Component {
         this.getComments = this.getComments.bind(this);
         this.heroRef = React.createRef();
         this.pdf = this.pdf.bind(this);
+        this.handleIndexChange = this.handleIndexChange.bind(this);
 
+    }
+
+    // Handle the index of the information shown in the description modal.
+    handleIndexChange(index) {
+        this.setState({
+            modalIndex: index
+        });
     }
 
     getData(heroId) {
@@ -52,6 +61,7 @@ class Profile extends Component {
                                 profile: profile,
                                 comics: comics  })
             });
+           
     }
 
     getComments(heroId) {
@@ -72,7 +82,6 @@ class Profile extends Component {
     }
 
     renderComments() {
-        
             return (
                 <Element name="thridInsideContainer" className = "min-height-profile">
                     <div>
@@ -119,7 +128,9 @@ class Profile extends Component {
             )
         }
         // console.log(this.state.profile.stories);
+        console.log(this.state.comics);
         return (
+            <div>
             <div className="hero-detail" ref = {this.heroRef}>
                 <div>
                     <img className="detail-hero-img" src={this.state.profile.thumbnail.path + `.` + this.state.profile.thumbnail.extension} alt={this.state.profile.name} />
@@ -156,7 +167,7 @@ class Profile extends Component {
                                         <div className="font-weight-bold">Stories inavailable</div>
                                     ) : (   
                                             this.state.comics.map((item, index) => (
-                                                <HeroComic key = {index} imgSrc={item.thumbnail.path + `.` + item.thumbnail.extension} title={item.title}></HeroComic>
+                                                <HeroComic key = {index} index = {index} handleIndexChange = {this.handleIndexChange} imgSrc={item.thumbnail.path + `.` + item.thumbnail.extension} title={item.title} description = {item.description}></HeroComic>
                                             ))
                                         )
                                 }
@@ -165,6 +176,31 @@ class Profile extends Component {
                         {this.renderComments()}
                     </Element>
                 </div>
+            </div>
+            <div className="modal fade" id="comicDescription" tabIndex="-1" role="dialog" aria-labelledby="comicDescriptionTitle" aria-hidden="true">
+                <div className="modal-dialog modal-dialog-centered" role="document">
+                    <div className="modal-content">
+                    <div className="modal-header">
+                        <h5 className="modal-title" id="comicDescriptionTitle">{this.state.comics[this.state.modalIndex].title}</h5>
+                        <button type="button" className="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div className="modal-body">
+                        {
+                            this.state.comics[this.state.modalIndex].description !== null
+                            ?
+                            this.state.comics[this.state.modalIndex].description
+                            :
+                            (<span>Discription inavailable</span>)
+                        }
+                    </div>
+                    <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
             </div>
         )
     }

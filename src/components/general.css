@@ -167,5 +167,13 @@
     cursor: hand;
 }
 
+.modal-backdrop {
+    z-index: -1;
+}
+
+.hero-detail {
+    z-index: -1;
+}
+
 
 
