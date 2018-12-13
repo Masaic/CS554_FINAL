@@ -181,14 +181,22 @@ class Profile extends Component {
                 <div className="modal-dialog modal-dialog-centered" role="document">
                     <div className="modal-content">
                     <div className="modal-header">
-                        <h5 className="modal-title" id="comicDescriptionTitle">{this.state.comics[this.state.modalIndex].title}</h5>
+                        <h5 className="modal-title" id="comicDescriptionTitle">
+                            {
+                                this.state.comics[this.state.modalIndex].title
+                                ?
+                                this.state.comics[this.state.modalIndex].title
+                                :
+                                <span>Title inavailable</span>
+                            }
+                        </h5>
                         <button type="button" className="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     <div className="modal-body">
                         {
-                            this.state.comics[this.state.modalIndex].description !== null
+                            this.state.comics[this.state.modalIndex].description
                             ?
                             this.state.comics[this.state.modalIndex].description
                             :

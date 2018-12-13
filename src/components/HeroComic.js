@@ -7,6 +7,7 @@ class HeroComic extends Component {
     }
 
     handleChange(index) {
+        console.log("The clicked index is", index)
         this.props.handleIndexChange(index);
     }
     render() {

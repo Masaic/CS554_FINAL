@@ -26,8 +26,8 @@ class Carousel extends Component {
     render() {
         return (
             <div id="homeCarousel" className="carousel slide horizonal-middle carousel-size" data-ride="carousel">
-                <ol class="carousel-indicators">
-                    <li data-target="#homeCarousel" data-slide-to="0" class="active"></li>
+                <ol className="carousel-indicators">
+                    <li data-target="#homeCarousel" data-slide-to="0" className="active"></li>
                     <li data-target="#homeCarousel" data-slide-to="1"></li>
                     <li data-target="#homeCarousel" data-slide-to="2"></li>
                 </ol>
