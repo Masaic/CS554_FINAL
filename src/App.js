@@ -30,30 +30,6 @@ class App extends Component {
   }
 
   
-
-
-  // pdf generator by Boli
-
-  // pdfGenerator = () => {
-  //   const root = this.myRef.current;
-  //   savePDF(ReactDOM.findDOMNode(root),{paperSize: 'A4'});
-  // }
-
-
-  // test button function by BoLi
-  authenTest = async (event) => {
-    event.preventDefault();
-    // await api.signInWithEmailAndPassword('ee06b056@gmail.com','006361');
-    // await api.signInWithGoogleAccount();
-    // console.log(this.state.user);
-    // console.log(await api.registerWithEmailAndPassword('418907463@qq.com','123456'));
-    const value = await api.getCommentsByComicId('33333');
-    // console.log(value);
-  }
-
-  
-  
-  
   
   render() {
     if(this.state.user === `pending`){
@@ -63,8 +39,6 @@ class App extends Component {
       <Router>
       <div className="App" ref={this.myRef}>
         <div className="App-body">
-
-      {/* <button onClick={this.authenTest}>test</button> */}
 
 
         <Switch>
