@@ -158,7 +158,6 @@
 }
 
 .carousel-size {
-   width:60%;
    height: auto;
 }
 
@@ -172,6 +171,37 @@
 
 .hero-detail {
     z-index: -1;
+}
+
+.test-middle {
+    position: absolute;
+    left:50%;
+    transform: translate(-50%, 0%);
+}
+
+.event-detail {
+    width: 45%;
+    height: 200px;
+    max-height: 400px;
+    overflow: auto;
+    transition: all 0.6s;
+}
+
+.event-detail:hover {
+    transform: scale(1.2);
+    z-index:30;
+}
+
+.event-middle {
+    position: absolute;
+    left:50%;
+    width: 60%;
+    transform: translate(-50%, 0%);
+}
+
+.refresh-button {
+    margin-top: 20px;
+    font-size: 20px;
 }
 
 

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import carousel1 from '../images/carousel1.png';
 import carousel2 from '../images/carousel2.png';
 import carousel3 from '../images/carousel3.png';
+import Recommendations from './Recommendations.js';
 import './general.css';
 
 class Carousel extends Component {
@@ -25,32 +26,37 @@ class Carousel extends Component {
 
     render() {
         return (
-            <div id="homeCarousel" className="carousel slide horizonal-middle carousel-size" data-ride="carousel">
-                <ol className="carousel-indicators">
-                    <li data-target="#homeCarousel" data-slide-to="0" className="active"></li>
-                    <li data-target="#homeCarousel" data-slide-to="1"></li>
-                    <li data-target="#homeCarousel" data-slide-to="2"></li>
-                </ol>
-                <div className="carousel-inner">
-                    <div className="carousel-item active">
-                    <img className="d-block w-100 img-fluid" src={carousel1} onClick = {this.getTweet.bind(this, '1')} alt="New Averger" />
+            <div className = "event-middle">
+                <div id="homeCarousel" className="carousel slide carousel-size" data-ride="carousel">
+                    <ol className="carousel-indicators">
+                        <li data-target="#homeCarousel" data-slide-to="0" className="active"></li>
+                        <li data-target="#homeCarousel" data-slide-to="1"></li>
+                        <li data-target="#homeCarousel" data-slide-to="2"></li>
+                    </ol>
+                    <div className="carousel-inner">
+                        <div className="carousel-item active">
+                        <img className="d-block w-100 img-fluid" src={carousel1} onClick = {this.getTweet.bind(this, '1')} alt="New Averger" />
+                        </div>
+                        <div className="carousel-item img-fluid">
+                        <img className="d-block w-100 img-fluid" src={carousel2} onClick = {this.getTweet.bind(this, '2')} alt="Second slide" />
+                        </div>
+                        <div className="carousel-item img-fluid">
+                        <img className="d-block w-100 img-fluid " src={carousel3} onClick = {this.getTweet.bind(this, '3')} alt="Third slide" />
+                        </div>
                     </div>
-                    <div className="carousel-item img-fluid">
-                    <img className="d-block w-100 img-fluid" src={carousel2} onClick = {this.getTweet.bind(this, '2')} alt="Second slide" />
-                    </div>
-                    <div className="carousel-item img-fluid">
-                    <img className="d-block w-100 img-fluid " src={carousel3} onClick = {this.getTweet.bind(this, '3')} alt="Third slide" />
-                    </div>
+                    <a className="carousel-control-prev" href="#homeCarousel" role="button" data-slide="prev">
+                        <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span className="sr-only">Previous</span>
+                    </a>
+                    <a className="carousel-control-next" href="#homeCarousel" role="button" data-slide="next">
+                        <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span className="sr-only">Next</span>
+                    </a>
                 </div>
-                <a className="carousel-control-prev" href="#homeCarousel" role="button" data-slide="prev">
-                    <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Previous</span>
-                </a>
-                <a className="carousel-control-next" href="#homeCarousel" role="button" data-slide="next">
-                    <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span className="sr-only">Next</span>
-                </a>
+                <div >
+                    <Recommendations />
                 </div>
+            </div>
         );
     }
 }

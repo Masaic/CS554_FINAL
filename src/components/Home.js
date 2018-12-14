@@ -18,10 +18,9 @@ class Home extends Component {
         return (
             <div>
                 <Navigation />
-                <div className = "horizanal-middle">
-                     <Carousel />
-                </div>
-               
+                <div>
+                    <Carousel />
+                </div> 
             </div>
         );
     }
