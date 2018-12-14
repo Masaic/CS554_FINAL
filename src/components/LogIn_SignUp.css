@@ -33,7 +33,7 @@
 
 .btnProperty {
     margin-top : 10px;
-    width : 100px;
+    min-width : 100px;
 }
 
 #signUpPart {
@@ -47,4 +47,8 @@
 
 #clickToLogIn {
     display : none;
+}
+
+.left-space {
+    margin-left: 100px;
 }
