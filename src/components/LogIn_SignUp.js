@@ -139,7 +139,7 @@ class LogIn_SignUp extends React.Component {
                 <input type="password" className="form-control inputLen" id="logInPassword" />
               </div>
               <a href="javascript:void(0)" onClick = {this.logIn} className="btn btn-primary btnProperty text-white font-weight-bold">Log in</a>
-              <a href="javascript:void(0)" onClick = {this.googleLogin} className="btn btn-secondary btnProperty text-white font-weight-bold">Google Login</a>
+              <a href="javascript:void(0)" id="google_login_btn"   onClick = {this.googleLogin} className="btn btn-secondary btnProperty text-white font-weight-bold">Google Login</a>
 
               <div>
                 <a href = "javascript:void(0)" onClick = {this.setForgot}>Forgot password?</a>
