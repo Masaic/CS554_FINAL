@@ -82,7 +82,7 @@ class Recommmendations extends Component {
                                             <div className = "bg-dark text-white font-weight-bold">
                                                 {arr.title}
                                             </div>
-                                            <div className = "text-white">
+                                            <div className = "text-white passage-center">
                                                 {arr.description}
                                             </div>
                                         </div>  
