@@ -69,7 +69,20 @@ class LogIn_SignUp extends React.Component {
     } catch(e) {
       alert('Email or password invalid. Please try again.')
     }
+  }
 
+  googleLogin = async () => {
+    console.log('Called googleLogin()');
+    try {
+      const user = await api.signInWithGoogleAccount();
+      const email = user.email;
+      cookie.save('email', user.email, {path: '/'});
+      let res = axios.post(`http://localhost:4000/history/${email}`);
+      console.log(res);
+      window.location.href = document.referrer;
+    } catch (e) {
+      alert ('Google login failed');
+    }
   }
   
   signUp = async() => {
@@ -126,6 +139,8 @@ class LogIn_SignUp extends React.Component {
                 <input type="password" className="form-control inputLen" id="logInPassword" />
               </div>
               <a href="javascript:void(0)" onClick = {this.logIn} className="btn btn-primary btnProperty text-white font-weight-bold">Log in</a>
+              <a href="javascript:void(0)" onClick = {this.googleLogin} className="btn btn-secondary btnProperty text-white font-weight-bold">Google Login</a>
+
               <div>
                 <a href = "javascript:void(0)" onClick = {this.setForgot}>Forgot password?</a>
               </div>
