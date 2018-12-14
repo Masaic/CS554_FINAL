@@ -33,7 +33,7 @@
 
 .btnProperty {
     margin-top : 10px;
-    min-width : 100px;
+    min-width : 100px;  
 }
 
 #signUpPart {
@@ -51,4 +51,10 @@
 
 .left-space {
     margin-left: 100px;
+}
+
+.g-icon {
+    height: 20px;
+    width: 20px;
+    margin-right: 5px;
 }

@@ -5,6 +5,7 @@ import api from '../api';
 import cookie from 'react-cookies';
 import './general.css';
 import axios from 'axios';
+import googleIcon from '../images/googleIcon.png';
 
 class LogIn_SignUp extends React.Component {
   constructor(props) {
@@ -138,11 +139,11 @@ class LogIn_SignUp extends React.Component {
                 <span className="labelLen text-right font-weight-bold">Password: </span>
                 <input type="password" className="form-control inputLen" id="logInPassword" />
               </div>
-             
                 <button onClick = {this.logIn} className="btn btn-primary left-space btnProperty text-white font-weight-bold">Log in</button>
-                <button onClick = {this.googleLogin} className="btn btn-success btnProperty text-white font-weight-bold left-20">Google Login</button>
-            
-
+                <button onClick = {this.googleLogin} className="btn btn-dark btnProperty text-white font-weight-bold left-20">
+                  <img src = {googleIcon} className = "g-icon"/>
+                  Google Login
+                  </button>
               <div>
                 <a href = "javascript:void(0)" onClick = {this.setForgot}>Forgot password?</a>
               </div>
