@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import './general.css';
 import axios from 'axios';
 import Loading from './Loading.js';
+import refreshIcon from '../images/refreshIcon.png'
 const CryptoJS = require("crypto-js");
 
 class Recommmendations extends Component {
@@ -63,7 +64,10 @@ class Recommmendations extends Component {
                     this.state.init ? null : (
                         <div className = "text-right refresh-button">
                             <span className = "text-middle right-3 font-weight-bold" col-md-6>Events Recommendation</span>
-                            <button onClick = {this.refresh} className = "right-3 btn btn-danger font-weight-bold">Refresh</button>
+                            <button onClick = {this.refresh} className = "right-3 btn btn-danger font-weight-bold">
+                                <img className = "g-icon" src = {refreshIcon} />
+                                Refresh
+                            </button>
                         </div>
                         
                     )
