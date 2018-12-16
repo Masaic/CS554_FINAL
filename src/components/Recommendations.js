@@ -63,7 +63,7 @@ class Recommmendations extends Component {
                 {
                     this.state.init ? null : (
                         <div className = "text-right refresh-button">
-                            <span className = "text-middle right-3 font-weight-bold" col-md-6>Events Recommendation</span>
+                            <span className = "text-middle right-3 font-weight-bold">Events Recommendation</span>
                             <button onClick = {this.refresh} className = "right-3 btn btn-danger font-weight-bold">
                                 <img className = "g-icon" src = {refreshIcon} />
                                 Refresh
