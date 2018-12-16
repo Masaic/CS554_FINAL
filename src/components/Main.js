@@ -32,9 +32,6 @@ class Main extends Component {
 
                 </div>
                 <div className="container">
-                    {/* <div className="row">
-                        <Searchbar handleProfileChange={this.handleProfileChange} />
-                    </div> */}
                     <div className="row">
                         <Profile profileName={this.state.name} user={this.state.user} />
                     </div>

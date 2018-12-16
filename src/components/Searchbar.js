@@ -41,7 +41,7 @@ class Searchbar extends Component {
                     this.searchComics();
                 });
             } else {
-                //throw (`no search type`);
+                throw (`no search type`);
             }
     }
 
@@ -97,7 +97,6 @@ class Searchbar extends Component {
     }
 
     async handleClickComic(path) {
-        console.log("searchbar->handleCLickComic", path);
         await this.props.handleProfileChange(path);
     }
 
@@ -105,9 +104,7 @@ class Searchbar extends Component {
         return (
             <Downshift
                 onChange={selection => {
-                    // alert(`You selected ${selection.value}`);
                     let profileName = selection.id;
-                    console.log(selection);
                     if (this.props.type === `Hero`) {
                         this.props.handleProfileChange(profileName);
                     }

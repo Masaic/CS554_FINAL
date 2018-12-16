@@ -7,7 +7,6 @@ import './general.css';
 import api from '../api';
 import HeroComic from './HeroComic.js';
 const CryptoJS = require("crypto-js");
-// const querystring = require("querystring");
 
 class Profile extends Component {
     constructor(props) {
@@ -37,7 +36,7 @@ class Profile extends Component {
         });
     }
 
-    getData(heroId) {
+    getData(heroId,user = null) {
         let ts = new Date().getTime();
         let hash = CryptoJS.MD5(ts + this.PRIV_KEY + this.PUBLIC_KEY).toString();
         let script = `ts=${ts}&apikey=${this.PUBLIC_KEY}&hash=${hash}`;
@@ -45,18 +44,23 @@ class Profile extends Component {
         let comics;
         const response = axios.get(`https://gateway.marvel.com/v1/public/characters/${heroId}?${script}`);
         response.then((result) => {
-            // this.setState({ profile: result.data.data.results[0] })
             profile = result.data.data.results[0];
             console.log(profile);
             const comics = axios.get(`https://gateway.marvel.com/v1/public/characters/${heroId}/comics?format=comic&limit=10&${script}`)
             return comics
         }).then((result) => {
-            // this.setState({ comics: result.data.data.results }, {profile: profile})
                  comics = result.data.data.results
                  let comments = api.getCommentsByComicId(heroId);
                  return comments
             }).then((comment) => {
-                // console.log(comment);
+                if(user){
+                    this.setState({ comments: comment,
+                                    profile: profile,
+                                    comics: comics,
+                                    user: user 
+                                  })
+
+                }
                 this.setState({ comments: comment,
                                 profile: profile,
                                 comics: comics  })
@@ -67,7 +71,6 @@ class Profile extends Component {
     getComments(heroId) {
         let comments = api.getCommentsByComicId(heroId);
         comments.then((comment) => {
-            // console.log(comment);
             this.setState({ comments: comment })
         })
     }
@@ -77,8 +80,7 @@ class Profile extends Component {
     }
 
     componentWillReceiveProps(next) {
-        this.setState({ user: next.user });
-        this.getData(next.profileName);
+        this.getData(next.profileName,next.user);
     }
 
     renderComments() {
@@ -127,8 +129,6 @@ class Profile extends Component {
                 </div>
             )
         }
-        // console.log(this.state.profile.stories);
-        console.log(this.state.comics);
         return (
             <div>
             <div className="hero-detail" ref = {this.heroRef}>
@@ -218,13 +218,3 @@ class Profile extends Component {
 export default Profile;
 
 
-/* 
-
-style={{
-    position: 'relative',
-    height: '200px',
-    overflow: 'scroll',
-    marginBottom: '100px'
-}}
-
-*/
